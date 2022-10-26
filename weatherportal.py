@@ -1471,7 +1471,7 @@ def postback(event):
             alt_text="最も近いものは？", template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, template_message)
-              MySession.update_context(user_id, "12")
+        MySession.update_context(user_id, "12")
 
     if postback_msg == "明日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 1)
@@ -1485,7 +1485,7 @@ def postback(event):
             alt_text="最も近いものは？", template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, template_message)
-              MySession.update_context(user_id, "12")
+        MySession.update_context(user_id, "12")
 
     if postback_msg == "明後日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 2)
@@ -1499,7 +1499,7 @@ def postback(event):
             alt_text="最も近いものは？", template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, template_message)
-              MySession.update_context(user_id, "12")
+        MySession.update_context(user_id, "12")
 
 
     if postback_msg == "暑がり" and MySession.read_context(user_id) == "12":
