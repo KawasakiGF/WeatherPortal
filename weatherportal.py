@@ -1456,7 +1456,7 @@ def handle_message(event):
 #ボタンの入力を受け取るPostbackEvent
 @handler.add(PostbackEvent)
 def postback(event):
-    user_id = event.soure.user_id
+    user_id = event.source.user_id
     postback_msg = event.postback.data
 
     if MySession.read_context(user_id) == "10":
