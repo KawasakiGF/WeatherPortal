@@ -1561,7 +1561,7 @@ def postback(event):
                   [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！" + " (1/2)"),
                   TextSendMessage(text=tenkiInfo),
                   TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message)])
+                  template_message])
         else:
              line_bot_api.reply_message(
                   event.reply_token,
@@ -1569,7 +1569,7 @@ def postback(event):
                   TextSendMessage(text=tenkiInfo),
                   ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
                   TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message)])
+                  template_message])
         MySession.update_context(user_id, "13")
 
     if postback_msg == "寒がり" and MySession.read_context(user_id) == "12":
@@ -1578,7 +1578,7 @@ def postback(event):
 
         confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
             PostbackAction(label="はい", data="はい", text="はい"),
-            PostbackAction(label="いいえ", data="いいえ", text="いいえ"),
+            PostbackAction(label="いいえ", data="いいえ", text="いいえ")
         ])
         template_message = TemplateSendMessage(
             alt_text="情報を保持しますか？", template=confirm_template)
@@ -1596,7 +1596,7 @@ def postback(event):
                   [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！" + " (1/2)"),
                   TextSendMessage(text=tenkiInfo),
                   TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message)])
+                  template_message])
         else:
              line_bot_api.reply_message(
                   event.reply_token,
@@ -1604,7 +1604,7 @@ def postback(event):
                   TextSendMessage(text=tenkiInfo),
                   ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
                   TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message)])
+                  template_message])
         MySession.update_context(user_id, "13")
 
         if postback_msg == "はい" and MySession.read_context(user_id) == "13":
