@@ -1438,7 +1438,6 @@ def handle_message(event):
           #TextSendMessageオブジェクトを渡しています。
 
 #ボタン操作はここから#################
-(場合によっては市の情報合致しなかったパターンとは別に作る必要があるかもしれん)
 #ボタンの入力を受け取るPostbackEvent
 @handler.add(PostbackEvent)
 def postback(event):
