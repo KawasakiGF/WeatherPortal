@@ -47,6 +47,7 @@ class Status:
           self.Harea = ""
           self.HareaT = ""
           self.HbasyoList = ""
+          self.para = 0
           self.count = 0
           self.oyasumi = 0
 
