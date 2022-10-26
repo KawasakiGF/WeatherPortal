@@ -1445,61 +1445,60 @@ def postback(event):
     user_id = event.soure.user_id
     postback_msg = event.postback.data
 
-    #暑がり、寒がり、どちらでもないを聞くとこ###########################
     if MySession.read_context(user_id) == "10":
         MySession.update_area(user_id, postback_msg)
-              buttons_template = ButtonsTemplate(
-                  text="日時を選択してください。", actions=[
-                      PostbackAction(label="今日", data="今日", text="今日"),
-                      PostbackAction(label="明日", data="明日", text="明日"),
-                      PostbackAction(label="明後日", data="明後日", text="明後日")
-                  ])
-              template_message = TemplateSendMessage(
-                  alt_text="日時を選択してください", template=buttons_template)
-              line_bot_api.reply_message(
-                  event.reply_token, template_message)
-              MySession.update_context(user_id, "11")
+        buttons_template = ButtonsTemplate(
+            text="日時を選択してください。", actions=[
+                PostbackAction(label="今日", data="今日", text="今日"),
+                PostbackAction(label="明日", data="明日", text="明日"),
+                PostbackAction(label="明後日", data="明後日", text="明後日")
+            ])
+        template_message = TemplateSendMessage(
+            alt_text="日時を選択してください", template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
+        MySession.update_context(user_id, "11")
 
     if postback_msg == "今日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 0)
-              buttons_template = ButtonsTemplate(
-                  text="最も近いものは？", actions=[
+        buttons_template = ButtonsTemplate(
+            text="最も近いものは？", actions=[
                       PostbackAction(label="暑がり", data="暑がり", text="暑がり"),
                       PostbackAction(label="寒がり", data="寒がり", text="寒がり"),
                       PostbackAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
-                  ])
-              template_message = TemplateSendMessage(
-                  alt_text="最も近いものは？", template=buttons_template)
-              line_bot_api.reply_message(
-                  event.reply_token, template_message)
+            ])
+        template_message = TemplateSendMessage(
+            alt_text="最も近いものは？", template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
               MySession.update_context(user_id, "12")
 
     if postback_msg == "明日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 1)
-              buttons_template = ButtonsTemplate(
-                  text="最も近いものは？", actions=[
+        buttons_template = ButtonsTemplate(
+            text="最も近いものは？", actions=[
                       PostbackAction(label="暑がり", data="暑がり", text="暑がり"),
                       PostbackAction(label="寒がり", data="寒がり", text="寒がり"),
                       PostbackAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
-                  ])
-              template_message = TemplateSendMessage(
-                  alt_text="最も近いものは？", template=buttons_template)
-              line_bot_api.reply_message(
-                  event.reply_token, template_message)
+            ])
+        template_message = TemplateSendMessage(
+            alt_text="最も近いものは？", template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
               MySession.update_context(user_id, "12")
 
     if postback_msg == "明後日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 2)
-              buttons_template = ButtonsTemplate(
-                  text="最も近いものは？", actions=[
+        buttons_template = ButtonsTemplate(
+            text="最も近いものは？", actions=[
                       PostbackAction(label="暑がり", data="暑がり", text="暑がり"),
                       PostbackAction(label="寒がり", data="寒がり", text="寒がり"),
                       PostbackAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
-                  ])
-              template_message = TemplateSendMessage(
-                  alt_text="最も近いものは？", template=buttons_template)
-              line_bot_api.reply_message(
-                  event.reply_token, template_message)
+            ])
+        template_message = TemplateSendMessage(
+            alt_text="最も近いものは？", template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
               MySession.update_context(user_id, "12")
 
 
