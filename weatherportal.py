@@ -593,12 +593,6 @@ def handle_message(event):
 
     MySession.register(user_id)
 
-    #if文の侵入が1つだけしか行けないならこれが原因で動かないかも
-    if "県" in talk:
-        basyo = talk.split("県")
-        ken = basyo[0] + "県"
-        si = basyo[1].split("市")[0]
-
 #会話を中断したいとき
     if (talk == "リセット"):
         line_bot_api.reply_message(
@@ -655,8 +649,8 @@ def handle_message(event):
                     TextSendMessage(text=fukusouInfo)])
 
 #1か所の場所を聞く####################
-    elif MySession.read_context(user_id) == "0" and ("県" in talk):
-       if ken in todoufuken:
+    elif MySession.read_context(user_id) == "0" and ("1" in talk or "１" in talk or "一" in talk):
+       if "1" in talk or "１" in talk or "一" in talk:
           #保持情報はいったん避難
           Hdate = MySession.read_Hdate(user_id)
           Harea = MySession.read_Harea(user_id)
@@ -671,43 +665,6 @@ def handle_message(event):
           MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
           MySession.update_HbasyoList(user_id, MySession.read_HbasyoList(user_id))
           MySession.update_para(user_id, para)
-
-          if si in Tname:
-              buttons_template = ButtonsTemplate(
-                  text="日時を選択してください。", actions=[
-                      PostbackAction(label="今日", data="今日", text="今日"),
-                      PostbackAction(label="明日", data="明日", text="明日"),
-                      PostbackAction(label="明後日", data="明後日", text="明後日")
-                  ])
-              template_message = TemplateSendMessage(
-                  alt_text="日時を選択してください", template=buttons_template)
-              line_bot_api.reply_message(
-                  event.reply_token, template_message)
-                      
-                      
-
-
-
-
-          #else:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           line_bot_api.reply_message(
                event.reply_token,
                TextSendMessage(text=tellDay + " (1/4)"))
@@ -848,7 +805,7 @@ def handle_message(event):
 ###############################
 
 #2か所の場所を聞く####################
-    elif MySession.read_context(user_id) == "0" and ("県" in talk and "から" in talk):
+    elif MySession.read_context(user_id) == "0" and ("2" in talk or "２" in talk or "二" in talk):
        if "2" in talk or "２" in talk or "二" in talk:
           MySession.reset(user_id)
           line_bot_api.reply_message(
@@ -1198,7 +1155,7 @@ def handle_message(event):
             event.reply_token,
             [TextSendMessage(text = bokumonetyaou),
             TextSendMessage(text = user_name + "さん、おやすみなさいです…"),
-            ImageSendMessage(original_content_url=oyasumiFogPic, preview_image_url=oyasumiFogPic)])
+            [ImageSendMessage(original_content_url=oyasumiFogPic, preview_image_url=oyasumiFogPic)])
         MySession.update_oyasumi(user_id, 3)
     elif MySession.read_context(user_id) == "0" and (talk == "寝なよ" or talk == "寝てもいいよ" or talk == "一緒に寝よう" or talk == "休んでもいいよ" or talk == "休んじゃいなよ" or talk == "一緒に寝る？" or talk == "休んでもいいんじゃない？" or talk == "寝ちゃいなよ" or talk == "寝ちゃってもいいよ" or talk == "寝ちゃってもいいんじゃない？"):
         line_bot_api.reply_message(
@@ -1297,29 +1254,7 @@ def handle_message(event):
           #用いるトークン。 第二引数にはlinebot.modelsに定義されている返信用の
           #TextSendMessageオブジェクトを渡しています。
 
-#ボタン操作はここから#################
-#下にもっていく必要がある。(場合によっては市の情報合致しなかったパターンとは別に作る必要があるかもしれん)
-#ボタン操作はここから#################
-#ボタンの入力を受け取るPostbackEvent
-@handler.add(PostbackEvent)
-def postback(event):
-    user_id = event.soure.user_id
-    postback_msg = event.postback.data
 
-    if postback_msg == "今日"
-        MySession.update_date(user_id, 0)
-              buttons_template = ButtonsTemplate(
-                  text="最も近いものは？", actions=[
-                      PostbackAction(label="暑がり", data="暑がり", text="暑がり"),
-                      PostbackAction(label="寒がり", data="寒がり", text="寒がり"),
-                      PostbackAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
-                  ])
-              template_message = TemplateSendMessage(
-                  alt_text="日時を選択してください", template=buttons_template)
-              line_bot_api.reply_message(
-                  event.reply_token, template_message)
-#############################
-#############################
 
 
 ##################################
