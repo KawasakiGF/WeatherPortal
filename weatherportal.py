@@ -16,7 +16,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, ConfirmTemplate, ButtonsTemplate, CarouselTemplate, CarouselColumn, PostbackEvent
+    MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, ConfirmTemplate, ButtonsTemplate, CarouselTemplate, CarouselColumn, PostbackEvent, PostbackAction
 )
 
 # アプリケーションの名前となる文字列
