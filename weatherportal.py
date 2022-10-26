@@ -559,7 +559,7 @@ def picUrlMaker(weather):
 
 #####################通信の検証####################
 # @app.route("/callback"...はappに対して/callbackというURLに対応するアクションを記述
-@app.route("/callback", methods=['POST'])
+@app.route("srv-cdcab3cgqg48t04bjju0?key=N1J0IqlDsPk", methods=['POST'])
 def callback():
     # get X-Line-Signature header value 署名検証
     signature = request.headers['X-Line-Signature']
