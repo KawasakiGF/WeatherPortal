@@ -1155,7 +1155,7 @@ def handle_message(event):
             event.reply_token,
             [TextSendMessage(text = bokumonetyaou),
             TextSendMessage(text = user_name + "さん、おやすみなさいです…"),
-            [ImageSendMessage(original_content_url=oyasumiFogPic, preview_image_url=oyasumiFogPic)])
+            ImageSendMessage(original_content_url=oyasumiFogPic, preview_image_url=oyasumiFogPic)])
         MySession.update_oyasumi(user_id, 3)
     elif MySession.read_context(user_id) == "0" and (talk == "寝なよ" or talk == "寝てもいいよ" or talk == "一緒に寝よう" or talk == "休んでもいいよ" or talk == "休んじゃいなよ" or talk == "一緒に寝る？" or talk == "休んでもいいんじゃない？" or talk == "寝ちゃいなよ" or talk == "寝ちゃってもいいよ" or talk == "寝ちゃってもいいんじゃない？"):
         line_bot_api.reply_message(
