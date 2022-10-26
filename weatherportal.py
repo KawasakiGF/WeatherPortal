@@ -1526,7 +1526,7 @@ def postback(event):
                   [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！" + " (1/2)"),
                   TextSendMessage(text=tenkiInfo),
                   TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message)])
+                  template_message])
         else:
              line_bot_api.reply_message(
                   event.reply_token,
@@ -1534,7 +1534,7 @@ def postback(event):
                   TextSendMessage(text=tenkiInfo),
                   ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
                   TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message)])
+                  template_message])
         MySession.update_context(user_id, "13")
 
     if postback_msg == "どちらでもない" and MySession.read_context(user_id) == "12":
