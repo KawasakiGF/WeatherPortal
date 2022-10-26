@@ -685,31 +685,11 @@ def handle_message(event):
                   event.reply_token, template_message)
                       
                       
-#下にもっていく必要がある。(場合によっては市の情報合致しなかったパターンとは別に作る必要があるかもしれん)
-#ボタン操作はここから#################
-#ボタンの入力を受け取るPostbackEvent
-@handler.add(PostbackEvent)
-def postback(event):
-    user_id = event.soure.user_id
-    postback_msg = event.postback.data
-
-    if postback_msg == "今日"
-        MySession.update_date(user_id, 0)
-              buttons_template = ButtonsTemplate(
-                  text="最も近いものは？", actions=[
-                      PostbackAction(label="暑がり", data="暑がり", text="暑がり"),
-                      PostbackAction(label="寒がり", data="寒がり", text="寒がり"),
-                      PostbackAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
-                  ])
-              template_message = TemplateSendMessage(
-                  alt_text="日時を選択してください", template=buttons_template)
-              line_bot_api.reply_message(
-                  event.reply_token, template_message)
-#############################
 
 
 
-          else:
+
+          #else:
 
 
 
@@ -1318,7 +1298,27 @@ def postback(event):
           #TextSendMessageオブジェクトを渡しています。
 
 #ボタン操作はここから#################
+#下にもっていく必要がある。(場合によっては市の情報合致しなかったパターンとは別に作る必要があるかもしれん)
+#ボタン操作はここから#################
+#ボタンの入力を受け取るPostbackEvent
+@handler.add(PostbackEvent)
+def postback(event):
+    user_id = event.soure.user_id
+    postback_msg = event.postback.data
 
+    if postback_msg == "今日"
+        MySession.update_date(user_id, 0)
+              buttons_template = ButtonsTemplate(
+                  text="最も近いものは？", actions=[
+                      PostbackAction(label="暑がり", data="暑がり", text="暑がり"),
+                      PostbackAction(label="寒がり", data="寒がり", text="寒がり"),
+                      PostbackAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
+                  ])
+              template_message = TemplateSendMessage(
+                  alt_text="日時を選択してください", template=buttons_template)
+              line_bot_api.reply_message(
+                  event.reply_token, template_message)
+#############################
 #############################
 
 
