@@ -712,9 +712,9 @@ def handle_message(event):
           if si in Tname:
               buttons_template = ButtonsTemplate(
                   text="日時を選択してください。", actions=[
-                      PostbackAction(label="今日", data="今日", text="今日"),
-                      PostbackAction(label="明日", data="明日", text="明日"),
-                      PostbackAction(label="明後日", data="明後日", text="明後日")
+                      MessageAction(label="今日", data="今日", text="今日"),
+                      MessageAction(label="明日", data="明日", text="明日"),
+                      MessageAction(label="明後日", data="明後日", text="明後日")
                   ])
               template_message = TemplateSendMessage(
                   alt_text="日時を選択してください", template=buttons_template)
@@ -724,274 +724,272 @@ def handle_message(event):
                       
           else:
               TBasyo = todoufukenNum(int(todoufuken.index(ken)))
-              kwsiBasyoList = codeKaraFind(TBasyo)
+              BasyoList = codeKaraFind(TBasyo)
 
-              if len(kwsiBasyoList) == 1:
+              if len(BasyoList) == 1:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/1", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 2:
+              elif len(BasyoList) == 2:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/1", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 3:
+              elif len(BasyoList) == 3:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/1", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 4:
+              elif len(BasyoList) == 4:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/1", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 5:
+              elif len(BasyoList) == 5:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/2", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/2", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 6:
+              elif len(BasyoList) == 6:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/2", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/2", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 7:
+              elif len(BasyoList) == 7:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/2", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/2", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 8:
+              elif len(BasyoList) == 8:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/2", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/2", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
-                                                PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 9:
+              elif len(BasyoList) == 9:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/3", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/3", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
-                                                PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
                       ]),
                       CarouselColumn(text="3/3", actions=[
-                                                PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8])
+                                                MessageAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 10:
+              elif len(BasyoList) == 10:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/3", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/3", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
-                                                PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
                       ]),
                       CarouselColumn(text="3/3", actions=[
-                                                PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
-                                                PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9])
+                                                MessageAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
+                                                MessageAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 11:
+              elif len(BasyoList) == 11:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/3", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/3", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
-                                                PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
                       ]),
                       CarouselColumn(text="3/3", actions=[
-                                                PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
-                                                PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
-                                                PostbackAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10])
+                                                MessageAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
+                                                MessageAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
+                                                MessageAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 12:
+              elif len(BasyoList) == 12:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/3", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/3", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
-                                                PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
                       ]),
                       CarouselColumn(text="3/3", actions=[
-                                                PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
-                                                PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
-                                                PostbackAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
-                                                PostbackAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
+                                                MessageAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
+                                                MessageAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
+                                                MessageAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
+                                                MessageAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 13:
+              elif len(BasyoList) == 13:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/4", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/4", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
-                                                PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
                       ]),
                       CarouselColumn(text="3/4", actions=[
-                                                PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
-                                                PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
-                                                PostbackAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
-                                                PostbackAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
+                                                MessageAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
+                                                MessageAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
+                                                MessageAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
+                                                MessageAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
                       ]),
                       CarouselColumn(text="4/4", actions=[
-                                                PostbackAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12])
+                                                MessageAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 14:
+              elif len(BasyoList) == 14:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/4", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/4", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
-                                                PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
                       ]),
                       CarouselColumn(text="3/4", actions=[
-                                                PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
-                                                PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
-                                                PostbackAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
-                                                PostbackAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
+                                                MessageAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
+                                                MessageAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
+                                                MessageAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
+                                                MessageAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
                       ]),
                       CarouselColumn(text="4/4", actions=[
-                                                PostbackAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12]),
-                                                PostbackAction(label=BasyoList[13], data=BasyoList[13], text=BasyoList[13])
+                                                MessageAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12]),
+                                                MessageAction(label=BasyoList[13], data=BasyoList[13], text=BasyoList[13])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 15:
+              elif len(BasyoList) == 15:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/4", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/4", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
-                                                PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
                       ]),
                       CarouselColumn(text="3/4", actions=[
-                                                PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
-                                                PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
-                                                PostbackAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
-                                                PostbackAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
+                                                MessageAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
+                                                MessageAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
+                                                MessageAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
+                                                MessageAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
                       ]),
                       CarouselColumn(text="4/4", actions=[
-                                                PostbackAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12]),
-                                                PostbackAction(label=BasyoList[13], data=BasyoList[13], text=BasyoList[13]),
-                                                PostbackAction(label=BasyoList[14], data=BasyoList[14], text=BasyoList[14])
+                                                MessageAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12]),
+                                                MessageAction(label=BasyoList[13], data=BasyoList[13], text=BasyoList[13]),
+                                                MessageAction(label=BasyoList[14], data=BasyoList[14], text=BasyoList[14])
                       ])
                   ])
-              elif len(kwsiBasyoList) == 16:
+              elif len(BasyoList) == 16:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/4", actions=[
-                                                PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
-                                                PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
-                                                PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
-                                                PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
+                                                MessageAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
+                                                MessageAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                       ]),
                       CarouselColumn(text="2/4", actions=[
-                                                PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
-                                                PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
-                                                PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
-                                                PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
+                                                MessageAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
                       ]),
                       CarouselColumn(text="3/4", actions=[
-                                                PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
-                                                PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
-                                                PostbackAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
-                                                PostbackAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
+                                                MessageAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
+                                                MessageAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
+                                                MessageAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
+                                                MessageAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
                       ]),
                       CarouselColumn(text="4/4", actions=[
-                                                PostbackAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12]),
-                                                PostbackAction(label=BasyoList[13], data=BasyoList[13], text=BasyoList[13]),
-                                                PostbackAction(label=BasyoList[14], data=BasyoList[14], text=BasyoList[14]),
-                                                PostbackAction(label=BasyoList[15], data=BasyoList[15], text=BasyoList[15])
+                                                MessageAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12]),
+                                                MessageAction(label=BasyoList[13], data=BasyoList[13], text=BasyoList[13]),
+                                                MessageAction(label=BasyoList[14], data=BasyoList[14], text=BasyoList[14]),
+                                                MessageAction(label=BasyoList[15], data=BasyoList[15], text=BasyoList[15])
                       ])
                   ])
-
-
               template_message = TemplateSendMessage(
                   alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。" , template=carousel_template)
               line_bot_api.reply_message(
@@ -1000,6 +998,204 @@ def handle_message(event):
                   template_message])
               MySession.update_context(user_id, "10")
 
+    if MySession.read_context(user_id) == "10":
+        MySession.update_area(user_id, talk)
+        buttons_template = ButtonsTemplate(
+            text="日時を選択してください。", actions=[
+                MessageAction(label="今日", data="今日", text="今日"),
+                MessageAction(label="明日", data="明日", text="明日"),
+                MessageAction(label="明後日", data="明後日", text="明後日")
+            ])
+        template_message = TemplateSendMessage(
+            alt_text="日時を選択してください", template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
+        MySession.update_context(user_id, "11")
+
+    if talk == "今日" and MySession.read_context(user_id) == "11":
+        MySession.update_date(user_id, 0)
+        buttons_template = ButtonsTemplate(
+            text="最も近いものは？", actions=[
+                      MessageAction(label="暑がり", data="暑がり", text="暑がり"),
+                      MessageAction(label="寒がり", data="寒がり", text="寒がり"),
+                      MessageAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
+            ])
+        template_message = TemplateSendMessage(
+            alt_text="最も近いものは？", template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
+        MySession.update_context(user_id, "12")
+
+    if talk == "明日" and MySession.read_context(user_id) == "11":
+        MySession.update_date(user_id, 1)
+        buttons_template = ButtonsTemplate(
+            text="最も近いものは？", actions=[
+                      MessageAction(label="暑がり", data="暑がり", text="暑がり"),
+                      MessageAction(label="寒がり", data="寒がり", text="寒がり"),
+                      MessageAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
+            ])
+        template_message = TemplateSendMessage(
+            alt_text="最も近いものは？", template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
+        MySession.update_context(user_id, "12")
+
+    if talk == "明後日" and MySession.read_context(user_id) == "11":
+        MySession.update_date(user_id, 2)
+        buttons_template = ButtonsTemplate(
+            text="最も近いものは？", actions=[
+                      MessageAction(label="暑がり", data="暑がり", text="暑がり"),
+                      MessageAction(label="寒がり", data="寒がり", text="寒がり"),
+                      MessageAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
+            ])
+        template_message = TemplateSendMessage(
+            alt_text="最も近いものは？", template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
+        MySession.update_context(user_id, "12")
+
+
+    if talk == "暑がり" and MySession.read_context(user_id) == "12":
+        MySession.update_para(user_id, 3)
+        para = MySession.read_para(user_id)
+
+        confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
+            MessageAction(label="はい", data="はい", text="はい"),
+            MessageAction(label="いいえ", data="いいえ", text="いいえ")
+        ])
+        template_message = TemplateSendMessage(
+            alt_text="情報を保持しますか？", template=confirm_template)
+
+        picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
+        fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
+        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        kionnInfo = kionnHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        caution = ""
+        if "だめです" in kionnInfo or "傘情報を取得できませんでした" in kasaInfo: caution="\n\n※「今日」の天気情報で情報取得時刻が遅い場合、正常に情報を取得できないことがあります。"
+        if picUrl == "未知の天気":
+             line_bot_api.reply_message(
+                  event.reply_token,
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  TextSendMessage(text=tenkiInfo),
+                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  template_message])
+        else:
+             line_bot_api.reply_message(
+                  event.reply_token,
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  TextSendMessage(text=tenkiInfo),
+                  ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
+                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  template_message])
+        MySession.update_context(user_id, "13")
+
+    if talk == "どちらでもない" and MySession.read_context(user_id) == "12":
+        MySession.update_para(user_id, 0)
+        para = MySession.read_para(user_id)
+
+        confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
+            MessageAction(label="はい", data="はい", text="はい"),
+            MessageAction(label="いいえ", data="いいえ", text="いいえ")
+        ])
+        template_message = TemplateSendMessage(
+            alt_text="情報を保持しますか？", template=confirm_template)
+
+        picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
+        fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
+        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        kionnInfo = kionnHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        caution = ""
+        if "だめです" in kionnInfo or "傘情報を取得できませんでした" in kasaInfo: caution="\n\n※「今日」の天気情報で情報取得時刻が遅い場合、正常に情報を取得できないことがあります。"
+        if picUrl == "未知の天気":
+             line_bot_api.reply_message(
+                  event.reply_token,
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  TextSendMessage(text=tenkiInfo),
+                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  template_message])
+        else:
+             line_bot_api.reply_message(
+                  event.reply_token,
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  TextSendMessage(text=tenkiInfo),
+                  ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
+                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  template_message])
+        MySession.update_context(user_id, "13")
+
+    if talk == "寒がり" and MySession.read_context(user_id) == "12":
+        MySession.update_para(user_id, -3)
+        para = MySession.read_para(user_id)
+
+        confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
+            MessageAction(label="はい", data="はい", text="はい"),
+            MessageAction(label="いいえ", data="いいえ", text="いいえ")
+        ])
+        template_message = TemplateSendMessage(
+            alt_text="情報を保持しますか？", template=confirm_template)
+
+        picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
+        fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
+        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        kionnInfo = kionnHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        caution = ""
+        if "だめです" in kionnInfo or "傘情報を取得できませんでした" in kasaInfo: caution="\n\n※「今日」の天気情報で情報取得時刻が遅い場合、正常に情報を取得できないことがあります。"
+        if picUrl == "未知の天気":
+             line_bot_api.reply_message(
+                  event.reply_token,
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  TextSendMessage(text=tenkiInfo),
+                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  template_message])
+        else:
+             line_bot_api.reply_message(
+                  event.reply_token,
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  TextSendMessage(text=tenkiInfo),
+                  ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
+                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  template_message])
+        MySession.update_context(user_id, "13")
+
+        if talk == "はい" and MySession.read_context(user_id) == "13":
+            if MySession.read_date(user_id) == 0: date="今日"
+            elif MySession.read_date(user_id) == 1: date="明日"
+            elif MySession.read_date(user_id) == 2: date="明後日"
+            if MySession.read_para(user_id) == 3: para="暑がり"
+            elif MySession.read_para(user_id) == 0: para="どちらでもない"
+            elif MySession.read_para(user_id) == -3: para="寒がり"
+            line_bot_api.reply_message(
+               event.reply_token,
+               [TextSendMessage(text="情報保持しました！次回以降「いつもの」と入力すれば以下の条件で天気情報を検索できます！"),
+               TextSendMessage(text="<日付>" + date + "\n<場所>" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "\n<体調>" + para),
+               TextSendMessage(text="情報は次の1か所or2か所の天気情報検索時まで保持されます。")])
+            MySession.update_context(user_id, "0")
+            MySession.update_Hdate(user_id, MySession.read_date(user_id))
+            MySession.update_Harea(user_id, MySession.read_area(user_id))
+            MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
+            MySession.update_HbasyoList(user_id, MySession.read_HbasyoList(user_id))
+
+        if talk == "いいえ" and MySession.read_context(user_id) == "13":
+            line_bot_api.reply_message(
+               event.reply_token,
+               TextSendMessage(text="保持しませんでした。またご利用になられる場合は「1か所」もしくは「2か所」を入力してください。"))
+            #保持情報はいったん避難
+            Hdate = MySession.read_Hdate(user_id)
+            Harea = MySession.read_Harea(user_id)
+            HareaT = MySession.read_HareaT(user_id)
+            HbasyoList = MySession.read_HbasyoList(user_id)
+            para = MySession.read_para(user_id)
+            #全部消した後、
+            MySession.reset(user_id)
+            #保持情報を再度覚えさせる
+            MySession.update_Hdate(user_id, Hdate)
+            MySession.update_Harea(user_id, MySession.read_area(user_id))
+            MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
+            MySession.update_HbasyoList(user_id, MySession.read_HbasyoList(user_id))
+            MySession.update_para(user_id, para)
 ###############################
 
 #2か所の場所を聞く####################
@@ -1173,7 +1369,7 @@ def handle_message(event):
             event.reply_token,
            [TextSendMessage(text = "↓アンケートはこちらから\nhttps://forms.office.com/r/890X6LLyRU"),
            TextSendMessage(text = "アンケートでは、あなたが現在使用している天気予報のアプリやシステムなどと比べ、WeatherNewsBotがどれくらい便利か、システムの完成度や利便性はどの程度か、追加してほしい機能や不満点、バグの有無などについてお伺いしています。")])
-           #TextSendMEssage(text = "ver1.1では、ver1.0を利用した方と利用されていない方で別にアンケート項目を設けております(ver1.0からご利用いただいている方は、1.0の時に比べどの程度改善したかなどを伺っています)。さらに、WeatherNewsBotのマスコットキャラクター「フォグ」との会話を意識したアップデートを通して使用意欲の向上があったか、知名度や利用者の増加は見込めるかなどについてもお伺いしています")])
+           TextSendMEssage(text = "ver1.1では、ver1.0を利用した方と利用されていない方で別にアンケート項目を設けております(ver1.0からご利用いただいている方は、1.0の時に比べどの程度改善したかなどを伺っています)。さらに、WeatherNewsBotのマスコットキャラクター「フォグ」との会話を意識したアップデートを通して使用意欲の向上があったか、知名度や利用者の増加は見込めるかなどについてもお伺いしています")])
 ###############################
 
 #その他の会話#######################
@@ -1451,215 +1647,6 @@ def handle_message(event):
           #リプライはLineBotApiのメソッドを用いる。 第一引数のevent.reply_tokenはイベントの応答に
           #用いるトークン。 第二引数にはlinebot.modelsに定義されている返信用の
           #TextSendMessageオブジェクトを渡しています。
-
-#ボタン操作はここから#################
-#ボタンの入力を受け取るPostbackEvent
-@handler.add(PostbackEvent)
-def postback(event):
-    user_id = event.source.user_id
-    postback_msg = event.postback.data
-
-    if MySession.read_context(user_id) == "10":
-        MySession.update_area(user_id, postback_msg)
-        buttons_template = ButtonsTemplate(
-            text="日時を選択してください。", actions=[
-                PostbackAction(label="今日", data="今日", text="今日"),
-                PostbackAction(label="明日", data="明日", text="明日"),
-                PostbackAction(label="明後日", data="明後日", text="明後日")
-            ])
-        template_message = TemplateSendMessage(
-            alt_text="日時を選択してください", template=buttons_template)
-        line_bot_api.reply_message(
-            event.reply_token, template_message)
-        MySession.update_context(user_id, "11")
-
-    if postback_msg == "今日" and MySession.read_context(user_id) == "11":
-        MySession.update_date(user_id, 0)
-        buttons_template = ButtonsTemplate(
-            text="最も近いものは？", actions=[
-                      PostbackAction(label="暑がり", data="暑がり", text="暑がり"),
-                      PostbackAction(label="寒がり", data="寒がり", text="寒がり"),
-                      PostbackAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
-            ])
-        template_message = TemplateSendMessage(
-            alt_text="最も近いものは？", template=buttons_template)
-        line_bot_api.reply_message(
-            event.reply_token, template_message)
-        MySession.update_context(user_id, "12")
-
-    if postback_msg == "明日" and MySession.read_context(user_id) == "11":
-        MySession.update_date(user_id, 1)
-        buttons_template = ButtonsTemplate(
-            text="最も近いものは？", actions=[
-                      PostbackAction(label="暑がり", data="暑がり", text="暑がり"),
-                      PostbackAction(label="寒がり", data="寒がり", text="寒がり"),
-                      PostbackAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
-            ])
-        template_message = TemplateSendMessage(
-            alt_text="最も近いものは？", template=buttons_template)
-        line_bot_api.reply_message(
-            event.reply_token, template_message)
-        MySession.update_context(user_id, "12")
-
-    if postback_msg == "明後日" and MySession.read_context(user_id) == "11":
-        MySession.update_date(user_id, 2)
-        buttons_template = ButtonsTemplate(
-            text="最も近いものは？", actions=[
-                      PostbackAction(label="暑がり", data="暑がり", text="暑がり"),
-                      PostbackAction(label="寒がり", data="寒がり", text="寒がり"),
-                      PostbackAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
-            ])
-        template_message = TemplateSendMessage(
-            alt_text="最も近いものは？", template=buttons_template)
-        line_bot_api.reply_message(
-            event.reply_token, template_message)
-        MySession.update_context(user_id, "12")
-
-
-    if postback_msg == "暑がり" and MySession.read_context(user_id) == "12":
-        MySession.update_para(user_id, 3)
-        para = MySession.read_para(user_id)
-
-        confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
-            PostbackAction(label="はい", data="はい", text="はい"),
-            PostbackAction(label="いいえ", data="いいえ", text="いいえ")
-        ])
-        template_message = TemplateSendMessage(
-            alt_text="情報を保持しますか？", template=confirm_template)
-
-        picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kionnInfo = kionnHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        caution = ""
-        if "だめです" in kionnInfo or "傘情報を取得できませんでした" in kasaInfo: caution="\n\n※「今日」の天気情報で情報取得時刻が遅い場合、正常に情報を取得できないことがあります。"
-        if picUrl == "未知の天気":
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！" + " (1/2)"),
-                  TextSendMessage(text=tenkiInfo),
-                  TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message])
-        else:
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！" + " (1/2)"),
-                  TextSendMessage(text=tenkiInfo),
-                  ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
-                  TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message])
-        MySession.update_context(user_id, "13")
-
-    if postback_msg == "どちらでもない" and MySession.read_context(user_id) == "12":
-        MySession.update_para(user_id, 0)
-        para = MySession.read_para(user_id)
-
-        confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
-            PostbackAction(label="はい", data="はい", text="はい"),
-            PostbackAction(label="いいえ", data="いいえ", text="いいえ")
-        ])
-        template_message = TemplateSendMessage(
-            alt_text="情報を保持しますか？", template=confirm_template)
-
-        picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kionnInfo = kionnHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        caution = ""
-        if "だめです" in kionnInfo or "傘情報を取得できませんでした" in kasaInfo: caution="\n\n※「今日」の天気情報で情報取得時刻が遅い場合、正常に情報を取得できないことがあります。"
-        if picUrl == "未知の天気":
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！" + " (1/2)"),
-                  TextSendMessage(text=tenkiInfo),
-                  TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message])
-        else:
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！" + " (1/2)"),
-                  TextSendMessage(text=tenkiInfo),
-                  ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
-                  TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message])
-        MySession.update_context(user_id, "13")
-
-    if postback_msg == "寒がり" and MySession.read_context(user_id) == "12":
-        MySession.update_para(user_id, -3)
-        para = MySession.read_para(user_id)
-
-        confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
-            PostbackAction(label="はい", data="はい", text="はい"),
-            PostbackAction(label="いいえ", data="いいえ", text="いいえ")
-        ])
-        template_message = TemplateSendMessage(
-            alt_text="情報を保持しますか？", template=confirm_template)
-
-        picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kionnInfo = kionnHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        caution = ""
-        if "だめです" in kionnInfo or "傘情報を取得できませんでした" in kasaInfo: caution="\n\n※「今日」の天気情報で情報取得時刻が遅い場合、正常に情報を取得できないことがあります。"
-        if picUrl == "未知の天気":
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！" + " (1/2)"),
-                  TextSendMessage(text=tenkiInfo),
-                  TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message])
-        else:
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！" + " (1/2)"),
-                  TextSendMessage(text=tenkiInfo),
-                  ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
-                  TextSendMessage(text=kasaInfo + fukusouInfo + caution),
-                  template_message])
-        MySession.update_context(user_id, "13")
-
-        if postback_msg == "はい" and MySession.read_context(user_id) == "13":
-            if MySession.read_date(user_id) == 0: date="今日"
-            elif MySession.read_date(user_id) == 1: date="明日"
-            elif MySession.read_date(user_id) == 2: date="明後日"
-            if MySession.read_para(user_id) == 3: para="暑がり"
-            elif MySession.read_para(user_id) == 0: para="どちらでもない"
-            elif MySession.read_para(user_id) == -3: para="寒がり"
-            line_bot_api.reply_message(
-               event.reply_token,
-               [TextSendMessage(text="情報保持しました！次回以降「いつもの」と入力すれば以下の条件で天気情報を検索できます！"),
-               TextSendMessage(text="<日付>" + date + "\n<場所>" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "\n<体調>" + para),
-               TextSendMessage(text="情報は次の1か所or2か所の天気情報検索時まで保持されます。")])
-            MySession.update_context(user_id, "0")
-            MySession.update_Hdate(user_id, MySession.read_date(user_id))
-            MySession.update_Harea(user_id, MySession.read_area(user_id))
-            MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
-            MySession.update_HbasyoList(user_id, MySession.read_HbasyoList(user_id))
-
-        if postback_msg == "いいえ" and MySession.read_context(user_id) == "13":
-            line_bot_api.reply_message(
-               event.reply_token,
-               TextSendMessage(text="保持しませんでした。またご利用になられる場合は「1か所」もしくは「2か所」を入力してください。"))
-            #保持情報はいったん避難
-            Hdate = MySession.read_Hdate(user_id)
-            Harea = MySession.read_Harea(user_id)
-            HareaT = MySession.read_HareaT(user_id)
-            HbasyoList = MySession.read_HbasyoList(user_id)
-            para = MySession.read_para(user_id)
-            #全部消した後、
-            MySession.reset(user_id)
-            #保持情報を再度覚えさせる
-            MySession.update_Hdate(user_id, Hdate)
-            MySession.update_Harea(user_id, MySession.read_area(user_id))
-            MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
-            MySession.update_HbasyoList(user_id, MySession.read_HbasyoList(user_id))
-            MySession.update_para(user_id, para)
-#############################
-#############################
-
 
 ##################################
 ##############################################
