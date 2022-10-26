@@ -582,7 +582,7 @@ def carouselList(BasyoList):
                                                 PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                                             ])
     elif len(kwsiBasyoList) == 5:
-        carouselMessage = CarouselColumn(text="1/2", actions=[
+        carouselMessage = CarouselColumn(text="1/2", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -590,9 +590,9 @@ def carouselList(BasyoList):
                                             ],
                                             CarouselColumn(text="2/2", actions=[
                                                 PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 6:
-        carouselMessage = CarouselColumn(text="1/2", actions=[
+        carouselMessage = CarouselColumn(text="1/2", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -601,9 +601,9 @@ def carouselList(BasyoList):
                                             CarouselColumn(text="2/2", actions=[
                                                 PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
                                                 PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 7:
-        carouselMessage = CarouselColumn(text="1/2", actions=[
+        carouselMessage = CarouselColumn(text="1/2", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -613,9 +613,9 @@ def carouselList(BasyoList):
                                                 PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
                                                 PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
                                                 PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 8:
-        carouselMessage = CarouselColumn(text="1/2", actions=[
+        carouselMessage = CarouselColumn(text="1/2", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -626,9 +626,9 @@ def carouselList(BasyoList):
                                                 PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
                                                 PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
                                                 PostbackAction(label=BasyoList[7], data=BasyoList[7], text=BasyoList[7])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 9:
-        carouselMessage = CarouselColumn(text="1/3", actions=[
+        carouselMessage = CarouselColumn(text="1/3", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -642,9 +642,9 @@ def carouselList(BasyoList):
                                             ],
                                             CarouselColumn(text="3/3", actions=[
                                                 PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 10:
-        carouselMessage = CarouselColumn(text="1/3", actions=[
+        carouselMessage = CarouselColumn(text="1/3", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -659,9 +659,9 @@ def carouselList(BasyoList):
                                             CarouselColumn(text="3/3", actions=[
                                                 PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
                                                 PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 11:
-        carouselMessage = CarouselColumn(text="1/3", actions=[
+        carouselMessage = CarouselColumn(text="1/3", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -677,9 +677,9 @@ def carouselList(BasyoList):
                                                 PostbackAction(label=BasyoList[8], data=BasyoList[8], text=BasyoList[8]),
                                                 PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
                                                 PostbackAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 12:
-        carouselMessage = CarouselColumn(text="1/3", actions=[
+        carouselMessage = CarouselColumn(text="1/3", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -696,9 +696,9 @@ def carouselList(BasyoList):
                                                 PostbackAction(label=BasyoList[9], data=BasyoList[9], text=BasyoList[9]),
                                                 PostbackAction(label=BasyoList[10], data=BasyoList[10], text=BasyoList[10]),
                                                 PostbackAction(label=BasyoList[11], data=BasyoList[11], text=BasyoList[11])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 13:
-        carouselMessage = CarouselColumn(text="1/4", actions=[
+        carouselMessage = CarouselColumn(text="1/4", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -718,9 +718,9 @@ def carouselList(BasyoList):
                                             ],
                                             CarouselColumn(text="4/4", actions=[
                                                 PostbackAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 14:
-        carouselMessage = CarouselColumn(text="1/4", actions=[
+        carouselMessage = CarouselColumn(text="1/4", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -741,7 +741,7 @@ def carouselList(BasyoList):
                                             CarouselColumn(text="4/4", actions=[
                                                 PostbackAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12]),
                                                 PostbackAction(label=BasyoList[13], data=BasyoList[13], text=BasyoList[13])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 15:
         carouselMessage = CarouselColumn(text="1/4", actions=[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
@@ -749,7 +749,7 @@ def carouselList(BasyoList):
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
                                                 PostbackAction(label=BasyoList[3], data=BasyoList[3], text=BasyoList[3])
                                             ],
-                                            CarouselColumn(text="2/4", actions=[
+                                            CarouselColumn(text="2/4", actions=[[
                                                 PostbackAction(label=BasyoList[4], data=BasyoList[4], text=BasyoList[4]),
                                                 PostbackAction(label=BasyoList[5], data=BasyoList[5], text=BasyoList[5]),
                                                 PostbackAction(label=BasyoList[6], data=BasyoList[6], text=BasyoList[6]),
@@ -765,9 +765,9 @@ def carouselList(BasyoList):
                                                 PostbackAction(label=BasyoList[12], data=BasyoList[12], text=BasyoList[12]),
                                                 PostbackAction(label=BasyoList[13], data=BasyoList[13], text=BasyoList[13]),
                                                 PostbackAction(label=BasyoList[14], data=BasyoList[14], text=BasyoList[14])
-                                            ])
+                                            ]])
     elif len(kwsiBasyoList) == 15:
-        carouselMessage = CarouselColumn(text="1/4", actions=[
+        carouselMessage = CarouselColumn(text="1/4", actions=[[
                                                 PostbackAction(label=BasyoList[0], data=BasyoList[0], text=BasyoList[0]),
                                                 PostbackAction(label=BasyoList[1], data=BasyoList[1], text=BasyoList[1]),
                                                 PostbackAction(label=BasyoList[2], data=BasyoList[2], text=BasyoList[2]),
@@ -790,7 +790,7 @@ def carouselList(BasyoList):
                                                 PostbackAction(label=BasyoList[13], data=BasyoList[13], text=BasyoList[13]),
                                                 PostbackAction(label=BasyoList[14], data=BasyoList[14], text=BasyoList[14]),
                                                 PostbackAction(label=BasyoList[15], data=BasyoList[15], text=BasyoList[15])
-                                            ])
+                                            ]])
 
 
 
