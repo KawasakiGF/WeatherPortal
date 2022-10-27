@@ -961,6 +961,10 @@ def handle_message(event):
                                          MessageAction(label=BasyoList[15], text=BasyoList[15])
                 ])
             ])
+        template_message = TemplateSendMessage(
+            alt_text="もっとですね？了解です！ この中にありますでしょうか？" , template=carousel_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
 
     elif MySession.read_context(user_id) == "10":
         MySession.update_area(user_id, talk)
