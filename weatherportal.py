@@ -859,7 +859,7 @@ def handle_message(event):
                   event.reply_token, 
                   [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。"),
                   template_message])
-        else:
+       else:
           line_bot_api.reply_message(
               event.reply_token,
               TextSendMessage(text="最初からやり直します。「1か所」or「2か所」を入力してください。"))
