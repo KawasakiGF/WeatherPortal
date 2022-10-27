@@ -295,10 +295,10 @@ def todoufukenNum(num):
 
 #都道府県の場所コード探す
 def codeKaraFind(finder):
-     teijiBasyoList = ""
+     teijiBasyoList = []
      for i in range(0, len(Tcode)):
           if re.match((finder + "...."), Tcode[i]):
-               teijiBasyoList += "\n・" + Tname[i]
+               teijiBasyoList.append(Tname[i])
 
      return teijiBasyoList
       
@@ -835,7 +835,7 @@ def handle_message(event):
                       ])
                   ])
               elif len(BasyoList) == 10:
-                  carousel_template = CarouselTemplate(columns=[
+                  carousel_template = [CarouselTemplate(columns=[
                       CarouselColumn(text="1/4", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
@@ -851,10 +851,11 @@ def handle_message(event):
                                                 MessageAction(label=BasyoList[7], text=BasyoList[7]),
                                                 MessageAction(label=BasyoList[8], text=BasyoList[8])
                       ]),
+                      CarouselTemplate(columns=[
                       CarouselColumn(text="4/4", actions=[
                                                 MessageAction(label=BasyoList[9], text=BasyoList[9])
                       ])
-                  ])
+                  ])]
               elif len(BasyoList) == 11:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/4", actions=[
