@@ -721,11 +721,10 @@ def handle_message(event):
               line_bot_api.reply_message(
                   event.reply_token, template_message)
               MySession.update_context(user_id, "11")
-                      
           else:
               TBasyo = todoufukenNum(int(todoufuken.index(ken)))
               BasyoList = codeKaraFind(TBasyo)
-
+              MySession.update_context(user_id, "10")
               if len(BasyoList) == 1:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="1/1", actions=[
@@ -852,19 +851,18 @@ def handle_message(event):
                                                 MessageAction(label="さらに表示する", text="さらに表示する")
                       ])
                   ])
-
+                  MySession.update_context(user_id, "90")
               template_message = TemplateSendMessage(
                   alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。" , template=carousel_template)
               line_bot_api.reply_message(
                   event.reply_token, 
                   [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。"),
                   template_message])
-              if len(BasyoList) < 9: MySession.update_context(user_id, "90")
-              else: MySession.update_context(user_id, "10")
 
-    elif MySession.read_context(user_id) == "90" and talk == "さらに表示する":
+    elif MySession.read_context(user_id) == "90":
         TBasyo = todoufukenNum(int(todoufuken.index(ken)))
         BasyoList = codeKaraFind(TBasyo)
+        MySession.update_context(user_id, "10")
         if len(BasyoList) == 10:
             carousel_template = CarouselTemplate(columns=[
                 CarouselColumn(text="1/1", actions=[
@@ -949,8 +947,6 @@ def handle_message(event):
                                          MessageAction(label=BasyoList[15], text=BasyoList[15])
                 ])
             ])
-        MySession.update_context(user_id, "10")
-
 
     elif MySession.read_context(user_id) == "10":
         MySession.update_area(user_id, talk)
