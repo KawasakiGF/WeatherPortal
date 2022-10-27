@@ -711,13 +711,13 @@ def handle_message(event):
           #日にちを聞くとこ###########################################
           if si in Tname:
               buttons_template = ButtonsTemplate(
-                  text="日時を選択してください。", actions=[
+                  text="日時をお選びください", actions=[
                       MessageAction(label="今日", data="今日", text="今日"),
                       MessageAction(label="明日", data="明日", text="明日"),
                       MessageAction(label="明後日", data="明後日", text="明後日")
                   ])
               template_message = TemplateSendMessage(
-                  alt_text="日時を選択してください", template=buttons_template)
+                  alt_text="日時をお選びください", template=buttons_template)
               line_bot_api.reply_message(
                   event.reply_token, template_message)
               MySession.update_context(user_id, "11")
@@ -1001,13 +1001,13 @@ def handle_message(event):
     if MySession.read_context(user_id) == "10":
         MySession.update_area(user_id, talk)
         buttons_template = ButtonsTemplate(
-            text="日時を選択してください。", actions=[
+            text="日時をお選びください", actions=[
                 MessageAction(label="今日", data="今日", text="今日"),
                 MessageAction(label="明日", data="明日", text="明日"),
                 MessageAction(label="明後日", data="明後日", text="明後日")
             ])
         template_message = TemplateSendMessage(
-            alt_text="日時を選択してください", template=buttons_template)
+            alt_text="日時をお選びください", template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, template_message)
         MySession.update_context(user_id, "11")
@@ -1015,13 +1015,13 @@ def handle_message(event):
     if talk == "今日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 0)
         buttons_template = ButtonsTemplate(
-            text="最も近いものは？", actions=[
+            text="最も近いものはどれですか？", actions=[
                       MessageAction(label="暑がり", data="暑がり", text="暑がり"),
                       MessageAction(label="寒がり", data="寒がり", text="寒がり"),
                       MessageAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
             ])
         template_message = TemplateSendMessage(
-            alt_text="最も近いものは？", template=buttons_template)
+            alt_text="最も近いものはどれですか？", template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, template_message)
         MySession.update_context(user_id, "12")
@@ -1029,13 +1029,13 @@ def handle_message(event):
     if talk == "明日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 1)
         buttons_template = ButtonsTemplate(
-            text="最も近いものは？", actions=[
+            text="最も近いものはどれですか？", actions=[
                       MessageAction(label="暑がり", data="暑がり", text="暑がり"),
                       MessageAction(label="寒がり", data="寒がり", text="寒がり"),
                       MessageAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
             ])
         template_message = TemplateSendMessage(
-            alt_text="最も近いものは？", template=buttons_template)
+            alt_text="最も近いものはどれですか？", template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, template_message)
         MySession.update_context(user_id, "12")
@@ -1043,13 +1043,13 @@ def handle_message(event):
     if talk == "明後日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 2)
         buttons_template = ButtonsTemplate(
-            text="最も近いものは？", actions=[
+            text="最も近いものはどれですか？", actions=[
                       MessageAction(label="暑がり", data="暑がり", text="暑がり"),
                       MessageAction(label="寒がり", data="寒がり", text="寒がり"),
                       MessageAction(label="どちらでもない", data="どちらでもない", text="どちらでもない")
             ])
         template_message = TemplateSendMessage(
-            alt_text="最も近いものは？", template=buttons_template)
+            alt_text="最も近いものはどれですか？", template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, template_message)
         MySession.update_context(user_id, "12")
@@ -1368,7 +1368,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
            [TextSendMessage(text = "↓アンケートはこちらから\nhttps://forms.office.com/r/890X6LLyRU"),
-           TextSendMessage(text = "アンケートでは、あなたが現在使用している天気予報のアプリやシステムなどと比べ、WeatherNewsBotがどれくらい便利か、システムの完成度や利便性はどの程度か、追加してほしい機能や不満点、バグの有無などについてお伺いしています。"),
+           TextSendMessage(text = "アンケートでは、あなたが現在使用している天気予報のアプリやシステムなどと比べ、WeatherNewsBotがどれくらい便利か、システムの完成度や利便性はどの程度か、追加してほしい機能や不満点、バグの有無などについてお伺いしています。")])
            TextSendMEssage(text = "ver1.1では、ver1.0を利用した方と利用されていない方で別にアンケート項目を設けております(ver1.0からご利用いただいている方は、1.0の時に比べどの程度改善したかなどを伺っています)。さらに、WeatherNewsBotのマスコットキャラクター「フォグ」との会話を意識したアップデートを通して使用意欲の向上があったか、知名度や利用者の増加は見込めるかなどについてもお伺いしています")])
 ###############################
 
