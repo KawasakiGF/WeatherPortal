@@ -707,11 +707,9 @@ def handle_message(event):
 
           MySession.update_areaT(user_id, ken)
           MySession.update_area(user_id, si)
-          TBasyo = todoufukenNum(int(todoufuken.index(ken)))
-          BasyoList = codeKaraFind(TBasyo)
 
           #日にちを聞くとこ###########################################
-          if si in BasyoList:
+          if si in Tname:
               buttons_template = ButtonsTemplate(
                   text="日時をお選びください", actions=[
                       MessageAction(label="今日", data="今日", text="今日"),
@@ -725,23 +723,25 @@ def handle_message(event):
               MySession.update_context(user_id, "11")
                       
           else:
-              MySession.update_context(user_id, "10")
+              TBasyo = todoufukenNum(int(todoufuken.index(ken)))
+              BasyoList = codeKaraFind(TBasyo)
+
               if len(BasyoList) == 1:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/1", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0])
                       ])
                   ])
               elif len(BasyoList) == 2:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/1", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1])
                       ])
                   ])
               elif len(BasyoList) == 3:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/1", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
                                                 MessageAction(label=BasyoList[2], text=BasyoList[2])
@@ -749,35 +749,35 @@ def handle_message(event):
                   ])
               elif len(BasyoList) == 4:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/2", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
                                                 MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="２ページ目", actions=[
+                      CarouselColumn(text="2/2", actions=[
                                                 MessageAction(label=BasyoList[3], text=BasyoList[3])
                       ])
                   ])
               elif len(BasyoList) == 5:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/2", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
                                                 MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="２ページ目", actions=[
+                      CarouselColumn(text="2/2", actions=[
                                                 MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[3], text=BasyoList[4])
                       ])
                   ])
               elif len(BasyoList) == 6:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/2", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
                                                 MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="２ページ目", actions=[
+                      CarouselColumn(text="2/2", actions=[
                                                 MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
                                                 MessageAction(label=BasyoList[5], text=BasyoList[5])
@@ -785,50 +785,50 @@ def handle_message(event):
                   ])
               elif len(BasyoList) == 7:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/3", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
                                                 MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="２ページ目", actions=[
+                      CarouselColumn(text="2/3", actions=[
                                                 MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
                                                 MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="３ページ目", actions=[
+                      CarouselColumn(text="3/3", actions=[
                                                 MessageAction(label=BasyoList[6], text=BasyoList[6])
                       ])
                   ])
               elif len(BasyoList) == 8:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/3", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
                                                 MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="２ページ目", actions=[
+                      CarouselColumn(text="2/3", actions=[
                                                 MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
                                                 MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="３ページ目", actions=[
+                      CarouselColumn(text="3/3", actions=[
                                                 MessageAction(label=BasyoList[6], text=BasyoList[6]),
                                                 MessageAction(label=BasyoList[7], text=BasyoList[7])
                       ])
                   ])
               elif len(BasyoList) == 9:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/3", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
                                                 MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="２ページ目", actions=[
+                      CarouselColumn(text="2/3", actions=[
                                                 MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
                                                 MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="３ページ目", actions=[
+                      CarouselColumn(text="3/3", actions=[
                                                 MessageAction(label=BasyoList[6], text=BasyoList[6]),
                                                 MessageAction(label=BasyoList[7], text=BasyoList[7]),
                                                 MessageAction(label=BasyoList[8], text=BasyoList[8])
@@ -836,47 +836,45 @@ def handle_message(event):
                   ])
               elif len(BasyoList) < 9:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="１ページ目", actions=[
+                      CarouselColumn(text="1/4", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
                                                 MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="２ページ目", actions=[
+                      CarouselColumn(text="2/4", actions=[
                                                 MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
                                                 MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="３ページ目", actions=[
+                      CarouselColumn(text="3/4", actions=[
                                                 MessageAction(label=BasyoList[6], text=BasyoList[6]),
                                                 MessageAction(label=BasyoList[7], text=BasyoList[7]),
                                                 MessageAction(label="さらに表示する", text="さらに表示する")
                       ])
                   ])
-                  MySession.update_context(user_id, "90")
+
               template_message = TemplateSendMessage(
-                  alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。", template=carousel_template)
+                  alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。" , template=carousel_template)
               line_bot_api.reply_message(
                   event.reply_token, 
                   [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。"),
                   template_message])
-       else:
-          line_bot_api.reply_message(
-              event.reply_token,
-              TextSendMessage(text="最初からやり直します。「1か所」or「2か所」を入力してください。"))
+              if len(BasyoList) < 9: MySession.update_context(user_id, "90")
+              else: MySession.update_context(user_id, "10")
 
-    if MySession.read_context(user_id) == "90" and talk == "さらに表示する":
+    elif MySession.read_context(user_id) == "90" and talk == "さらに表示する":
         TBasyo = todoufukenNum(int(todoufuken.index(ken)))
         BasyoList = codeKaraFind(TBasyo)
         if len(BasyoList) == 10:
             carousel_template = CarouselTemplate(columns=[
-                CarouselColumn(text="４ページ目", actions=[
+                CarouselColumn(text="1/1", actions=[
                                          MessageAction(label=BasyoList[8], text=BasyoList[8]),
                                          MessageAction(label=BasyoList[9], text=BasyoList[9])
                 ])
             ])
         elif len(BasyoList) == 11:
             carousel_template = CarouselTemplate(columns=[
-                CarouselColumn(text="４ページ目", actions=[
+                CarouselColumn(text="1/1", actions=[
                                          MessageAction(label=BasyoList[8], text=BasyoList[8]),
                                          MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                          MessageAction(label=BasyoList[10], text=BasyoList[10])
@@ -884,35 +882,35 @@ def handle_message(event):
             ])
         elif len(BasyoList) == 12:
             carousel_template = CarouselTemplate(columns=[
-                CarouselColumn(text="４ページ目", actions=[
+                CarouselColumn(text="1/2", actions=[
                                          MessageAction(label=BasyoList[8], text=BasyoList[8]),
                                          MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                          MessageAction(label=BasyoList[10], text=BasyoList[10])
                 ]),
-                CarouselColumn(text="５ページ目", actions=[
+                CarouselColumn(text="2/2", actions=[
                                          MessageAction(label=BasyoList[11], text=BasyoList[11])
                 ])
             ])
         elif len(BasyoList) == 13:
             carousel_template = CarouselTemplate(columns=[
-                CarouselColumn(text="４ページ目", actions=[
+                CarouselColumn(text="1/2", actions=[
                                          MessageAction(label=BasyoList[8], text=BasyoList[8]),
                                          MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                          MessageAction(label=BasyoList[10], text=BasyoList[10])
                 ]),
-                CarouselColumn(text="５ページ目", actions=[
+                CarouselColumn(text="2/2", actions=[
                                          MessageAction(label=BasyoList[11], text=BasyoList[11]),
                                          MessageAction(label=BasyoList[12], text=BasyoList[12])
                 ])
             ])
         elif len(BasyoList) == 14:
             carousel_template = CarouselTemplate(columns=[
-                CarouselColumn(text="４ページ目", actions=[
+                CarouselColumn(text="1/2", actions=[
                                          MessageAction(label=BasyoList[8], text=BasyoList[8]),
                                          MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                          MessageAction(label=BasyoList[10], text=BasyoList[10])
                 ]),
-                CarouselColumn(text="５ページ目", actions=[
+                CarouselColumn(text="2/2", actions=[
                                          MessageAction(label=BasyoList[11], text=BasyoList[11]),
                                          MessageAction(label=BasyoList[12], text=BasyoList[12]),
                                          MessageAction(label=BasyoList[13], text=BasyoList[13])
@@ -920,40 +918,41 @@ def handle_message(event):
             ])
         elif len(BasyoList) == 15:
             carousel_template = CarouselTemplate(columns=[
-                CarouselColumn(text="４ページ目", actions=[
+                CarouselColumn(text="1/3", actions=[
                                          MessageAction(label=BasyoList[8], text=BasyoList[8]),
                                          MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                          MessageAction(label=BasyoList[10], text=BasyoList[10])
                 ]),
-                CarouselColumn(text="５ページ目", actions=[
+                CarouselColumn(text="2/3", actions=[
                                          MessageAction(label=BasyoList[11], text=BasyoList[11]),
                                          MessageAction(label=BasyoList[12], text=BasyoList[12]),
                                          MessageAction(label=BasyoList[13], text=BasyoList[13])
                 ]),
-                CarouselColumn(text="６ページ目", actions=[
+                CarouselColumn(text="3/3", actions=[
                                          MessageAction(label=BasyoList[14], text=BasyoList[14])
                 ])
             ])
         elif len(BasyoList) == 16:
             carousel_template = CarouselTemplate(columns=[
-                CarouselColumn(text="４ページ目", actions=[
+                CarouselColumn(text="1/3", actions=[
                                          MessageAction(label=BasyoList[8], text=BasyoList[8]),
                                          MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                          MessageAction(label=BasyoList[10], text=BasyoList[10])
                 ]),
-                CarouselColumn(text="５ページ目", actions=[
+                CarouselColumn(text="2/3", actions=[
                                          MessageAction(label=BasyoList[11], text=BasyoList[11]),
                                          MessageAction(label=BasyoList[12], text=BasyoList[12]),
                                          MessageAction(label=BasyoList[13], text=BasyoList[13])
                 ]),
-                CarouselColumn(text="６ページ目", actions=[
+                CarouselColumn(text="3/3", actions=[
                                          MessageAction(label=BasyoList[14], text=BasyoList[14]),
                                          MessageAction(label=BasyoList[15], text=BasyoList[15])
                 ])
             ])
+        MySession.update_context(user_id, "10")
 
 
-    if MySession.read_context(user_id) == "10":
+    elif MySession.read_context(user_id) == "10":
         MySession.update_area(user_id, talk)
         buttons_template = ButtonsTemplate(
             text="日時をお選びください", actions=[
@@ -967,7 +966,7 @@ def handle_message(event):
             event.reply_token, template_message)
         MySession.update_context(user_id, "11")
 
-    if talk == "今日" and MySession.read_context(user_id) == "11":
+    elif talk == "今日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 0)
         buttons_template = ButtonsTemplate(
             text="最も近いものはどれですか？", actions=[
@@ -981,7 +980,7 @@ def handle_message(event):
             event.reply_token, template_message)
         MySession.update_context(user_id, "12")
 
-    if talk == "明日" and MySession.read_context(user_id) == "11":
+    elif talk == "明日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 1)
         buttons_template = ButtonsTemplate(
             text="最も近いものはどれですか？", actions=[
@@ -995,7 +994,7 @@ def handle_message(event):
             event.reply_token, template_message)
         MySession.update_context(user_id, "12")
 
-    if talk == "明後日" and MySession.read_context(user_id) == "11":
+    elif talk == "明後日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 2)
         buttons_template = ButtonsTemplate(
             text="最も近いものはどれですか？", actions=[
@@ -1010,7 +1009,7 @@ def handle_message(event):
         MySession.update_context(user_id, "12")
 
 
-    if talk == "暑がり" and MySession.read_context(user_id) == "12":
+    elif talk == "暑がり" and MySession.read_context(user_id) == "12":
         MySession.update_para(user_id, 3)
         para = MySession.read_para(user_id)
 
@@ -1045,7 +1044,7 @@ def handle_message(event):
                   template_message])
         MySession.update_context(user_id, "13")
 
-    if talk == "どちらでもない" and MySession.read_context(user_id) == "12":
+    elif talk == "どちらでもない" and MySession.read_context(user_id) == "12":
         MySession.update_para(user_id, 0)
         para = MySession.read_para(user_id)
 
@@ -1080,7 +1079,7 @@ def handle_message(event):
                   template_message])
         MySession.update_context(user_id, "13")
 
-    if talk == "寒がり" and MySession.read_context(user_id) == "12":
+    elif talk == "寒がり" and MySession.read_context(user_id) == "12":
         MySession.update_para(user_id, -3)
         para = MySession.read_para(user_id)
 
@@ -1131,7 +1130,7 @@ def handle_message(event):
             MySession.update_Hdate(user_id, MySession.read_date(user_id))
             MySession.update_Harea(user_id, MySession.read_area(user_id))
             MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
-            MySession.update_HbasyoList(user_id, MySession.read_HbasyoList(user_id))
+            MySession.update_HbasyoList(user_id, MySession.read_basyoList(user_id))
 
         if talk == "いいえ" and MySession.read_context(user_id) == "13":
             line_bot_api.reply_message(
