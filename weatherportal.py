@@ -834,7 +834,7 @@ def handle_message(event):
                                                 MessageAction(label=BasyoList[8], text=BasyoList[8])
                       ])
                   ])
-              elif len(BasyoList) == 10:
+              elif len(BasyoList) < 9:
                   carousel_template = [CarouselTemplate(columns=[
                       CarouselColumn(text="1/4", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
