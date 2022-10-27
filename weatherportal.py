@@ -749,10 +749,12 @@ def handle_message(event):
                   ])
               elif len(BasyoList) == 4:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/1", actions=[
+                      CarouselColumn(text="1/2", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
+                      ]),
+                      CarouselColumn(text="2/2", actions=[
                                                 MessageAction(label=BasyoList[3], text=BasyoList[3])
                       ])
                   ])
@@ -761,11 +763,11 @@ def handle_message(event):
                       CarouselColumn(text="1/2", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
                       CarouselColumn(text="2/2", actions=[
-                                                MessageAction(label=BasyoList[4], text=BasyoList[4])
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
+                                                MessageAction(label=BasyoList[3], text=BasyoList[4])
                       ])
                   ])
               elif len(BasyoList) == 6:
@@ -773,39 +775,43 @@ def handle_message(event):
                       CarouselColumn(text="1/2", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
                       CarouselColumn(text="2/2", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
                                                 MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ])
                   ])
               elif len(BasyoList) == 7:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/2", actions=[
+                      CarouselColumn(text="1/3", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="2/2", actions=[
+                      CarouselColumn(text="2/3", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
+                      ]),
+                      CarouselColumn(text="3/3", actions=[
                                                 MessageAction(label=BasyoList[6], text=BasyoList[6])
                       ])
                   ])
               elif len(BasyoList) == 8:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/2", actions=[
+                      CarouselColumn(text="1/3", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="2/2", actions=[
+                      CarouselColumn(text="2/3", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
+                      ]),
+                      CarouselColumn(text="3/3", actions=[
                                                 MessageAction(label=BasyoList[6], text=BasyoList[6]),
                                                 MessageAction(label=BasyoList[7], text=BasyoList[7])
                       ])
@@ -815,74 +821,80 @@ def handle_message(event):
                       CarouselColumn(text="1/3", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
                       CarouselColumn(text="2/3", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
-                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
-                                                MessageAction(label=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
                       CarouselColumn(text="3/3", actions=[
+                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], text=BasyoList[7]),
                                                 MessageAction(label=BasyoList[8], text=BasyoList[8])
                       ])
                   ])
               elif len(BasyoList) == 10:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/3", actions=[
+                      CarouselColumn(text="1/4", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="2/3", actions=[
+                      CarouselColumn(text="2/4", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
-                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
-                                                MessageAction(label=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="3/3", actions=[
-                                                MessageAction(label=BasyoList[8], text=BasyoList[8]),
+                      CarouselColumn(text="3/4", actions=[
+                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], text=BasyoList[7]),
+                                                MessageAction(label=BasyoList[8], text=BasyoList[8])
+                      ]),
+                      CarouselColumn(text="4/4", actions=[
                                                 MessageAction(label=BasyoList[9], text=BasyoList[9])
                       ])
                   ])
               elif len(BasyoList) == 11:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/3", actions=[
+                      CarouselColumn(text="1/4", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="2/3", actions=[
+                      CarouselColumn(text="2/4", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
-                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
-                                                MessageAction(label=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="3/3", actions=[
-                                                MessageAction(label=BasyoList[8], text=BasyoList[8]),
+                      CarouselColumn(text="3/4", actions=[
+                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], text=BasyoList[7]),
+                                                MessageAction(label=BasyoList[8], text=BasyoList[8])
+                      ]),
+                      CarouselColumn(text="4/4", actions=[
                                                 MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                                 MessageAction(label=BasyoList[10], text=BasyoList[10])
                       ])
                   ])
               elif len(BasyoList) == 12:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/3", actions=[
+                      CarouselColumn(text="1/4", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="2/3", actions=[
+                      CarouselColumn(text="2/4", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
-                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
-                                                MessageAction(label=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="3/3", actions=[
-                                                MessageAction(label=BasyoList[8], text=BasyoList[8]),
+                      CarouselColumn(text="3/4", actions=[
+                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], text=BasyoList[7]),
+                                                MessageAction(label=BasyoList[8], text=BasyoList[8])
+                      ]),
+                      CarouselColumn(text="4/4", actions=[
                                                 MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                                 MessageAction(label=BasyoList[10], text=BasyoList[10]),
                                                 MessageAction(label=BasyoList[11], text=BasyoList[11])
@@ -890,74 +902,80 @@ def handle_message(event):
                   ])
               elif len(BasyoList) == 13:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/4", actions=[
+                      CarouselColumn(text="1/5", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="2/4", actions=[
+                      CarouselColumn(text="2/5", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
-                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
-                                                MessageAction(label=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="3/4", actions=[
-                                                MessageAction(label=BasyoList[8], text=BasyoList[8]),
+                      CarouselColumn(text="3/5", actions=[
+                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], text=BasyoList[7]),
+                                                MessageAction(label=BasyoList[8], text=BasyoList[8])
+                      ]),
+                      CarouselColumn(text="4/5", actions=[
                                                 MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                                 MessageAction(label=BasyoList[10], text=BasyoList[10]),
                                                 MessageAction(label=BasyoList[11], text=BasyoList[11])
                       ]),
-                      CarouselColumn(text="4/4", actions=[
+                      CarouselColumn(text="5/5", actions=[
                                                 MessageAction(label=BasyoList[12], text=BasyoList[12])
                       ])
                   ])
               elif len(BasyoList) == 14:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/4", actions=[
+                      CarouselColumn(text="1/5", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="2/4", actions=[
+                      CarouselColumn(text="2/5", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
-                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
-                                                MessageAction(label=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="3/4", actions=[
-                                                MessageAction(label=BasyoList[8], text=BasyoList[8]),
+                      CarouselColumn(text="3/5", actions=[
+                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], text=BasyoList[7]),
+                                                MessageAction(label=BasyoList[8], text=BasyoList[8])
+                      ]),
+                      CarouselColumn(text="4/5", actions=[
                                                 MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                                 MessageAction(label=BasyoList[10], text=BasyoList[10]),
                                                 MessageAction(label=BasyoList[11], text=BasyoList[11])
                       ]),
-                      CarouselColumn(text="4/4", actions=[
+                      CarouselColumn(text="5/5", actions=[
                                                 MessageAction(label=BasyoList[12], text=BasyoList[12]),
                                                 MessageAction(label=BasyoList[13], text=BasyoList[13])
                       ])
                   ])
               elif len(BasyoList) == 15:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/4", actions=[
+                      CarouselColumn(text="1/5", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="2/4", actions=[
+                      CarouselColumn(text="2/5", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
-                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
-                                                MessageAction(label=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="3/4", actions=[
-                                                MessageAction(label=BasyoList[8], text=BasyoList[8]),
+                      CarouselColumn(text="3/5", actions=[
+                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], text=BasyoList[7]),
+                                                MessageAction(label=BasyoList[8], text=BasyoList[8])
+                      ]),
+                      CarouselColumn(text="4/5", actions=[
                                                 MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                                 MessageAction(label=BasyoList[10], text=BasyoList[10]),
                                                 MessageAction(label=BasyoList[11], text=BasyoList[11])
                       ]),
-                      CarouselColumn(text="4/4", actions=[
+                      CarouselColumn(text="5/5", actions=[
                                                 MessageAction(label=BasyoList[12], text=BasyoList[12]),
                                                 MessageAction(label=BasyoList[13], text=BasyoList[13]),
                                                 MessageAction(label=BasyoList[14], text=BasyoList[14])
@@ -965,31 +983,36 @@ def handle_message(event):
                   ])
               elif len(BasyoList) == 16:
                   carousel_template = CarouselTemplate(columns=[
-                      CarouselColumn(text="1/4", actions=[
+                      CarouselColumn(text="1/6", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
                                                 MessageAction(label=BasyoList[1], text=BasyoList[1]),
-                                                MessageAction(label=BasyoList[2], text=BasyoList[2]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
-                      CarouselColumn(text="2/4", actions=[
+                      CarouselColumn(text="2/6", actions=[
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
                                                 MessageAction(label=BasyoList[4], text=BasyoList[4]),
-                                                MessageAction(label=BasyoList[5], text=BasyoList[5]),
-                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
-                                                MessageAction(label=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
-                      CarouselColumn(text="3/4", actions=[
-                                                MessageAction(label=BasyoList[8], text=BasyoList[8]),
+                      CarouselColumn(text="3/6", actions=[
+                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label=BasyoList[7], text=BasyoList[7]),
+                                                MessageAction(label=BasyoList[8], text=BasyoList[8])
+                      ]),
+                      CarouselColumn(text="4/6", actions=[
                                                 MessageAction(label=BasyoList[9], text=BasyoList[9]),
                                                 MessageAction(label=BasyoList[10], text=BasyoList[10]),
                                                 MessageAction(label=BasyoList[11], text=BasyoList[11])
                       ]),
-                      CarouselColumn(text="4/4", actions=[
+                      CarouselColumn(text="5/6", actions=[
                                                 MessageAction(label=BasyoList[12], text=BasyoList[12]),
                                                 MessageAction(label=BasyoList[13], text=BasyoList[13]),
-                                                MessageAction(label=BasyoList[14], text=BasyoList[14]),
+                                                MessageAction(label=BasyoList[14], text=BasyoList[14])
+                      ]),
+                      CarouselColumn(text="6/6", actions=[
                                                 MessageAction(label=BasyoList[15], text=BasyoList[15])
                       ])
                   ])
+
               template_message = TemplateSendMessage(
                   alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。" , template=carousel_template)
               line_bot_api.reply_message(
