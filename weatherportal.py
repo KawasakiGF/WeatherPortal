@@ -724,6 +724,7 @@ def handle_message(event):
               HareaT = MySession.read_HareaT(user_id)
               HbasyoList = MySession.read_HbasyoList(user_id)
               para = MySession.read_para(user_id)
+              KareaT = MySession.read_KareaT(user_id)
               #全部消した後、
               MySession.reset(user_id)
               #保持情報を再度覚えさせる
@@ -732,6 +733,7 @@ def handle_message(event):
               MySession.update_HareaT(user_id, HareaT)
               MySession.update_HbasyoList(user_id, HbasyoList)
               MySession.update_para(user_id, para)
+              MySession.update_KareaT(user_id, KareaT)
 
           MySession.update_areaT(user_id, ken)
           MySession.update_area(user_id, si)
