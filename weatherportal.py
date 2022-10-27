@@ -61,6 +61,7 @@ class Status:
           self.HareaT = ""
           self.HbasyoList = ""
           self.para = 0
+          self.KareaT = ""
           self.count = 0
           self.oyasumi = 0
 
@@ -137,6 +138,10 @@ class Status:
     def set_para(self, para):
           self.para = para
 
+    def get_KareaT(self):
+        return self.KareaT
+    def set_HareaT(self, KareaT):
+          self.KareaT = KareaT
 
     def get_count(self):
         return self.count
@@ -265,6 +270,12 @@ class MySession:
         new_status.set_para(para)
         MySession._status_map[user_id] = new_status
 
+    def read_KareaT(user_id):
+        return MySession._status_map.get(user_id).get_KareaT()
+    def update_KareaT(user_id, KareaT):
+        new_status = MySession._status_map.get(user_id)
+        new_status.set_KareaT(KareaT)
+        MySession._status_map[user_id] = new_status
 
     def read_count(user_id):
         return MySession._status_map.get(user_id).get_count()
@@ -643,6 +654,8 @@ def handle_message(event):
               HareaT = MySession.read_HareaT(user_id)
               HbasyoList = MySession.read_HbasyoList(user_id)
               para = MySession.read_para(user_id)
+              #KareaTはカルーセルが多いやつ限定で使用するため、KareaTを保持させるのはここだけ
+              KareaT = MySession.read_KareaT(user_id)
               #全部消した後、
               MySession.reset(user_id)
               #保持情報を再度覚えさせる
@@ -651,6 +664,7 @@ def handle_message(event):
               MySession.update_HareaT(user_id, HareaT)
               MySession.update_HbasyoList(user_id, HbasyoList)
               MySession.update_para(user_id, para)
+              MySession.update_KareaT(user_id, KareaT)
         else: MySession.reset(user_id)
 
 #ヘルプ
@@ -866,6 +880,7 @@ def handle_message(event):
                       ])
                   ])
                   MySession.update_context(user_id, "90")
+                  MySession.update_KareaT(user_id, ken)
               template_message = TemplateSendMessage(
                   alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
               line_bot_api.reply_message(
@@ -874,7 +889,7 @@ def handle_message(event):
                   template_message])
 
     elif MySession.read_context(user_id) == "90":
-        TBasyo = todoufukenNum(int(todoufuken.index(MySession.read_areaT(user_id))))
+        TBasyo = todoufukenNum(int(todoufuken.index(MySession.read_KareaT(user_id))))
         BasyoList = codeKaraFind(TBasyo)
         MySession.update_context(user_id, "10")
         if len(BasyoList) == 10:
