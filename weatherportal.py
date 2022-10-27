@@ -140,7 +140,7 @@ class Status:
 
     def get_KareaT(self):
         return self.KareaT
-    def set_HareaT(self, KareaT):
+    def set_KareaT(self, KareaT):
           self.KareaT = KareaT
 
     def get_count(self):
