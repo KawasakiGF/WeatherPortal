@@ -1368,7 +1368,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
            [TextSendMessage(text = "↓アンケートはこちらから\nhttps://forms.office.com/r/890X6LLyRU"),
-           TextSendMessage(text = "アンケートでは、あなたが現在使用している天気予報のアプリやシステムなどと比べ、WeatherNewsBotがどれくらい便利か、システムの完成度や利便性はどの程度か、追加してほしい機能や不満点、バグの有無などについてお伺いしています。")])
+           TextSendMessage(text = "アンケートでは、あなたが現在使用している天気予報のアプリやシステムなどと比べ、WeatherNewsBotがどれくらい便利か、システムの完成度や利便性はどの程度か、追加してほしい機能や不満点、バグの有無などについてお伺いしています。"),
            TextSendMEssage(text = "ver1.1では、ver1.0を利用した方と利用されていない方で別にアンケート項目を設けております(ver1.0からご利用いただいている方は、1.0の時に比べどの程度改善したかなどを伺っています)。さらに、WeatherNewsBotのマスコットキャラクター「フォグ」との会話を意識したアップデートを通して使用意欲の向上があったか、知名度や利用者の増加は見込めるかなどについてもお伺いしています")])
 ###############################
 
