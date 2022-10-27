@@ -862,7 +862,7 @@ def handle_message(event):
               if len(BasyoList) < 9: MySession.update_context(user_id, "90")
               else: MySession.update_context(user_id, "10")
 
-    if MySession.read_context(user_id) == "90" and talk == "さらに表示する":
+    elif MySession.read_context(user_id) == "90" and talk == "さらに表示する":
         TBasyo = todoufukenNum(int(todoufuken.index(ken)))
         BasyoList = codeKaraFind(TBasyo)
         if len(BasyoList) == 10:
@@ -949,9 +949,10 @@ def handle_message(event):
                                          MessageAction(label=BasyoList[15], text=BasyoList[15])
                 ])
             ])
+        MySession.update_context(user_id, "10")
 
 
-    if MySession.read_context(user_id) == "10":
+    elif MySession.read_context(user_id) == "10":
         MySession.update_area(user_id, talk)
         buttons_template = ButtonsTemplate(
             text="日時をお選びください", actions=[
