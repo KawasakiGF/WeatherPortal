@@ -636,8 +636,22 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage("最初からリセットします。1か所or2か所を入力してください。"))
-        # 現在のstatusを消して新規statusで初期化。
-        MySession.reset(user_id)
+        #保持情報はいったん避難
+        if MySession.read_para(user_id) is not None:
+              Hdate = MySession.read_Hdate(user_id)
+              Harea = MySession.read_Harea(user_id)
+              HareaT = MySession.read_HareaT(user_id)
+              HbasyoList = MySession.read_HbasyoList(user_id)
+              para = MySession.read_para(user_id)
+              #全部消した後、
+              MySession.reset(user_id)
+              #保持情報を再度覚えさせる
+              MySession.update_Hdate(user_id, Hdate)
+              MySession.update_Harea(user_id, Harea)
+              MySession.update_HareaT(user_id, HareaT)
+              MySession.update_HbasyoList(user_id, HbasyoList)
+              MySession.update_para(user_id, para)
+        else: MySession.reset(user_id)
 
 #ヘルプ
     if ("ヘルプ" in talk or "help" in talk or "へるぷ" in talk):
@@ -860,7 +874,7 @@ def handle_message(event):
                   template_message])
 
     elif MySession.read_context(user_id) == "90":
-        TBasyo = todoufukenNum(int(todoufuken.index(ken)))
+        TBasyo = todoufukenNum(int(todoufuken.index(MySession.read_areaT(user_id))))
         BasyoList = codeKaraFind(TBasyo)
         MySession.update_context(user_id, "10")
         if len(BasyoList) == 10:
