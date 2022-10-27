@@ -1028,7 +1028,7 @@ def handle_message(event):
                   event.reply_token,
                   [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
                   TextSendMessage(text=tenkiInfo),
-                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
                   template_message])
         else:
              line_bot_api.reply_message(
@@ -1036,7 +1036,7 @@ def handle_message(event):
                   [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
                   TextSendMessage(text=tenkiInfo),
                   ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
-                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
                   template_message])
         MySession.update_context(user_id, "13")
 
@@ -1063,7 +1063,7 @@ def handle_message(event):
                   event.reply_token,
                   [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
                   TextSendMessage(text=tenkiInfo),
-                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
                   template_message])
         else:
              line_bot_api.reply_message(
@@ -1071,7 +1071,7 @@ def handle_message(event):
                   [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
                   TextSendMessage(text=tenkiInfo),
                   ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
-                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
                   template_message])
         MySession.update_context(user_id, "13")
 
@@ -1098,7 +1098,7 @@ def handle_message(event):
                   event.reply_token,
                   [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
                   TextSendMessage(text=tenkiInfo),
-                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
                   template_message])
         else:
              line_bot_api.reply_message(
@@ -1106,11 +1106,11 @@ def handle_message(event):
                   [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
                   TextSendMessage(text=tenkiInfo),
                   ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
-                  TextSendMessage(text=kasaInfo + "\n" + fukusouInfo + caution),
+                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
                   template_message])
         MySession.update_context(user_id, "13")
 
-        if talk == "はい" and MySession.read_context(user_id) == "13":
+    elif talk == "はい" and MySession.read_context(user_id) == "13":
             if MySession.read_date(user_id) == 0: date="今日"
             elif MySession.read_date(user_id) == 1: date="明日"
             elif MySession.read_date(user_id) == 2: date="明後日"
@@ -1128,7 +1128,7 @@ def handle_message(event):
             MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
             MySession.update_HbasyoList(user_id, MySession.read_basyoList(user_id))
 
-        if talk == "いいえ" and MySession.read_context(user_id) == "13":
+    elif talk == "いいえ" and MySession.read_context(user_id) == "13":
             line_bot_api.reply_message(
                event.reply_token,
                TextSendMessage(text="保持しませんでした。またご利用になられる場合は「1か所」もしくは「2か所」を入力してください。"))
