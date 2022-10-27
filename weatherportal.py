@@ -700,9 +700,9 @@ def handle_message(event):
               MySession.reset(user_id)
               #保持情報を再度覚えさせる
               MySession.update_Hdate(user_id, Hdate)
-              MySession.update_Harea(user_id, MySession.read_area(user_id))
-              MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
-              MySession.update_HbasyoList(user_id, MySession.read_HbasyoList(user_id))
+              MySession.update_Harea(user_id, Harea)
+              MySession.update_HareaT(user_id, HareaT)
+              MySession.update_HbasyoList(user_id, HbasyoList)
               MySession.update_para(user_id, para)
 
           MySession.update_areaT(user_id, ken)
@@ -833,7 +833,7 @@ def handle_message(event):
                                                 MessageAction(label=BasyoList[8], text=BasyoList[8])
                       ])
                   ])
-              elif len(BasyoList) < 9:
+              elif len(BasyoList) > 9:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="１ページ目", actions=[
                                                 MessageAction(label=BasyoList[0], text=BasyoList[0]),
@@ -853,10 +853,10 @@ def handle_message(event):
                   ])
                   MySession.update_context(user_id, "90")
               template_message = TemplateSendMessage(
-                  alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。" , template=carousel_template)
+                  alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
               line_bot_api.reply_message(
                   event.reply_token, 
-                  [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中から選んでください。"),
+                  [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
                   template_message])
 
     elif MySession.read_context(user_id) == "90":
@@ -1122,11 +1122,20 @@ def handle_message(event):
                [TextSendMessage(text="情報保持しました！次回以降「いつもの」と入力すれば以下の条件で天気情報を検索できます！"),
                TextSendMessage(text="<日付>" + date + "\n<場所>" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "\n<体調>" + para),
                TextSendMessage(text="情報は次の1か所or2か所の天気情報検索時まで保持されます。")])
-            MySession.update_context(user_id, "0")
-            MySession.update_Hdate(user_id, MySession.read_date(user_id))
-            MySession.update_Harea(user_id, MySession.read_area(user_id))
-            MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
-            MySession.update_HbasyoList(user_id, MySession.read_basyoList(user_id))
+            #保持情報はいったん避難
+            Hdate = MySession.read_date(user_id)
+            Harea = MySession.read_area(user_id)
+            HareaT = MySession.read_areaT(user_id)
+            HbasyoList = MySession.read_basyoList(user_id)
+            para = MySession.read_para(user_id)
+            #全部消した後、
+            MySession.reset(user_id)
+            #保持情報を再度覚えさせる
+            MySession.update_Hdate(user_id, Hdate)
+            MySession.update_Harea(user_id, Harea)
+            MySession.update_HareaT(user_id, HareaT)
+            MySession.update_HbasyoList(user_id, HbasyoList)
+            MySession.update_para(user_id, para)
 
     elif talk == "いいえ" and MySession.read_context(user_id) == "13":
             line_bot_api.reply_message(
@@ -1142,9 +1151,9 @@ def handle_message(event):
             MySession.reset(user_id)
             #保持情報を再度覚えさせる
             MySession.update_Hdate(user_id, Hdate)
-            MySession.update_Harea(user_id, MySession.read_area(user_id))
-            MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
-            MySession.update_HbasyoList(user_id, MySession.read_HbasyoList(user_id))
+            MySession.update_Harea(user_id, Harea)
+            MySession.update_HareaT(user_id, HareaT)
+            MySession.update_HbasyoList(user_id, HbasyoList)
             MySession.update_para(user_id, para)
 ###############################
 
