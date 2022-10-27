@@ -707,9 +707,11 @@ def handle_message(event):
 
           MySession.update_areaT(user_id, ken)
           MySession.update_area(user_id, si)
+          TBasyo = todoufukenNum(int(todoufuken.index(ken)))
+          BasyoList = codeKaraFind(TBasyo)
 
           #日にちを聞くとこ###########################################
-          if si in Tname:
+          if si in BasyoList:
               buttons_template = ButtonsTemplate(
                   text="日時をお選びください", actions=[
                       MessageAction(label="今日", data="今日", text="今日"),
@@ -722,8 +724,6 @@ def handle_message(event):
                   event.reply_token, template_message)
               MySession.update_context(user_id, "11")
           else:
-              TBasyo = todoufukenNum(int(todoufuken.index(ken)))
-              BasyoList = codeKaraFind(TBasyo)
               MySession.update_context(user_id, "10")
               if len(BasyoList) == 1:
                   carousel_template = CarouselTemplate(columns=[
