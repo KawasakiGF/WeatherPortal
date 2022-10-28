@@ -624,6 +624,7 @@ def handle_message(event):
     #if文中に宣言した奴はローカル変数としてみなすのでここで宣言する必要があるんですね
     basyo = []
     ken = ""
+    si = ""
 
     #if文の侵入が1つだけしか行けないならこれが原因で動かないかも
     if "県" in talk:
@@ -733,22 +734,22 @@ def handle_message(event):
 
 #いつものセットでお天気検索
     elif MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ"):
-          para = MySession.read_para(user_id)
+          para = MySession.read_Hpara(user_id)
           picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
-          fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-          tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-          kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+          fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
+          tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id))
+          kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id))
           if picUrl == "未知の天気":
                line_bot_api.reply_message(
                     event.reply_token,
-                    [TextSendMessage(text=day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                    [TextSendMessage(text=day[MySession.read_Hdate(user_id)] + "の" + MySession.read_HareaT(user_id) + MySession.read_Harea(user_id) + "の天気情報を表示します！"),
                     TextSendMessage(text=tenkiInfo),
                     TextSendMessage(text=kasaInfo),
                     TextSendMessage(text=fukusouInfo)])
           else:
                line_bot_api.reply_message(
                     event.reply_token,
-                    [TextSendMessage(text=day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                    [TextSendMessage(text=day[MySession.read_Hdate(user_id)] + "の" + MySession.read_HareaT(user_id) + MySession.read_Harea(user_id) + "の天気情報を表示します！"),
                     TextSendMessage(text=tenkiInfo),
                     ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
                     TextSendMessage(text=kasaInfo),
@@ -1235,7 +1236,7 @@ def handle_message(event):
     elif talk == "いいえ" and MySession.read_context(user_id) == "13":
             line_bot_api.reply_message(
                event.reply_token,
-               TextSendMessage(text="保持しませんでした。またご利用になられる場合は「1か所」もしくは「2か所」を入力してください。"))
+               TextSendMessage(text="保持しませんでした。またご利用になられる場合は○○県□□市のように入力してください！"))
             #保持情報はいったん避難
             Hdate = MySession.read_Hdate(user_id)
             Harea = MySession.read_Harea(user_id)
@@ -1761,7 +1762,7 @@ tellBasyoKwsk2_2 = "の天気情報ですね。分かりました！\nでは次�
 
 kaiwa1_1 = "あれれ、入力できてないです？○○県□□市って入力していただければ大丈夫ですよ。例えば和歌山県和歌山市、東京都新宿区、大阪府大阪市、北海道函館市のように入力してください。県と市の間にスペースは必要ありません。"
 kaiwa1_1a = "ちゃんと入力してるのに、と思われた方へ。\nもしかしたらシステムエラーかもしれないので、日を改めてご利用いただきますようお願いいたします。"
-kaiwa1_2 = "ちょっとちょっと、間違えすぎですって！\n...もしかして、わざと間違えてます？"
+kaiwa1_2 = "ちょっとちょっと、間違えすぎですって！\n…もしかして、わざと間違えてます？"
 kaiwa1_3 = "ひょっとしてボクに話しかけてくれてますか？\nでもごめんなさい。あなたとお話をしたくても、ここからじゃお話はできないんです。ごめんなさい…"
 kaiwa1_4 = "ただ、ちょっとだけならお話できます。判定は厳しめなので、一文字でも間違えちゃダメですよ？\nこんなキーワードを入力してみてください。\n・「自己紹介してくれる？」\n・「今何してる？」\n・「雑談しよう」\n・「おはよう」\nなどなど"
 
