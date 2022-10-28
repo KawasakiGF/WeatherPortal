@@ -621,6 +621,9 @@ def handle_message(event):
 
     MySession.register(user_id)
 
+    basyo = []
+    ken = ""
+
     #if文の侵入が1つだけしか行けないならこれが原因で動かないかも
     if "県" in talk:
         basyo = talk.split("県", 1)
