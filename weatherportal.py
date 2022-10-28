@@ -398,13 +398,13 @@ def kasaHantei(code, itu):
      elif PC == "": PC=AC
      CORMEAN=int((int(AC)+int(PC))/2.0)
      if CORMEAN >= 50:
-        kasaInfo = "雨が降りそうです。傘を持ってお出かけください。"
+        kasaInfo = "雨が降りそうです。傘を持ってお出かけください！"
      elif (CORMEAN >= 30 and "雨" in weather):
-        kasaInfo = "雨が降りそうです。傘を持ってお出かけください。"
+        kasaInfo = "雨が降りそうです。傘を持ってお出かけください！"
      elif CORMEAN >= 30:
-        kasaInfo = "雨が降らないこともありそうです。折り畳み傘があれば十分そうですね。"
+        kasaInfo = "雨が降らないこともありそうです。折り畳み傘があれば十分かと思われます！"
      else:
-        kasaInfo = "傘は必要ありません。"
+        kasaInfo = "傘は必要なさそうです！"
      return kasaInfo
 
 #1か所の服装判定
@@ -734,7 +734,7 @@ def handle_message(event):
 
 #いつものセットでお天気検索
     elif MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ"):
-          para = MySession.read_Hpara(user_id)
+          para = MySession.read_para(user_id)
           picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
           fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
           tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id))
