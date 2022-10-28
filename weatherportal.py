@@ -621,6 +621,7 @@ def handle_message(event):
 
     MySession.register(user_id)
 
+    #if文中に宣言した奴はローカル変数としてみなすのでここで宣言する必要があるんですね
     basyo = []
     ken = ""
 
