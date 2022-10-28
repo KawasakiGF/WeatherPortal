@@ -718,6 +718,11 @@ def handle_message(event):
                     TextSendMessage(text=kasaInfo),
                     TextSendMessage(text=fukusouInfo)])
 
+#間違って天気の選択肢で---を選んだ場合の処理################
+    elif talk == "---"
+        line_bot_api.reply_message(
+            event.reply_token, "あっ、そこじゃないです！もう一度先ほどの一覧から選んでいただけますか？")
+
 #1か所の場所を聞く####################
     elif MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
        if ken in todoufuken:
@@ -892,6 +897,7 @@ def handle_message(event):
                       ])
                   ])
                   MySession.update_context(user_id, "90")
+                  MySession.update_count(user_id, 90)
                   MySession.update_KbasyoList(user_id, BasyoList)
               template_message = TemplateSendMessage(
                   alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
