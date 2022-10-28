@@ -786,13 +786,13 @@ def handle_message(event):
           #日にちを聞くとこ###########################################
           if si in BasyoList:
               buttons_template = ButtonsTemplate(
-                  text="日時をお選びください", actions=[
+                  text="日時をお選びください！", actions=[
                       MessageAction(label="今日", data="今日", text="今日"),
                       MessageAction(label="明日", data="明日", text="明日"),
                       MessageAction(label="明後日", data="明後日", text="明後日")
                   ])
               template_message = TemplateSendMessage(
-                  alt_text="日時をお選びください", template=buttons_template)
+                  alt_text="日時をお選びください！", template=buttons_template)
               line_bot_api.reply_message(
                   event.reply_token, template_message)
               MySession.update_context(user_id, "11")
@@ -1036,18 +1036,20 @@ def handle_message(event):
         template_message = TemplateSendMessage(
             alt_text="もっとですね？了解です！ この中にありますでしょうか？" , template=carousel_template)
         line_bot_api.reply_message(
-            event.reply_token, template_message)
+            event.reply_token,
+            [TextSendMessage(text="もっとですね？了解です！ この中にありますでしょうか？"),
+            template_message])
 
     elif MySession.read_context(user_id) == "10":
         MySession.update_area(user_id, talk)
         buttons_template = ButtonsTemplate(
-            text="日時をお選びください", actions=[
+            text="日時をお選びください！", actions=[
                 MessageAction(label="今日", text="今日"),
                 MessageAction(label="明日", text="明日"),
                 MessageAction(label="明後日", text="明後日")
             ])
         template_message = TemplateSendMessage(
-            alt_text="日時をお選びください", template=buttons_template)
+            alt_text="日時をお選びください！", template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, template_message)
         MySession.update_context(user_id, "11")
