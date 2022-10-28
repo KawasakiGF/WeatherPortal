@@ -625,22 +625,28 @@ def handle_message(event):
     if "県" in talk:
         basyo = talk.split("県", 1)
         ken = basyo[0] + "県"
-        si = basyo[1].rsplit("市", 1)[0]
-
-    if "都" in talk:
+        Ksi = basyo[1]
+    elif "都" in talk:
         basyo = talk.split("都", 1)
         ken = basyo[0] + "都"
-        si = basyo[1].rsplit("市", 1)[0]
-
-    if "道" in talk:
+        Ksi = basyo[1]
+    elif "道" in talk:
         basyo = talk.split("道", 1)
         ken = basyo[0] + "道"
-        si = basyo[1].rsplit("市", 1)[0]
-
-    if "府" in talk:
+        Ksi = basyo[1]
+    elif "府" in talk:
         basyo = talk.split("府", 1)
         ken = basyo[0] + "府"
-        si = basyo[1].rsplit("市", 1)[0]
+        Ksi = basyo[1]
+
+    if "市" in Ksi:
+        si = Ksi.rsplit("市", 1)[0]
+    elif "区" in Ksi:
+        si = Ksi.rsplit("区", 1)[0]
+    elif "町" in Ksi:
+        si = Ksi.rsplit("町", 1)[0]
+    elif "村" in Ksi:
+        si = Ksi.rsplit("村", 1)[0]
 
 #会話を中断したいとき
     if (talk == "リセット"):
