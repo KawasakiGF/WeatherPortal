@@ -625,19 +625,17 @@ def handle_message(event):
     if "県" in talk:
         basyo = talk.split("県", 1)
         ken = basyo[0] + "県"
-        Ksi = basyo[1]
     elif "都" in talk:
         basyo = talk.split("都", 1)
         ken = basyo[0] + "都"
-        Ksi = basyo[1]
     elif "道" in talk:
         basyo = talk.split("道", 1)
         ken = basyo[0] + "道"
-        Ksi = basyo[1]
     elif "府" in talk:
         basyo = talk.split("府", 1)
         ken = basyo[0] + "府"
-        Ksi = basyo[1]
+
+    Ksi = basyo[1]
 
     if "市" in Ksi:
         si = Ksi.rsplit("市", 1)[0]
@@ -790,7 +788,9 @@ def handle_message(event):
                                                 MessageAction(label=BasyoList[2], text=BasyoList[2])
                       ]),
                       CarouselColumn(text="２ページ目", actions=[
-                                                MessageAction(label=BasyoList[3], text=BasyoList[3])
+                                                MessageAction(label=BasyoList[3], text=BasyoList[3]),
+                                                MessageAction(label="---", text="---"),
+                                                MessageAction(label="---", text="---")
                       ])
                   ])
               elif len(BasyoList) == 5:
@@ -802,7 +802,8 @@ def handle_message(event):
                       ]),
                       CarouselColumn(text="２ページ目", actions=[
                                                 MessageAction(label=BasyoList[3], text=BasyoList[3]),
-                                                MessageAction(label=BasyoList[3], text=BasyoList[4])
+                                                MessageAction(label=BasyoList[3], text=BasyoList[4]),
+                                                MessageAction(label="---", text="---")
                       ])
                   ])
               elif len(BasyoList) == 6:
@@ -831,7 +832,9 @@ def handle_message(event):
                                                 MessageAction(label=BasyoList[5], text=BasyoList[5])
                       ]),
                       CarouselColumn(text="３ページ目", actions=[
-                                                MessageAction(label=BasyoList[6], text=BasyoList[6])
+                                                MessageAction(label=BasyoList[6], text=BasyoList[6]),
+                                                MessageAction(label="---", text="---"),
+                                                MessageAction(label="---", text="---")
                       ])
                   ])
               elif len(BasyoList) == 8:
@@ -848,7 +851,8 @@ def handle_message(event):
                       ]),
                       CarouselColumn(text="３ページ目", actions=[
                                                 MessageAction(label=BasyoList[6], text=BasyoList[6]),
-                                                MessageAction(label=BasyoList[7], text=BasyoList[7])
+                                                MessageAction(label=BasyoList[7], text=BasyoList[7]),
+                                                MessageAction(label="---", text="---")
                       ])
                   ])
               elif len(BasyoList) == 9:
@@ -922,7 +926,9 @@ def handle_message(event):
                                          MessageAction(label=BasyoList[10], text=BasyoList[10])
                 ]),
                 CarouselColumn(text="５ページ目", actions=[
-                                         MessageAction(label=BasyoList[11], text=BasyoList[11])
+                                         MessageAction(label=BasyoList[11], text=BasyoList[11]),
+                                         MessageAction(label="---", text="---"),
+                                         MessageAction(label="---", text="---")
                 ])
             ])
         elif len(BasyoList) == 13:
@@ -934,7 +940,8 @@ def handle_message(event):
                 ]),
                 CarouselColumn(text="５ページ目", actions=[
                                          MessageAction(label=BasyoList[11], text=BasyoList[11]),
-                                         MessageAction(label=BasyoList[12], text=BasyoList[12])
+                                         MessageAction(label=BasyoList[12], text=BasyoList[12]),
+                                         MessageAction(label="---", text="---")
                 ])
             ])
         elif len(BasyoList) == 14:
@@ -963,7 +970,9 @@ def handle_message(event):
                                          MessageAction(label=BasyoList[13], text=BasyoList[13])
                 ]),
                 CarouselColumn(text="６ページ目", actions=[
-                                         MessageAction(label=BasyoList[14], text=BasyoList[14])
+                                         MessageAction(label=BasyoList[14], text=BasyoList[14]),
+                                         MessageAction(label="---", text="---"),
+                                         MessageAction(label="---", text="---")
                 ])
             ])
         elif len(BasyoList) == 16:
@@ -980,7 +989,8 @@ def handle_message(event):
                 ]),
                 CarouselColumn(text="６ページ目", actions=[
                                          MessageAction(label=BasyoList[14], text=BasyoList[14]),
-                                         MessageAction(label=BasyoList[15], text=BasyoList[15])
+                                         MessageAction(label=BasyoList[15], text=BasyoList[15]),
+                                         MessageAction(label="---", text="---")
                 ])
             ])
         template_message = TemplateSendMessage(
