@@ -61,7 +61,7 @@ class Status:
           self.HareaT = ""
           self.HbasyoList = ""
           self.para = 0
-          self.KareaT = ""
+          self.KbasyoList = ""
           self.count = 0
           self.oyasumi = 0
 
@@ -138,10 +138,10 @@ class Status:
     def set_para(self, para):
           self.para = para
 
-    def get_KareaT(self):
-        return self.KareaT
-    def set_KareaT(self, KareaT):
-          self.KareaT = KareaT
+    def get_KbasyoList(self):
+        return self.KbasyoList
+    def set_KbasyoList(self, KbasyoList):
+          self.KbasyoList = KbasyoList
 
     def get_count(self):
         return self.count
@@ -270,11 +270,11 @@ class MySession:
         new_status.set_para(para)
         MySession._status_map[user_id] = new_status
 
-    def read_KareaT(user_id):
-        return MySession._status_map.get(user_id).get_KareaT()
-    def update_KareaT(user_id, KareaT):
+    def read_KbasyoList(user_id):
+        return MySession._status_map.get(user_id).get_KbasyoList()
+    def update_KbasyoList(user_id, KbasyoList):
         new_status = MySession._status_map.get(user_id)
-        new_status.set_KareaT(KareaT)
+        new_status.set_KbasyoList(KbasyoList)
         MySession._status_map[user_id] = new_status
 
     def read_count(user_id):
@@ -882,7 +882,7 @@ def handle_message(event):
                       ])
                   ])
                   MySession.update_context(user_id, "90")
-                  MySession.update_KareaT(user_id, ken)
+                  MySession.update_KbasyoList(user_id, BasyoList)
               template_message = TemplateSendMessage(
                   alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
               line_bot_api.reply_message(
@@ -891,8 +891,7 @@ def handle_message(event):
                   template_message])
 
     elif MySession.read_context(user_id) == "90":
-        TBasyo = todoufukenNum(int(todoufuken.index(MySession.read_KareaT(user_id))))
-        BasyoList = codeKaraFind(TBasyo)
+        BasyoList = MySession.read_KbasyoList(user_id)
         MySession.update_context(user_id, "10")
         if len(BasyoList) == 10:
             carousel_template = CarouselTemplate(columns=[
