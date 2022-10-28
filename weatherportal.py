@@ -679,11 +679,17 @@ def handle_message(event):
             si = Ksi.rsplit("村", 1)[0]
 
 
+    if (talk == "全リセット"):
+        MySession.reset(user_id)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage("保持データも含めすべてリセットいたしました！\n天気情報を知りたい場合は○○県□□市のように入力してくださいね。"))
+
 #会話を中断したいとき
     if (talk == "リセット"):
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage("最初からリセットします。1か所or2か所を入力してください。"))
+            TextSendMessage("リセットいたしました！\n天気情報を知りたい場合は○○県□□市のように入力してくださいね。"))
         #保持情報はいったん避難
         if MySession.read_para(user_id) is not None:
               Hdate = MySession.read_Hdate(user_id)
@@ -691,8 +697,6 @@ def handle_message(event):
               HareaT = MySession.read_HareaT(user_id)
               HbasyoList = MySession.read_HbasyoList(user_id)
               para = MySession.read_para(user_id)
-              #KbasyoListはカルーセルが多いやつ限定で使用するため、KbasyoListを保持させるのはここだけ
-              KbasyoList = MySession.read_KbasyoList(user_id)
               #全部消した後、
               MySession.reset(user_id)
               #保持情報を再度覚えさせる
@@ -701,7 +705,6 @@ def handle_message(event):
               MySession.update_HareaT(user_id, HareaT)
               MySession.update_HbasyoList(user_id, HbasyoList)
               MySession.update_para(user_id, para)
-              MySession.update_KbasyoList(user_id, KbasyoList)
         else: MySession.reset(user_id)
 
 #ヘルプ
@@ -1213,7 +1216,7 @@ def handle_message(event):
                event.reply_token,
                [TextSendMessage(text="情報保持しました！次回以降「いつもの」と入力すれば以下の条件で天気情報を検索できます！"),
                TextSendMessage(text="<日付>" + date + "\n<場所>" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "\n<体調>" + para),
-               TextSendMessage(text="情報は次の1か所or2か所の天気情報検索時まで保持されます。")])
+               TextSendMessage(text="保持情報を消す場合は「全リセット」と入力してください。")])
             #保持情報はいったん避難
             Hdate = MySession.read_date(user_id)
             Harea = MySession.read_area(user_id)
@@ -1688,7 +1691,7 @@ def handle_message(event):
       else:
           line_bot_api.reply_message(
               event.reply_token,
-              TextSendMessage(text="最初からやり直します。「1か所」or「2か所」を入力してください。"))
+              TextSendMessage(text="あれ、ごめんなさい。ちょっと分からなくなってきちゃったので、いったん戻させていただきます。最初の○○県□□市から再度入力していただけますか？すみません・・・"))
           #リプライはLineBotApiのメソッドを用いる。 第一引数のevent.reply_tokenはイベントの応答に
           #用いるトークン。 第二引数にはlinebot.modelsに定義されている返信用の
           #TextSendMessageオブジェクトを渡しています。
