@@ -723,7 +723,7 @@ def handle_message(event):
                     TextSendMessage(text=fukusouInfo)])
 
 #間違って天気の選択肢で---を選んだ場合の処理################
-    elif talk == "---"
+    elif talk == "---":
         line_bot_api.reply_message(
             event.reply_token, "あっ、そこじゃないです！もう一度先ほどの一覧から選んでいただけますか？")
 
