@@ -410,23 +410,23 @@ def kasaHantei(code, itu):
 #1か所の服装判定
 def fukusouHantei(tempMEAN, weather):
   if tempMEAN <= 5:
-    fukusou = '＜服装情報＞\n重ね着をして、もふもふのコートやダウンジャケットを着てください。また、手袋やマフラー、暖かい靴下などがあれば積極的に利用して、できるだけ暖かい服装にしてください。'
+    fukusou = '＜服装情報＞\n重ね着をして、もふもふのコートやダウンジャケットを着てください。また、手袋やマフラー、暖かい靴下などがあれば積極的に利用して、できるだけ暖かい服装にしてください。風邪にはお気を付けください！'
   elif tempMEAN <= 9:
-    fukusou = '＜服装情報＞\n重ね着をして、ダウンコートやジャケットを着てください。風が強いときは手袋やマフラーがあると安心です。'
+    fukusou = '＜服装情報＞\n重ね着をして、ダウンコートやジャケットを着てください。風が強いときは手袋やマフラーがあると安心です！'
   elif tempMEAN <= 13:
-    fukusou = '＜服装情報＞\nジャケットやコートなど、風を通さない服装がおススメです。ヒートテックなんかがあると安心ですよ。'
+    fukusou = '＜服装情報＞\nジャケットやコートなど、風を通さない服装がおススメです。ヒートテックなんかがあると安心ですよ！'
   elif tempMEAN <= 16 and weather == "晴れ":
-    fukusou = '＜服装情報＞\nニットやセーターにするか、風が吹いていなければ軽い羽織りものを着てもよさそうです。'
+    fukusou = '＜服装情報＞\nニットやセーターにするか、風が吹いていなければ軽い羽織りものを着てもよさそうです！'
   elif tempMEAN <= 16:
-    fukusou = '＜服装情報＞\nニットやセーターで大丈夫と思いますが、もし寒く感じるときはジャケットやコートを着てください。'
+    fukusou = '＜服装情報＞\nニットやセーターで大丈夫と思いますが、もし寒く感じるときはジャケットやコートを着てください！'
   elif tempMEAN <= 19:
-    fukusou = '＜服装情報＞\n薄手のジャケットやパーカーにして、重ね着をするといい感じです。'
+    fukusou = '＜服装情報＞\n薄手のジャケットやパーカーにして、重ね着をするといい感じです！'
   elif tempMEAN <= 22:
-    fukusou = '＜服装情報＞\n着脱可能な羽織りものにし、温度に合わせて調節できるようにするといいですよ。'
+    fukusou = '＜服装情報＞\n着脱可能な羽織りものにし、温度に合わせて調節できるようにするといいですよ！'
   elif tempMEAN <= 24:
-    fukusou = '＜服装情報＞\n長袖が一枚あればOKです。半袖と薄い羽織りものでも大丈夫ですね。'
+    fukusou = '＜服装情報＞\n長袖が一枚あればOKです。半袖と薄い羽織りものでも大丈夫です！'
   elif tempMEAN <= 29:
-    fukusou = '＜服装情報＞\n半袖で過ごせそうです。長袖にして腕まくりをするのも一つの手です。'
+    fukusou = '＜服装情報＞\n半袖で過ごせそうです。長袖にして腕まくりをするのも一つの手ですね！'
   elif tempMEAN <= 99:
     fukusou = '＜服装情報＞\n半袖の涼しい服装にして、暑さ対策や熱中症対策を怠らないようにしてください。熱射病にはお気をつけて！'
   else:
@@ -438,23 +438,23 @@ def fukusouHantei2(STM, MTM, para):
   kandansa = ""
   tempMEAN = int((int(STM)+int(MTM))/2.0) + para
   if tempMEAN <= 5:
-    fukusou = '＜服装情報＞\n重ね着をして、もふもふのコートやダウンジャケットを着てください。また、手袋やマフラー、暖かい靴下などがあれば積極的に利用して、できるだけ暖かい服装にしてください。'
+    fukusou = '＜服装情報＞\n重ね着をして、もふもふのコートやダウンジャケットを着てください。また、手袋やマフラー、暖かい靴下などがあれば積極的に利用して、できるだけ暖かい服装にしてください！'
   elif tempMEAN <= 9:
-    fukusou = '＜服装情報＞\n重ね着をして、ダウンコートやジャケットを着てください。風が強いときは手袋やマフラーがあると安心です。'
+    fukusou = '＜服装情報＞\n重ね着をして、ダウンコートやジャケットを着てください。風が強いときは手袋やマフラーがあると安心です！'
   elif tempMEAN <= 13:
-    fukusou = '＜服装情報＞\nジャケットやコートなど、風を通さない服装がおススメです。ヒートテックなんかがあると安心ですよ。'
+    fukusou = '＜服装情報＞\nジャケットやコートなど、風を通さない服装がおススメです。ヒートテックなんかがあると安心ですよ！'
   elif tempMEAN <= 16 and weather == "晴れ":
-    fukusou = '＜服装情報＞\nニットやセーターにするか、風が吹いていなければ軽い羽織りものを着てもよさそうです。'
+    fukusou = '＜服装情報＞\nニットやセーターにするか、風が吹いていなければ軽い羽織りものを着てもよさそうです！'
   elif tempMEAN <= 16:
-    fukusou = '＜服装情報＞\nニットやセーターで大丈夫と思いますが、もし寒く感じるときはジャケットやコートを着てください。'
+    fukusou = '＜服装情報＞\nニットやセーターで大丈夫と思いますが、もし寒く感じるときはジャケットやコートを着てください！'
   elif tempMEAN <= 19:
-    fukusou = '＜服装情報＞\n薄手のジャケットやパーカーにして、重ね着をするといい感じです。'
+    fukusou = '＜服装情報＞\n薄手のジャケットやパーカーにして、重ね着をするといい感じです！'
   elif tempMEAN <= 22:
-    fukusou = '＜服装情報＞\n着脱可能な羽織りものにし、温度に合わせて調節できるようにするといいですよ。'
+    fukusou = '＜服装情報＞\n着脱可能な羽織りものにし、温度に合わせて調節できるようにするといいですよ！'
   elif tempMEAN <= 24:
-    fukusou = '＜服装情報＞\n長袖が一枚あればOKです。半袖と薄い羽織りものでも大丈夫ですね。'
+    fukusou = '＜服装情報＞\n長袖が一枚あればOKです。半袖と薄い羽織りものでも大丈夫です！'
   elif tempMEAN <= 29:
-    fukusou = '＜服装情報＞\n半袖で過ごせそうです。長袖にして腕まくりをするのも一つの手です。'
+    fukusou = '＜服装情報＞\n半袖で過ごせそうです。長袖にして腕まくりをするのも一つの手ですよ！'
   elif tempMEAN <= 99:
     fukusou = '＜服装情報＞\n半袖の涼しい服装にして、暑さ対策や熱中症対策を怠らないようにしてください。熱射病にはお気をつけて！'
   else:
@@ -691,8 +691,8 @@ def handle_message(event):
               HareaT = MySession.read_HareaT(user_id)
               HbasyoList = MySession.read_HbasyoList(user_id)
               para = MySession.read_para(user_id)
-              #KareaTはカルーセルが多いやつ限定で使用するため、KareaTを保持させるのはここだけ
-              KareaT = MySession.read_KareaT(user_id)
+              #KbasyoListはカルーセルが多いやつ限定で使用するため、KbasyoListを保持させるのはここだけ
+              KbasyoList = MySession.read_KbasyoList(user_id)
               #全部消した後、
               MySession.reset(user_id)
               #保持情報を再度覚えさせる
@@ -701,7 +701,7 @@ def handle_message(event):
               MySession.update_HareaT(user_id, HareaT)
               MySession.update_HbasyoList(user_id, HbasyoList)
               MySession.update_para(user_id, para)
-              MySession.update_KareaT(user_id, KareaT)
+              MySession.update_KbasyoList(user_id, KbasyoList)
         else: MySession.reset(user_id)
 
 #ヘルプ
@@ -754,7 +754,8 @@ def handle_message(event):
 #間違って天気の選択肢で---を選んだ場合の処理################
     elif talk == "---":
         line_bot_api.reply_message(
-            event.reply_token, "あっ、そこじゃないです！もう一度先ほどの一覧から選んでいただけますか？")
+            event.reply_token,
+            TextSendMessage("あっ、そこじゃないです！もう一度先ほどの一覧から選んでいただけますか？"))
 
 #1か所の場所を聞く####################
     elif MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
