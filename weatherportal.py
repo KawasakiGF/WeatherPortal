@@ -1407,7 +1407,7 @@ def handle_message(event):
 
 
 #2か所の場所を聞く####################
-    elif MySession.read_context(user_id) == "0" and (("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" in talk or "～" in talk):
+    elif MySession.read_context(user_id) == "0" and (("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" in talk or "～" in talk)):
        if Sken in todoufuken and Mken in todoufuken:
           #保持情報はいったん避難
           if MySession.read_para(user_id) is not None:
