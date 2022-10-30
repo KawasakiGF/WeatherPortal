@@ -392,19 +392,19 @@ def kasaHantei(code, itu):
      AC=re.sub(r"\D", "", amCOR)
      PC=re.sub(r"\D", "", pmCOR)
      if ((AC == "") and (PC == "")):
-        kasaInfo = "傘情報を取得できませんでした…"
+        kasaInfo = "＜傘情報＞\n傘情報を取得できませんでした…"
         return kasaInfo
      elif AC == "": AC=PC
      elif PC == "": PC=AC
      CORMEAN=int((int(AC)+int(PC))/2.0)
      if CORMEAN >= 50:
-        kasaInfo = "雨が降りそうです。傘を持ってお出かけください！"
+        kasaInfo = "＜傘情報＞\n雨が降りそうです。傘を持ってお出かけください！"
      elif (CORMEAN >= 30 and "雨" in weather):
-        kasaInfo = "雨が降りそうです。傘を持ってお出かけください！"
+        kasaInfo = "＜傘情報＞\n雨が降りそうです。傘を持ってお出かけください！"
      elif CORMEAN >= 30:
-        kasaInfo = "雨が降らないこともありそうです。折り畳み傘があれば十分かと思われます！"
+        kasaInfo = "＜傘情報＞\n雨が降らないこともありそうです。折り畳み傘があれば十分かと思われます！"
      else:
-        kasaInfo = "傘は必要なさそうです！"
+        kasaInfo = "＜傘情報＞\n傘は必要なさそうです！"
      return kasaInfo
 
 #1か所の服装判定
@@ -476,7 +476,7 @@ def kasaHantei2(codeS, ituS, codeM, ituM, ST, MT):
      AC=re.sub(r"\D", "", amCOR)
      PC=re.sub(r"\D", "", pmCOR)
      if ((AC == "") and (PC == "")):
-        kasaInfo = "傘情報を取得できませんでした…"
+        kasaInfo = "＜傘情報＞\n傘情報を取得できませんでした…"
      elif AC == "": AC=PC
      elif PC == "": PC=AC
      CORMEANS=(int(AC)+int(PC))/2.0
@@ -494,7 +494,7 @@ def kasaHantei2(codeS, ituS, codeM, ituM, ST, MT):
      ACM=re.sub(r"\D", "", amCORM)
      PCM=re.sub(r"\D", "", pmCORM)
      if ((ACM == "") and (PCM == "")):
-        kasaInfo2 = "傘情報を取得できませんでした…"
+        kasaInfo2 = "＜傘情報＞\n傘情報を取得できませんでした…"
      elif ACM == "": ACM=PCM
      elif PCM == "": PCM=ACM
      CORMEANM=(int(ACM)+int(PCM))/2.0
@@ -502,17 +502,17 @@ def kasaHantei2(codeS, ituS, codeM, ituM, ST, MT):
      CORMEAN = int((CORMEANS+CORMEANS)/2.0)
 
      if CORMEANS >= 50 and CORMEANM >= 50:
-        kasaInfo = "雨が降りそうです。傘を持ってお出かけください。"
+        kasaInfo = "＜傘情報＞\n雨が降りそうです。傘を持ってお出かけください。"
      elif (CORMEANS >= 50 and (CORMEANM >= 30 and "雨" in weather)) or (CORMEANM >= 50 and (CORMEANS >= 30 and "雨" in weather)):
-        kasaInfo = "雨が降りそうです。傘を持ってお出かけください。"
+        kasaInfo = "＜傘情報＞\n雨が降りそうです。傘を持ってお出かけください。"
      elif (CORMEANS >= 50 or (CORMEANS >= 30 and "雨" in weather)) and CORMEANM < 30:
-        kasaInfo = ST + "では雨が降りそうですが、" + MT + "では雨が降らなさそうです。傘を持つ余裕があれば傘を、無ければ折り畳み傘を持ってお出かけください。"
+        kasaInfo = "＜傘情報＞\n" + ST + "では雨が降りそうですが、" + MT + "では雨が降らなさそうです。傘を持つ余裕があれば傘を、無ければ折り畳み傘を持ってお出かけください。"
      elif (CORMEANM >= 50 or (CORMEANM >= 30 and "雨" in weather)) and CORMEANS < 30:
-        kasaInfo = ST + "では雨が降らなさそうですが、" + MT + "では雨が降りそうです。傘を持つ余裕があれば傘を、無ければ折り畳み傘を持ってお出かけください。"
+        kasaInfo = "＜傘情報＞\n" + ST + "では雨が降らなさそうですが、" + MT + "では雨が降りそうです。傘を持つ余裕があれば傘を、無ければ折り畳み傘を持ってお出かけください。"
      elif CORMEANS >= 30 or CORMEANM >= 30:
-        kasaInfo = "雨が降らないこともありそうです。折り畳み傘があれば十分そうですね。"
+        kasaInfo = "＜傘情報＞\n雨が降らないこともありそうです。折り畳み傘があれば十分そうですね。"
      else:
-        kasaInfo = "傘は必要ありません。"
+        kasaInfo = "＜傘情報＞\n傘は必要ありません。"
      return kasaInfo
 
 #天気アイコン判定
@@ -626,8 +626,22 @@ def handle_message(event):
     ken = ""
     si = ""
 
+    Sbasyo = []
+    Sken = ""
+    Ssi = ""
+    Mbasyo = []
+    Mken = ""
+    Msi = ""
+    talkSepa = []
+
+    if "から" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
+        talkSepa = talk.split("から", 1)
+    if "～" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
+        talkSepa = talk.split("～", 1)
+
+
     #if文の侵入が1つだけしか行けないならこれが原因で動かないかも
-    if "県" in talk:
+    if "県" in talk and ("から" not in talk or "～" not in talk):
         basyo = talk.split("県", 1)
         ken = basyo[0] + "県"
         Ksi = basyo[1]
@@ -639,8 +653,7 @@ def handle_message(event):
             si = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             si = Ksi.rsplit("村", 1)[0]
-
-    elif "都" in talk:
+    elif "都" in talk and ("から" not in talk or "～" not in talk):
         basyo = talk.split("都", 1)
         ken = basyo[0] + "都"
         Ksi = basyo[1]
@@ -652,8 +665,7 @@ def handle_message(event):
             si = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             si = Ksi.rsplit("村", 1)[0]
-
-    elif "道" in talk:
+    elif "道" in talk and ("から" not in talk or "～" not in talk):
         basyo = talk.split("道", 1)
         ken = basyo[0] + "道"
         Ksi = basyo[1]
@@ -665,8 +677,7 @@ def handle_message(event):
             si = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             si = Ksi.rsplit("村", 1)[0]
-
-    elif "府" in talk:
+    elif "府" in talk and ("から" not in talk or "～" not in talk):
         basyo = talk.split("府", 1)
         ken = basyo[0] + "府"
         Ksi = basyo[1]
@@ -678,6 +689,107 @@ def handle_message(event):
             si = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             si = Ksi.rsplit("村", 1)[0]
+
+
+    if "県" in talkSepa[0] and ("から" in talk or "～" in talk):
+        Sbasyo = talkSepa[0].split("県", 1)
+        Sken = Sbasyo[0] + "県"
+        Ksi = Sbasyo[1]
+        if "市" in Ksi:
+            Ssi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Ssi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Ssi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Ssi = Ksi.rsplit("村", 1)[0]
+
+    elif "都" in talkSepa[0] and ("から" in talk or "～" in talk):
+        Sbasyo = talkSepa[0].split("都", 1)
+        Sken = Sbasyo[0] + "都"
+        Ksi = Sbasyo[1]
+        if "市" in Ksi:
+            Ssi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Ssi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Ssi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Ssi = Ksi.rsplit("村", 1)[0]
+    elif "道" in talkSepa[0] and ("から" in talk or "～" in talk):
+        Sbasyo = talkSepa[0].split("道", 1)
+        Sken = Sbasyo[0] + "道"
+        Ksi = Sbasyo[1]
+        if "市" in Ksi:
+            Ssi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Ssi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Ssi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Ssi = Ksi.rsplit("村", 1)[0]
+    elif "府" in talkSepa[0] and ("から" in talk or "～" in talk):
+        Sbasyo = talkSepa[0].split("府", 1)
+        Sken = Sbasyo[0] + "府"
+        Ksi = Sbasyo[1]
+        if "市" in Ksi:
+            Ssi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Ssi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Ssi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Ssi = Ksi.rsplit("村", 1)[0]
+
+    if "県" in talkSepa[1] and ("から" in talk or "～" in talk):
+        Mbasyo = talkSepa[1].split("県", 1)
+        Mken = Mbasyo[0] + "県"
+        Ksi = Mbasyo[1]
+        if "市" in Ksi:
+            Msi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Msi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Msi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Msi = Ksi.rsplit("村", 1)[0]
+
+    elif "都" in talkSepa[1] and ("から" in talk or "～" in talk):
+        Mbasyo = talkSepa[1].split("都", 1)
+        Mken = Mbasyo[0] + "都"
+        Ksi = Mbasyo[1]
+        if "市" in Ksi:
+            Msi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Msi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Msi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Msi = Ksi.rsplit("村", 1)[0]
+    elif "道" in talkSepa[1] and ("から" in talk or "～" in talk):
+        Mbasyo = talkSepa[1].split("道", 1)
+        Mken = Mbasyo[0] + "道"
+        Ksi = Mbasyo[1]
+        if "市" in Ksi:
+            Msi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Msi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Msi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Msi = Ksi.rsplit("村", 1)[0]
+    elif "府" in talkSepa[1] and ("から" in talk or "～" in talk):
+        Mbasyo = talkSepa[1].split("府", 1)
+        Mken = Mbasyo[0] + "府"
+        Ksi = Mbasyo[1]
+        if "市" in Ksi:
+            Msi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Msi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Msi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Msi = Ksi.rsplit("村", 1)[0]
 
 
     if (talk == "全リセット"):
@@ -761,7 +873,7 @@ def handle_message(event):
     elif MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ") and (MySession.read_Hdate(user_id) == 0 or MySession.read_Harea(user_id) == "" or MySession.read_HareaT(user_id) == "" or MySession.read_HbasyoList(user_id) == "" or MySession.read_para(user_id) == 0):
            line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text="保持情報…保持情報…\nあれ、消えちゃってる… ごめんなさい！保持情報が消えてしまっているのでお手数をおかけしますが再度入力していただけますか？"))
+                TextSendMessage(text="保持情報…保持情報…\nあれ、消えちゃってる… ごめんなさい！保持情報が消えちゃってるので、お手数をおかけしますが再度入力していただけますか？"))
 
 #いつものセットでお天気検索
     elif MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ"):
@@ -787,13 +899,13 @@ def handle_message(event):
                     TextSendMessage(text=fukusouInfo)])
 
 #間違って天気の選択肢で---を選んだ場合の処理################
-    elif talk == "---":
+    elif (MySession.read_context(user_id) == "10" or MySession.read_context(user_id) == "20" or MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92") and talk == "---":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage("あっ、そこじゃないです！もう一度先ほどの一覧から選んでいただけますか？"))
 
 #1か所の場所を聞く####################
-    elif MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
+    elif MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" not in talk or "～" not in talk):
        if ken in todoufuken:
           #保持情報はいったん避難
           if MySession.read_para(user_id) is not None:
@@ -966,7 +1078,7 @@ def handle_message(event):
                       ])
                   ])
                   MySession.update_context(user_id, "90")
-                  MySession.update_count(user_id, 90)
+                  #MySession.update_count(user_id, 90)
                   MySession.update_KbasyoList(user_id, BasyoList)
               template_message = TemplateSendMessage(
                   alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
@@ -975,9 +1087,12 @@ def handle_message(event):
                   [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
                   template_message])
 
-    elif MySession.read_context(user_id) == "90":
+    elif (MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92":
         BasyoList = MySession.read_KbasyoList(user_id)
-        MySession.update_context(user_id, "10")
+        if MySession.update_context(user_id, "90"):MySession.update_context(user_id, "10")
+        elif MySession.update_context(user_id, "91"):MySession.update_context(user_id, "20")
+        elif MySession.update_context(user_id, "92"):MySession.update_context(user_id, "22")
+
         if len(BasyoList) == 10:
             carousel_template = CarouselTemplate(columns=[
                 CarouselColumn(text="４ページ目", actions=[
@@ -1077,17 +1192,22 @@ def handle_message(event):
 
     elif MySession.read_context(user_id) == "10":
         MySession.update_area(user_id, talk)
-        buttons_template = ButtonsTemplate(
-            text="日時をお選びください！", actions=[
-                MessageAction(label="今日", text="今日"),
-                MessageAction(label="明日", text="明日"),
-                MessageAction(label="明後日", text="明後日")
-            ])
-        template_message = TemplateSendMessage(
-            alt_text="日時をお選びください！", template=buttons_template)
-        line_bot_api.reply_message(
-            event.reply_token, template_message)
-        MySession.update_context(user_id, "11")
+        if talk in MySession.read_KbasyoList(user_id):
+            buttons_template = ButtonsTemplate(
+                text="出発日時をお選びください！", actions=[
+                    MessageAction(label="今日", text="今日"),
+                    MessageAction(label="明日", text="明日"),
+                    MessageAction(label="明後日", text="明後日")
+                ])
+            template_message = TemplateSendMessage(
+                alt_text="出発日時をお選びください！", template=buttons_template)
+            line_bot_api.reply_message(
+                event.reply_token, template_message)
+            MySession.update_context(user_id, "11")
+        else:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="選択できない場所を選ばないでくださいっ！")
 
     elif talk == "今日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 0)
@@ -1153,14 +1273,14 @@ def handle_message(event):
         if picUrl == "未知の天気":
              line_bot_api.reply_message(
                   event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
                   TextSendMessage(text=tenkiInfo),
                   TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
                   template_message])
         else:
              line_bot_api.reply_message(
                   event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
                   TextSendMessage(text=tenkiInfo),
                   ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
                   TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
@@ -1188,14 +1308,14 @@ def handle_message(event):
         if picUrl == "未知の天気":
              line_bot_api.reply_message(
                   event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
                   TextSendMessage(text=tenkiInfo),
                   TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
                   template_message])
         else:
              line_bot_api.reply_message(
                   event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
                   TextSendMessage(text=tenkiInfo),
                   ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
                   TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
@@ -1223,14 +1343,14 @@ def handle_message(event):
         if picUrl == "未知の天気":
              line_bot_api.reply_message(
                   event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
                   TextSendMessage(text=tenkiInfo),
                   TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
                   template_message])
         else:
              line_bot_api.reply_message(
                   event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示します！"),
+                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
                   TextSendMessage(text=tenkiInfo),
                   ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
                   TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
@@ -1284,117 +1404,462 @@ def handle_message(event):
             MySession.update_para(user_id, para)
 ###############################
 
+
+
 #2か所の場所を聞く####################
-    elif MySession.read_context(user_id) == "0" and ("県" in talk and "から" in talk):
-       if "2" in talk or "２" in talk or "二" in talk:
-          MySession.reset(user_id)
-          line_bot_api.reply_message(
-               event.reply_token,
-               TextSendMessage(text=tellDay2_1 + " (1/7)"))
-          MySession.update_context(user_id, "20")
-          MySession.update_count(user_id, 0)
-       else:
-          line_bot_api.reply_message(
-               event.reply_token,
-               TextSendMessage(text=tellDayError))
+    elif MySession.read_context(user_id) == "0" and (("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" in talk or "～" in talk):
+       if Sken in todoufuken and Mken in todoufuken:
+          #保持情報はいったん避難
+          if MySession.read_para(user_id) is not None:
+              Hdate = MySession.read_Hdate(user_id)
+              Harea = MySession.read_Harea(user_id)
+              HareaT = MySession.read_HareaT(user_id)
+              HbasyoList = MySession.read_HbasyoList(user_id)
+              para = MySession.read_para(user_id)
+              KbasyoList = MySession.read_KbasyoList(user_id)
+              #全部消した後、
+              MySession.reset(user_id)
+              #保持情報を再度覚えさせる
+              MySession.update_Hdate(user_id, Hdate)
+              MySession.update_Harea(user_id, Harea)
+              MySession.update_HareaT(user_id, HareaT)
+              MySession.update_HbasyoList(user_id, HbasyoList)
+              MySession.update_para(user_id, para)
+              MySession.update_KbasyoList(user_id, KbasyoList)
 
-#出発する日にちを聞く
+          MySession.update_areaT(user_id, Sken)
+          MySession.update_area(user_id, Ssi)
+          STBasyo = todoufukenNum(int(todoufuken.index(Sken)))
+          SBasyoList = codeKaraFind(STBasyo)
+          MySession.update_areaT2(user_id, Mken)
+          MySession.update_area2(user_id, Msi)
+          #下2行は記述してあるけど実際には効果を持たない記述
+          MTBasyo = todoufukenNum(int(todoufuken.index(Mken)))
+          MBasyoList = codeKaraFind(MTBasyo)
+
+          if Ssi in SBasyoList:
+              buttons_template = ButtonsTemplate(
+                  text="出発日の日時をお選びください！", actions=[
+                      MessageAction(label="今日", data="今日", text="今日"),
+                      MessageAction(label="明日", data="明日", text="明日"),
+                      MessageAction(label="明後日", data="明後日", text="明後日")
+                  ])
+              template_message = TemplateSendMessage(
+                  alt_text="日時をお選びください！", template=buttons_template)
+              line_bot_api.reply_message(
+                  event.reply_token, template_message)
+              MySession.update_context(user_id, "21")
+          else:
+              MySession.update_context(user_id, "20")
+              if len(SBasyoList) == 1:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0])
+                      ])
+                  ])
+              elif len(SBasyoList) == 2:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0]),
+                                                MessageAction(label=SBasyoList[1], text=SBasyoList[1])
+                      ])
+                  ])
+              elif len(SBasyoList) == 3:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0]),
+                                                MessageAction(label=SBasyoList[1], text=SBasyoList[1]),
+                                                MessageAction(label=SBasyoList[2], text=SBasyoList[2])
+                      ])
+                  ])
+              elif len(SBasyoList) == 4:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0]),
+                                                MessageAction(label=SBasyoList[1], text=SBasyoList[1]),
+                                                MessageAction(label=SBasyoList[2], text=SBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=SBasyoList[3], text=SBasyoList[3]),
+                                                MessageAction(label="---", text="---"),
+                                                MessageAction(label="---", text="---")
+                      ])
+                  ])
+              elif len(SBasyoList) == 5:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0]),
+                                                MessageAction(label=SBasyoList[1], text=SBasyoList[1]),
+                                                MessageAction(label=SBasyoList[2], text=SBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=SBasyoList[3], text=SBasyoList[3]),
+                                                MessageAction(label=SBasyoList[3], text=SBasyoList[4]),
+                                                MessageAction(label="---", text="---")
+                      ])
+                  ])
+              elif len(SBasyoList) == 6:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0]),
+                                                MessageAction(label=SBasyoList[1], text=SBasyoList[1]),
+                                                MessageAction(label=SBasyoList[2], text=SBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=SBasyoList[3], text=SBasyoList[3]),
+                                                MessageAction(label=SBasyoList[4], text=SBasyoList[4]),
+                                                MessageAction(label=SBasyoList[5], text=SBasyoList[5])
+                      ])
+                  ])
+              elif len(SBasyoList) == 7:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0]),
+                                                MessageAction(label=SBasyoList[1], text=SBasyoList[1]),
+                                                MessageAction(label=SBasyoList[2], text=SBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=SBasyoList[3], text=SBasyoList[3]),
+                                                MessageAction(label=SBasyoList[4], text=SBasyoList[4]),
+                                                MessageAction(label=SBasyoList[5], text=SBasyoList[5])
+                      ]),
+                      CarouselColumn(text="３ページ目", actions=[
+                                                MessageAction(label=SBasyoList[6], text=SBasyoList[6]),
+                                                MessageAction(label="---", text="---"),
+                                                MessageAction(label="---", text="---")
+                      ])
+                  ])
+              elif len(SBasyoList) == 8:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0]),
+                                                MessageAction(label=SBasyoList[1], text=SBasyoList[1]),
+                                                MessageAction(label=SBasyoList[2], text=SBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=SBasyoList[3], text=SBasyoList[3]),
+                                                MessageAction(label=SBasyoList[4], text=SBasyoList[4]),
+                                                MessageAction(label=SBasyoList[5], text=SBasyoList[5])
+                      ]),
+                      CarouselColumn(text="３ページ目", actions=[
+                                                MessageAction(label=SBasyoList[6], text=SBasyoList[6]),
+                                                MessageAction(label=SBasyoList[7], text=SBasyoList[7]),
+                                                MessageAction(label="---", text="---")
+                      ])
+                  ])
+              elif len(SBasyoList) == 9:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0]),
+                                                MessageAction(label=SBasyoList[1], text=SBasyoList[1]),
+                                                MessageAction(label=SBasyoList[2], text=SBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=SBasyoList[3], text=SBasyoList[3]),
+                                                MessageAction(label=SBasyoList[4], text=SBasyoList[4]),
+                                                MessageAction(label=SBasyoList[5], text=SBasyoList[5])
+                      ]),
+                      CarouselColumn(text="３ページ目", actions=[
+                                                MessageAction(label=SBasyoList[6], text=SBasyoList[6]),
+                                                MessageAction(label=SBasyoList[7], text=SBasyoList[7]),
+                                                MessageAction(label=SBasyoList[8], text=SBasyoList[8])
+                      ])
+                  ])
+              elif len(SBasyoList) > 9:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=SBasyoList[0], text=SBasyoList[0]),
+                                                MessageAction(label=SBasyoList[1], text=SBasyoList[1]),
+                                                MessageAction(label=SBasyoList[2], text=SBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=SBasyoList[3], text=SBasyoList[3]),
+                                                MessageAction(label=SBasyoList[4], text=SBasyoList[4]),
+                                                MessageAction(label=SBasyoList[5], text=SBasyoList[5])
+                      ]),
+                      CarouselColumn(text="３ページ目", actions=[
+                                                MessageAction(label=SBasyoList[6], text=SBasyoList[6]),
+                                                MessageAction(label=SBasyoList[7], text=SBasyoList[7]),
+                                                MessageAction(label="さらに表示する", text="さらに表示する")
+                      ])
+                  ])
+                  MySession.update_context(user_id, "91")
+                  #MySession.update_count(user_id, 91)
+                  MySession.update_KbasyoList(user_id, SBasyoList)
+              template_message = TemplateSendMessage(
+                  alt_text="出発地点のお探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
+              line_bot_api.reply_message(
+                  event.reply_token, 
+                  [TextSendMessage(text="出発地点のお探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
+                  template_message])
+
     elif MySession.read_context(user_id) == "20":
-       if ("今日" in talk or "きょう" in talk) or ("明日" in talk or "あした" in talk) or ("明後日" in talk or "あさって" in talk):
-           if "今日" in talk or "きょう" in talk:    MySession.update_date(user_id, 0)
-           elif "明日" in talk or "あした" in talk: MySession.update_date(user_id, 1)
-           else:                                                       MySession.update_date(user_id, 2)
-           line_bot_api.reply_message(
-           event.reply_token,
-           TextSendMessage(text=tellBasyo2_1 + " (2/7)"))
-           MySession.update_context(user_id, "21")
-       else:
+        MySession.update_area(user_id, talk)
+        if talk in MySession.read_KbasyoList(user_id):
+            buttons_template = ButtonsTemplate(
+                text="出発日時をお選びください！", actions=[
+                    MessageAction(label="今日", text="今日"),
+                    MessageAction(label="明日", text="明日"),
+                    MessageAction(label="明後日", text="明後日")
+                ])
+            template_message = TemplateSendMessage(
+                alt_text="出発日時をお選びください！", template=buttons_template)
             line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="「今日」、「明日」、「明後日」の中から入力してください。"))
+                event.reply_token, template_message)
+            MySession.update_context(user_id, "21")
+        else:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="選択できない場所を選ばないでくださいっ！")
 
-#出発地の場所を聞く
     elif MySession.read_context(user_id) == "21":
-       if talk in todoufuken:
-          MySession.update_areaT(user_id, talk)
-          TBasyo = todoufukenNum(int(todoufuken.index(talk)))
-          #TBasyoは文字型
-          MySession.update_area(user_id, TBasyo)
-          #area, basyoListは文字型
-          kwsiBasyoList = codeKaraFind(MySession.read_area(user_id))
-          MySession.update_basyoList(user_id, kwsiBasyoList)
-          line_bot_api.reply_message(
-               event.reply_token,
-               TextSendMessage(text=(talk + tellBasyoKwsk2_1 + " (3/7)" + MySession.read_basyoList(user_id))))
-          MySession.update_context(user_id, "22")
-       else:
-            line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="出発地" + tellBasyoError))
+          MTBasyo = todoufukenNum(int(todoufuken.index(MySession.read_areaT2(user_id))))
+          MBasyoList = codeKaraFind(MTBasyo)
+          if MySession.read_area2(user_id) in MBasyoList:
+              buttons_template = ButtonsTemplate(
+                  text="到着日時をお選びください！", actions=[
+                      MessageAction(label="今日", data="今日", text="今日"),
+                      MessageAction(label="明日", data="明日", text="明日"),
+                      MessageAction(label="明後日", data="明後日", text="明後日")
+                  ])
+              template_message = TemplateSendMessage(
+                  alt_text="到着日時をお選びください！", template=buttons_template)
+              line_bot_api.reply_message(
+                  event.reply_token, template_message)
+              MySession.update_context(user_id, "23")
+          else:
+              MySession.update_context(user_id, "22")
+              if len(MBasyoList) == 1:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0])
+                      ])
+                  ])
+              elif len(MBasyoList) == 2:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
+                                                MessageAction(label=MBasyoList[1], text=MBasyoList[1])
+                      ])
+                  ])
+              elif len(MBasyoList) == 3:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
+                                                MessageAction(label=MBasyoList[1], text=MBasyoList[1]),
+                                                MessageAction(label=MBasyoList[2], text=MBasyoList[2])
+                      ])
+                  ])
+              elif len(mBasyoList) == 4:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
+                                                MessageAction(label=MBasyoList[1], text=MBasyoList[1]),
+                                                MessageAction(label=MBasyoList[2], text=MBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[3]),
+                                                MessageAction(label="---", text="---"),
+                                                MessageAction(label="---", text="---")
+                      ])
+                  ])
+              elif len(MBasyoList) == 5:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
+                                                MessageAction(label=MBasyoList[1], text=MBasyoList[1]),
+                                                MessageAction(label=MBasyoList[2], text=MBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[3]),
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[4]),
+                                                MessageAction(label="---", text="---")
+                      ])
+                  ])
+              elif len(MBasyoList) == 6:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
+                                                MessageAction(label=MBasyoList[1], text=MBasyoList[1]),
+                                                MessageAction(label=MBasyoList[2], text=MBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[3]),
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[4]),
+                                                MessageAction(label=MBasyoList[5], text=MBasyoList[5])
+                      ])
+                  ])
+              elif len(MBasyoList) == 7:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
+                                                MessageAction(label=MBasyoList[1], text=MBasyoList[1]),
+                                                MessageAction(label=MBasyoList[2], text=MBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[3]),
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[4]),
+                                                MessageAction(label=MBasyoList[5], text=MBasyoList[5])
+                      ]),
+                      CarouselColumn(text="３ページ目", actions=[
+                                                MessageAction(label=MBasyoList[6], text=MBasyoList[6]),
+                                                MessageAction(label="---", text="---"),
+                                                MessageAction(label="---", text="---")
+                      ])
+                  ])
+              elif len(MBasyoList) == 8:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
+                                                MessageAction(label=MBasyoList[1], text=MBasyoList[1]),
+                                                MessageAction(label=MBasyoList[2], text=MBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[3]),
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[4]),
+                                                MessageAction(label=MBasyoList[5], text=MBasyoList[5])
+                      ]),
+                      CarouselColumn(text="３ページ目", actions=[
+                                                MessageAction(label=MBasyoList[6], text=MBasyoList[6]),
+                                                MessageAction(label=MBasyoList[7], text=MBasyoList[7]),
+                                                MessageAction(label="---", text="---")
+                      ])
+                  ])
+              elif len(MBasyoList) == 9:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
+                                                MessageAction(label=MBasyoList[1], text=MBasyoList[1]),
+                                                MessageAction(label=MBasyoList[2], text=MBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[3]),
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[4]),
+                                                MessageAction(label=MBasyoList[5], text=MBasyoList[5])
+                      ]),
+                      CarouselColumn(text="３ページ目", actions=[
+                                                MessageAction(label=MBasyoList[6], text=MBasyoList[6]),
+                                                MessageAction(label=MBasyoList[7], text=MBasyoList[7]),
+                                                MessageAction(label=MBasyoList[8], text=MBasyoList[8])
+                      ])
+                  ])
+              elif len(MBasyoList) > 9:
+                  carousel_template = CarouselTemplate(columns=[
+                      CarouselColumn(text="１ページ目", actions=[
+                                                MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
+                                                MessageAction(label=MBasyoList[1], text=MBasyoList[1]),
+                                                MessageAction(label=MBasyoList[2], text=MBasyoList[2])
+                      ]),
+                      CarouselColumn(text="２ページ目", actions=[
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[3]),
+                                                MessageAction(label=MBasyoList[3], text=MBasyoList[4]),
+                                                MessageAction(label=MBasyoList[5], text=MBasyoList[5])
+                      ]),
+                      CarouselColumn(text="３ページ目", actions=[
+                                                MessageAction(label=MBasyoList[6], text=MBasyoList[6]),
+                                                MessageAction(label=MBasyoList[7], text=MBasyoList[7]),
+                                                MessageAction(label="さらに表示する", text="さらに表示する")
+                      ])
+                  ])
+                  MySession.update_context(user_id, "92")
+                  #MySession.update_count(user_id, 92)
+                  MySession.update_KbasyoList(user_id, MBasyoList)
+              template_message = TemplateSendMessage(
+                  alt_text="目的地点のお探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
+              line_bot_api.reply_message(
+                  event.reply_token, 
+                  [TextSendMessage(text="目的地点のお探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
+                  template_message])
 
-#出発地の場所の詳細を聞く
     elif MySession.read_context(user_id) == "22":
-       if talk in MySession.read_basyoList(user_id):
-          MySession.update_area(user_id, talk)
-          line_bot_api.reply_message(
-               event.reply_token,
-               TextSendMessage(text=("出発地は" + MySession.read_areaT(user_id) + talk + tellDay2_2 + " (4/7)")))
-          MySession.update_context(user_id, "23")
-       else:
+        MySession.update_area2(user_id, talk)
+        if talk in MySession.read_KbasyoList(user_id):
+            if MySession.read_date(user_id) == 0:
+                buttons_template = ButtonsTemplate(
+                    text="到着日時をお選びください！", actions=[
+                        MessageAction(label="今日", text="今日"),
+                        MessageAction(label="明日", text="明日"),
+                        MessageAction(label="明後日", text="明後日")
+                    ])
+            elif MySession.read_date(user_id) == 1:
+                buttons_template = ButtonsTemplate(
+                    text="到着日時をお選びください！", actions=[
+                        MessageAction(label="明日", text="明日"),
+                        MessageAction(label="明後日", text="明後日")
+                    ])
+            elif MySession.read_date(user_id) == 2:
+                buttons_template = ButtonsTemplate(
+                    text="到着日時をお選びください！", actions=[
+                        MessageAction(label="明後日", text="明後日")
+                    ])
+            template_message = TemplateSendMessage(
+                alt_text="出発日時をお選びください！", template=buttons_template)
             line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text= tellBasyoKwskError +  MySession.read_basyoList(user_id)))
-
-
-#目的地に到着する日にちを聞く
-    elif MySession.read_context(user_id) == "23":
-       if ("今日" in talk or "きょう" in talk) or ("明日" in talk or "あした" in talk) or ("明後日" in talk or "あさって" in talk):
-           if "今日" in talk or "きょう" in talk:    MySession.update_date2(user_id, 0)
-           elif "明日" in talk or "あした" in talk: MySession.update_date2(user_id, 1)
-           else:                                                       MySession.update_date2(user_id, 2)
-           line_bot_api.reply_message(
-           event.reply_token,
-           TextSendMessage(text=tellBasyo2_2 + " (5/7)"))
-           MySession.update_context(user_id, "24")
-       else:
+                event.reply_token, template_message)
+            MySession.update_context(user_id, "23")
+        else:
             line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="「今日」、「明日」、「明後日」の中から入力してください。"))
+                event.reply_token,
+                TextSendMessage(text="選択できない場所を選ばないでくださいっ！")
 
-#目的地の場所を聞く
+    elif talk == "今日" and MySession.read_context(user_id) == "23":
+        MySession.update_date2(user_id, 0)
+        if MySession.read_date(user_id) <= MySession.read_date2(user_id):
+            buttons_template = ButtonsTemplate(
+                text="最も近いものはどれですか？", actions=[
+                      MessageAction(label="暑がり", text="暑がり"),
+                      MessageAction(label="寒がり", text="寒がり"),
+                      MessageAction(label="どちらでもない", text="どちらでもない")
+                ])
+            template_message = TemplateSendMessage(
+                alt_text="最も近いものはどれですか？", template=buttons_template)
+            line_bot_api.reply_message(
+                event.reply_token, template_message)
+            MySession.update_context(user_id, "24")
+        else:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。")
+
+    elif talk == "明日" and MySession.read_context(user_id) == "23":
+        MySession.update_date2(user_id, 1)
+        if MySession.read_date(user_id) <= MySession.read_date2(user_id):
+            buttons_template = ButtonsTemplate(
+                text="最も近いものはどれですか？", actions=[
+                      MessageAction(label="暑がり", text="暑がり"),
+                      MessageAction(label="寒がり", text="寒がり"),
+                      MessageAction(label="どちらでもない", text="どちらでもない")
+                ])
+            template_message = TemplateSendMessage(
+                alt_text="最も近いものはどれですか？", template=buttons_template)
+            line_bot_api.reply_message(
+                event.reply_token, template_message)
+            MySession.update_context(user_id, "24")
+        else:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。")
+
+    elif talk == "明後日" and MySession.read_context(user_id) == "23":
+        MySession.update_date2(user_id, 2)
+        if MySession.read_date(user_id) <= MySession.read_date2(user_id):
+            buttons_template = ButtonsTemplate(
+                text="最も近いものはどれですか？", actions=[
+                      MessageAction(label="暑がり", text="暑がり"),
+                      MessageAction(label="寒がり", text="寒がり"),
+                      MessageAction(label="どちらでもない", text="どちらでもない")
+                ])
+            template_message = TemplateSendMessage(
+                alt_text="最も近いものはどれですか？", template=buttons_template)
+            line_bot_api.reply_message(
+                event.reply_token, template_message)
+            MySession.update_context(user_id, "24")
+        else:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。")
+
     elif MySession.read_context(user_id) == "24":
-       if talk in todoufuken:
-          MySession.update_areaT2(user_id, talk)
-          TBasyo2 = todoufukenNum(int(todoufuken.index(talk)))
-          #TBasyoは文字型
-          MySession.update_area2(user_id, TBasyo2)
-          #area, basyoListは文字型
-          kwsiBasyoList2 = codeKaraFind(MySession.read_area2(user_id))
-          MySession.update_basyoList2(user_id, kwsiBasyoList2)
-          line_bot_api.reply_message(
-               event.reply_token,
-               TextSendMessage(text=(talk + tellBasyoKwsk2_2 + " (6/7)" + MySession.read_basyoList2(user_id))))
-          MySession.update_context(user_id, "25")
-       else:
-            line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="目的地" + tellBasyoError))
-
-#目的地の場所の詳細を聞く
-    elif MySession.read_context(user_id) == "25":
-       if talk in MySession.read_basyoList2(user_id):
-          MySession.update_area2(user_id, talk)
-          line_bot_api.reply_message(
-               event.reply_token,
-               TextSendMessage(text=("目的地は" + MySession.read_areaT2(user_id) + talk + tellHotOrCold + " (7/7)")))
-          MySession.update_context(user_id, "26")
-       else:
-            line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text= tellBasyoKwskError +  MySession.read_basyoList2(user_id)))
-
-#体調を聞く&2か所の天気情報と総合情報を教える
-    elif MySession.read_context(user_id) == "26":
        if "暑" in talk or "あつ" in talk or "寒" in talk or "さむ" in talk or "どちら" in talk or "どっち" in talk or "該当" in talk:
           if "暑" in talk or "あつ" in talk:
               MySession.update_para(user_id, 4)
@@ -1421,7 +1886,7 @@ def handle_message(event):
           if picUrlS == "未知の天気" or picUrlM == "未知の天気":
                line_bot_api.reply_message(
                     event.reply_token,
-                    [TextSendMessage(text=MySession.read_areaT(user_id) + MySession.read_area(user_id) + "から" + MySession.read_areaT2(user_id) + MySession.read_area2(user_id) + "への天気情報を表示します！"),
+                    [TextSendMessage(text=MySession.read_areaT(user_id) + MySession.read_area(user_id) + "から" + MySession.read_areaT2(user_id) + MySession.read_area2(user_id) + "への天気情報を表示いたします！"),
                     TextSendMessage(text="[出発地]" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "\n" + tenkiInfoS),
                     TextSendMessage(text="[目的地]" + MySession.read_areaT2(user_id) + MySession.read_area2(user_id) + "\n" + tenkiInfoM),
                     TextSendMessage(text=kasaInfo),
@@ -1430,7 +1895,7 @@ def handle_message(event):
                line_bot_api.reply_message(
                     event.reply_token,
                     #メッセージは1～5個まで
-                    [#TextSendMessage(text=MySession.read_areaT(user_id) + MySession.read_area(user_id) + "から" + MySession.read_areaT2(user_id) + MySession.read_area2(user_id) + "への天気情報を表示します！"),
+                    [#TextSendMessage(text=MySession.read_areaT(user_id) + MySession.read_area(user_id) + "から" + MySession.read_areaT2(user_id) + MySession.read_area2(user_id) + "への天気情報を表示いたします！"),
                     TextSendMessage(text="[出発地]" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "\n" + tenkiInfoS),
                     ImageSendMessage(original_content_url=picUrlS, preview_image_url=picUrlS),
                     TextSendMessage(text="[目的地]" + MySession.read_areaT2(user_id) + MySession.read_area2(user_id) + "\n" + tenkiInfoM),
@@ -1771,10 +2236,6 @@ Tname=["稚内","旭川","留萌", "網走", "北見", "紋別", "根室", "釧�
 "厳原", "福江", "熊本", "阿蘇乙姫","牛深", "人吉", "大分", "中津", "日田", "佐伯", "宮崎", "延岡", "都城", "高千穂",
 "鹿児島","鹿屋", "種子島","名瀬", "那覇", "名護", "久米島","南大東","宮古島","石垣島","与那国島"]
 
-#hotList = ["暑がり","あつがり","暑いのは苦手"]
-#coldList = ["寒がり","さむがり","寒いのは苦手"]
-#usualList = ["どちらでもない","どっちでもない","該当なし"]
-
 #対話内容まとめ
 tellDay = "1か所の天気情報ですね。分かりました！\nでは次に、いつの天気を知りたいか教えてください。ご提供できるのは「今日」、「明日」、「明後日」の3日です。"
 tellDayError = "知りたい天気の場所を「1か所」or「2か所」で指定してください。\n＜ワンポイントアドバイス＞\n1か所は天気をピンポイントで調べるのに、2か所は旅行やお出かけなどお出かけ先の天気を調べるのに適しています！"
@@ -1817,7 +2278,7 @@ sukinaNomimono = "好きな飲み物ってありますか？ボクはオレン�
 sukinaTabemono = "好きな食べ物ってありますか？ボクはツナマヨネーズのおにぎりが好きです！\nぼっとの管理をする上でここから離れられないので、昼食はいつもおにぎりを食べています。ここのお仕事をするエリアではシェフの方がいて、その方に毎日用意していただいています。とってもおいしくて、ぺろりと食べられちゃいます！"
 imanobasyo = "ボクが今いるのはお仕事のための場所で、ボクの故郷から随分遠い場所になります。\nこの部屋には机とベッド、それから皆さんと通信する用の精密機械がズラーっと並んでいます。窓からは真っ暗な空にお星さまがキラキラ輝いてるのが見えますよ！キッチンやお風呂なんかは別のところにあるんですが、ここには色んな種族、年齢の方がいらっしゃるようです。すごく静かで清らかな場所なので、皆さんも機会があればぜひ一度いらしてみてくださいね！"
 negirai = "今日もお仕事お疲れ様です！ボクでよければ話し相手になりますよ！"
-netyaimasyou = "いい夢を、おやすみなさいです！\nふあぁ...なんだかボクも眠たくなってきちゃいました。もうひと頑張りしなきゃです…"
+netyaimasyou = "いい夢を、おやすみなさいです！\nふあぁ…なんだかボクも眠たくなってきちゃいました。もうひと頑張りしなきゃです…"
 bokugaimasuyo = "つらいこと、あったんですね。あなたの苦しみをすべて理解できるなんて言いません。何もできないボクで不甲斐ないですが、心はいつでもあなたのそばにいますよ。つらいときは信頼できる方に相談したり、ぐっすり眠ると少しは楽になるかもしれません。ボクもつらくて泣いちゃった時はなるべくすべてを忘れてぐっすり寝るようにしているので、気が向いたら試していただくといいことがあるかもしれないです。"
 bokumonetyaou = "...えっ、良いんですか？それじゃあお言葉に甘えて、今日は早く上がっちゃいますね。"
 suyasuyaFogKun = ["くーかー……", "zzz…", "むにゃむにゃ…"]
