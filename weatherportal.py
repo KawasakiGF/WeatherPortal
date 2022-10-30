@@ -1087,7 +1087,7 @@ def handle_message(event):
                   [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
                   template_message])
 
-    elif (MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92":
+    elif (MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92"):
         BasyoList = MySession.read_KbasyoList(user_id)
         if MySession.update_context(user_id, "90"):MySession.update_context(user_id, "10")
         elif MySession.update_context(user_id, "91"):MySession.update_context(user_id, "20")
