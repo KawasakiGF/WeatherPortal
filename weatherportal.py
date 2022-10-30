@@ -634,189 +634,6 @@ def handle_message(event):
 
     MySession.register(user_id)
 
-    #if文中に宣言した奴はローカル変数としてみなすのでここで宣言する必要があるんですね
-    basyo = []
-    ken = ""
-    si = ""
-
-    Sbasyo = []
-    Sken = ""
-    Ssi = ""
-    Mbasyo = []
-    Mken = ""
-    Msi = ""
-
-    if "から" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
-        MySession.update_KtalkSepa(user_id, talk.split("から", 1))
-    elif "～" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
-        MySession.update_KtalkSepa(user_id, talk.split("から", 1))
-
-    #if文の侵入が1つだけしか行けないならこれが原因で動かないかも
-    if "県" in talk and ("から" not in talk or "～" not in talk):
-        basyo = talk.split("県", 1)
-        ken = basyo[0] + "県"
-        Ksi = basyo[1]
-        if "市" in Ksi:
-            si = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            si = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            si = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            si = Ksi.rsplit("村", 1)[0]
-    elif "都" in talk and ("から" not in talk or "～" not in talk):
-        basyo = talk.split("都", 1)
-        ken = basyo[0] + "都"
-        Ksi = basyo[1]
-        if "市" in Ksi:
-            si = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            si = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            si = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            si = Ksi.rsplit("村", 1)[0]
-    elif "道" in talk and ("から" not in talk or "～" not in talk):
-        basyo = talk.split("道", 1)
-        ken = basyo[0] + "道"
-        Ksi = basyo[1]
-        if "市" in Ksi:
-            si = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            si = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            si = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            si = Ksi.rsplit("村", 1)[0]
-    elif "府" in talk and ("から" not in talk or "～" not in talk):
-        basyo = talk.split("府", 1)
-        ken = basyo[0] + "府"
-        Ksi = basyo[1]
-        if "市" in Ksi:
-            si = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            si = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            si = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            si = Ksi.rsplit("村", 1)[0]
-
-
-    if "県" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
-        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("県", 1)
-        Sken = Sbasyo[0] + "県"
-        Ksi = Sbasyo[1]
-        if "市" in Ksi:
-            Ssi = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            Ssi = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            Ssi = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            Ssi = Ksi.rsplit("村", 1)[0]
-        MySession.update_areaT(user_id, Sken)
-        MySession.update_area(user_id, Ssi)
-    elif "都" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
-        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("都", 1)
-        Sken = Sbasyo[0] + "都"
-        Ksi = Sbasyo[1]
-        if "市" in Ksi:
-            Ssi = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            Ssi = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            Ssi = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            Ssi = Ksi.rsplit("村", 1)[0]
-        MySession.update_areaT(user_id, Sken)
-        MySession.update_area(user_id, Ssi)
-    elif "道" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
-        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("道", 1)
-        Sken = Sbasyo[0] + "道"
-        Ksi = Sbasyo[1]
-        if "市" in Ksi:
-            Ssi = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            Ssi = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            Ssi = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            Ssi = Ksi.rsplit("村", 1)[0]
-        MySession.update_areaT(user_id, Sken)
-        MySession.update_area(user_id, Ssi)
-    elif "府" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
-        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("府", 1)
-        Sken = Sbasyo[0] + "府"
-        Ksi = Sbasyo[1]
-        if "市" in Ksi:
-            Ssi = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            Ssi = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            Ssi = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            Ssi = Ksi.rsplit("村", 1)[0]
-        MySession.update_areaT(user_id, Sken)
-        MySession.update_area(user_id, Ssi)
-
-    if "県" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
-        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("県", 1)
-        Mken = Mbasyo[0] + "県"
-        Ksi = Mbasyo[1]
-        if "市" in Ksi:
-            Msi = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            Msi = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            Msi = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            Msi = Ksi.rsplit("村", 1)[0]
-        MySession.update_areaT2(user_id, Mken)
-        MySession.update_area2(user_id, Msi)
-    elif "都" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
-        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("都", 1)
-        Mken = Mbasyo[0] + "都"
-        Ksi = Mbasyo[1]
-        if "市" in Ksi:
-            Msi = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            Msi = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            Msi = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            Msi = Ksi.rsplit("村", 1)[0]
-        MySession.update_areaT2(user_id, Mken)
-        MySession.update_area2(user_id, Msi)
-    elif "道" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
-        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("道", 1)
-        Mken = Mbasyo[0] + "道"
-        Ksi = Mbasyo[1]
-        if "市" in Ksi:
-            Msi = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            Msi = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            Msi = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            Msi = Ksi.rsplit("村", 1)[0]
-        MySession.update_areaT2(user_id, Mken)
-        MySession.update_area2(user_id, Msi)
-    elif "府" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
-        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("府", 1)
-        Mken = Mbasyo[0] + "府"
-        Ksi = Mbasyo[1]
-        if "市" in Ksi:
-            Msi = Ksi.rsplit("市", 1)[0]
-        elif "区" in Ksi:
-            Msi = Ksi.rsplit("区", 1)[0]
-        elif "町" in Ksi:
-            Msi = Ksi.rsplit("町", 1)[0]
-        elif "村" in Ksi:
-            Msi = Ksi.rsplit("村", 1)[0]
-        MySession.update_areaT2(user_id, Mken)
-        MySession.update_area2(user_id, Msi)
-
-
     if (talk == "全リセット"):
         MySession.reset(user_id)
         line_bot_api.reply_message(
@@ -931,6 +748,60 @@ def handle_message(event):
 
 #1か所の場所を聞く####################
     elif MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" not in talk or "～" not in talk):
+      basyo = []
+      ken = ""
+      si = ""
+
+      #if文の侵入が1つだけしか行けないならこれが原因で動かないかも
+      if "県" in talk and ("から" not in talk or "～" not in talk):
+        basyo = talk.split("県", 1)
+        ken = basyo[0] + "県"
+        Ksi = basyo[1]
+        if "市" in Ksi:
+            si = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            si = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            si = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            si = Ksi.rsplit("村", 1)[0]
+      elif "都" in talk and ("から" not in talk or "～" not in talk):
+        basyo = talk.split("都", 1)
+        ken = basyo[0] + "都"
+        Ksi = basyo[1]
+        if "市" in Ksi:
+            si = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            si = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            si = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            si = Ksi.rsplit("村", 1)[0]
+      elif "道" in talk and ("から" not in talk or "～" not in talk):
+        basyo = talk.split("道", 1)
+        ken = basyo[0] + "道"
+        Ksi = basyo[1]
+        if "市" in Ksi:
+            si = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            si = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            si = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            si = Ksi.rsplit("村", 1)[0]
+      elif "府" in talk and ("から" not in talk or "～" not in talk):
+        basyo = talk.split("府", 1)
+        ken = basyo[0] + "府"
+        Ksi = basyo[1]
+        if "市" in Ksi:
+            si = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            si = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            si = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            si = Ksi.rsplit("村", 1)[0]
+
        if ken in todoufuken:
           #保持情報はいったん避難
           if MySession.read_para(user_id) is not None:
@@ -1111,6 +982,10 @@ def handle_message(event):
                   event.reply_token, 
                   [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
                   template_message])
+       else:
+          line_bot_api.reply_message(
+              event.reply_token,
+              TextSendMessage(text="ごめんなさい。ちょっと分からなくなってきちゃったので、いったん戻させていただきます。最初の○○県□□市から再度入力していただけますか？すみません・・・"))
 
     elif (MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92"):
         BasyoList = MySession.read_KbasyoList(user_id)
@@ -1433,6 +1308,132 @@ def handle_message(event):
 
 #2か所の場所を聞く####################
     elif MySession.read_context(user_id) == "0" and (("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" in talk or "～" in talk)):
+      Sbasyo = []
+      Sken = ""
+      Ssi = ""
+      Mbasyo = []
+      Mken = ""
+      Msi = ""
+
+      if "から" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
+        MySession.update_KtalkSepa(user_id, talk.split("から", 1))
+      elif "～" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
+        MySession.update_KtalkSepa(user_id, talk.split("から", 1))
+
+      if "県" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
+        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("県", 1)
+        Sken = Sbasyo[0] + "県"
+        Ksi = Sbasyo[1]
+        if "市" in Ksi:
+            Ssi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Ssi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Ssi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Ssi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT(user_id, Sken)
+        MySession.update_area(user_id, Ssi)
+      elif "都" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
+        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("都", 1)
+        Sken = Sbasyo[0] + "都"
+        Ksi = Sbasyo[1]
+        if "市" in Ksi:
+            Ssi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Ssi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Ssi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Ssi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT(user_id, Sken)
+        MySession.update_area(user_id, Ssi)
+      elif "道" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
+        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("道", 1)
+        Sken = Sbasyo[0] + "道"
+        Ksi = Sbasyo[1]
+        if "市" in Ksi:
+            Ssi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Ssi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Ssi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Ssi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT(user_id, Sken)
+        MySession.update_area(user_id, Ssi)
+      elif "府" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
+        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("府", 1)
+        Sken = Sbasyo[0] + "府"
+        Ksi = Sbasyo[1]
+        if "市" in Ksi:
+            Ssi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Ssi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Ssi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Ssi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT(user_id, Sken)
+        MySession.update_area(user_id, Ssi)
+
+      if "県" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
+        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("県", 1)
+        Mken = Mbasyo[0] + "県"
+        Ksi = Mbasyo[1]
+        if "市" in Ksi:
+            Msi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Msi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Msi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Msi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT2(user_id, Mken)
+        MySession.update_area2(user_id, Msi)
+      elif "都" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
+        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("都", 1)
+        Mken = Mbasyo[0] + "都"
+        Ksi = Mbasyo[1]
+        if "市" in Ksi:
+            Msi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Msi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Msi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Msi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT2(user_id, Mken)
+        MySession.update_area2(user_id, Msi)
+      elif "道" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
+        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("道", 1)
+        Mken = Mbasyo[0] + "道"
+        Ksi = Mbasyo[1]
+        if "市" in Ksi:
+            Msi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Msi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Msi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Msi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT2(user_id, Mken)
+        MySession.update_area2(user_id, Msi)
+      elif "府" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
+        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("府", 1)
+        Mken = Mbasyo[0] + "府"
+        Ksi = Mbasyo[1]
+        if "市" in Ksi:
+            Msi = Ksi.rsplit("市", 1)[0]
+        elif "区" in Ksi:
+            Msi = Ksi.rsplit("区", 1)[0]
+        elif "町" in Ksi:
+            Msi = Ksi.rsplit("町", 1)[0]
+        elif "村" in Ksi:
+            Msi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT2(user_id, Mken)
+        MySession.update_area2(user_id, Msi)
+
        if Sken in todoufuken and Mken in todoufuken:
           #保持情報はいったん避難
           if MySession.read_para(user_id) is not None:
