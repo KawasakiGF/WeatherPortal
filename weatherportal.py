@@ -802,7 +802,7 @@ def handle_message(event):
         elif "村" in Ksi:
             si = Ksi.rsplit("村", 1)[0]
 
-       if ken in todoufuken:
+      if ken in todoufuken:
           #保持情報はいったん避難
           if MySession.read_para(user_id) is not None:
               Hdate = MySession.read_Hdate(user_id)
@@ -982,7 +982,7 @@ def handle_message(event):
                   event.reply_token, 
                   [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
                   template_message])
-       else:
+      else:
           line_bot_api.reply_message(
               event.reply_token,
               TextSendMessage(text="ごめんなさい。ちょっと分からなくなってきちゃったので、いったん戻させていただきます。最初の○○県□□市から再度入力していただけますか？すみません・・・"))
@@ -1434,7 +1434,7 @@ def handle_message(event):
         MySession.update_areaT2(user_id, Mken)
         MySession.update_area2(user_id, Msi)
 
-       if Sken in todoufuken and Mken in todoufuken:
+      if Sken in todoufuken and Mken in todoufuken:
           #保持情報はいったん避難
           if MySession.read_para(user_id) is not None:
               Hdate = MySession.read_Hdate(user_id)
@@ -1622,6 +1622,10 @@ def handle_message(event):
                   event.reply_token, 
                   [TextSendMessage(text="出発地点のお探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
                   template_message])
+      else:
+          line_bot_api.reply_message(
+              event.reply_token,
+              TextSendMessage(text="ごめんなさい。ちょっと分からなくなってきちゃったので、いったん戻させていただきます。最初の○○県□□市から再度入力していただけますか？すみません・・・"))
 
     elif MySession.read_context(user_id) == "20":
         MySession.update_area(user_id, talk)
