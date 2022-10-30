@@ -1207,7 +1207,7 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text="選択できない場所を選ばないでくださいっ！")
+                TextSendMessage(text="選択できない場所を選ばないでくださいっ！"))
 
     elif talk == "今日" and MySession.read_context(user_id) == "11":
         MySession.update_date(user_id, 0)
