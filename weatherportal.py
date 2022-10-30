@@ -645,15 +645,11 @@ def handle_message(event):
     Mbasyo = []
     Mken = ""
     Msi = ""
-    talkSepa = []
 
     if "から" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
-        talkSepa = talk.split("から", 1)
         MySession.update_KtalkSepa(user_id, talk.split("から", 1))
-    if "～" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
-        talkSepa = talk.split("～", 1)
+    elif "～" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
         MySession.update_KtalkSepa(user_id, talk.split("から", 1))
-    talkSepa =  MySession.read_KtalkSepa(user_id)
 
     #if文の侵入が1つだけしか行けないならこれが原因で動かないかも
     if "県" in talk and ("から" not in talk or "～" not in talk):
@@ -706,8 +702,8 @@ def handle_message(event):
             si = Ksi.rsplit("村", 1)[0]
 
 
-    if "県" in talkSepa[0] and ("から" in talk or "～" in talk):
-        Sbasyo = talkSepa[0].split("県", 1)
+    if "県" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
+        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("県", 1)
         Sken = Sbasyo[0] + "県"
         Ksi = Sbasyo[1]
         if "市" in Ksi:
@@ -718,9 +714,10 @@ def handle_message(event):
             Ssi = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             Ssi = Ksi.rsplit("村", 1)[0]
-
-    elif "都" in talkSepa[0] and ("から" in talk or "～" in talk):
-        Sbasyo = talkSepa[0].split("都", 1)
+        MySession.update_areaT(user_id, Sken)
+        MySession.update_area(user_id, Ssi)
+    elif "都" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
+        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("都", 1)
         Sken = Sbasyo[0] + "都"
         Ksi = Sbasyo[1]
         if "市" in Ksi:
@@ -731,8 +728,10 @@ def handle_message(event):
             Ssi = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             Ssi = Ksi.rsplit("村", 1)[0]
-    elif "道" in talkSepa[0] and ("から" in talk or "～" in talk):
-        Sbasyo = talkSepa[0].split("道", 1)
+        MySession.update_areaT(user_id, Sken)
+        MySession.update_area(user_id, Ssi)
+    elif "道" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
+        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("道", 1)
         Sken = Sbasyo[0] + "道"
         Ksi = Sbasyo[1]
         if "市" in Ksi:
@@ -743,8 +742,10 @@ def handle_message(event):
             Ssi = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             Ssi = Ksi.rsplit("村", 1)[0]
-    elif "府" in talkSepa[0] and ("から" in talk or "～" in talk):
-        Sbasyo = talkSepa[0].split("府", 1)
+        MySession.update_areaT(user_id, Sken)
+        MySession.update_area(user_id, Ssi)
+    elif "府" in MySession.read_KtalkSepa(user_id)[0] and ("から" in talk or "～" in talk):
+        Sbasyo = MySession.read_KtalkSepa(user_id)[0].split("府", 1)
         Sken = Sbasyo[0] + "府"
         Ksi = Sbasyo[1]
         if "市" in Ksi:
@@ -755,9 +756,11 @@ def handle_message(event):
             Ssi = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             Ssi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT(user_id, Sken)
+        MySession.update_area(user_id, Ssi)
 
-    if "県" in talkSepa[1] and ("から" in talk or "～" in talk):
-        Mbasyo = talkSepa[1].split("県", 1)
+    if "県" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
+        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("県", 1)
         Mken = Mbasyo[0] + "県"
         Ksi = Mbasyo[1]
         if "市" in Ksi:
@@ -768,9 +771,10 @@ def handle_message(event):
             Msi = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             Msi = Ksi.rsplit("村", 1)[0]
-
-    elif "都" in talkSepa[1] and ("から" in talk or "～" in talk):
-        Mbasyo = talkSepa[1].split("都", 1)
+        MySession.update_areaT2(user_id, Mken)
+        MySession.update_area2(user_id, Msi)
+    elif "都" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
+        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("都", 1)
         Mken = Mbasyo[0] + "都"
         Ksi = Mbasyo[1]
         if "市" in Ksi:
@@ -781,8 +785,10 @@ def handle_message(event):
             Msi = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             Msi = Ksi.rsplit("村", 1)[0]
-    elif "道" in talkSepa[1] and ("から" in talk or "～" in talk):
-        Mbasyo = talkSepa[1].split("道", 1)
+        MySession.update_areaT2(user_id, Mken)
+        MySession.update_area2(user_id, Msi)
+    elif "道" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
+        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("道", 1)
         Mken = Mbasyo[0] + "道"
         Ksi = Mbasyo[1]
         if "市" in Ksi:
@@ -793,8 +799,10 @@ def handle_message(event):
             Msi = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             Msi = Ksi.rsplit("村", 1)[0]
-    elif "府" in talkSepa[1] and ("から" in talk or "～" in talk):
-        Mbasyo = talkSepa[1].split("府", 1)
+        MySession.update_areaT2(user_id, Mken)
+        MySession.update_area2(user_id, Msi)
+    elif "府" in MySession.read_KtalkSepa(user_id)[1] and ("から" in talk or "～" in talk):
+        Mbasyo = MySession.read_KtalkSepa(user_id)[1].split("府", 1)
         Mken = Mbasyo[0] + "府"
         Ksi = Mbasyo[1]
         if "市" in Ksi:
@@ -805,6 +813,8 @@ def handle_message(event):
             Msi = Ksi.rsplit("町", 1)[0]
         elif "村" in Ksi:
             Msi = Ksi.rsplit("村", 1)[0]
+        MySession.update_areaT2(user_id, Mken)
+        MySession.update_area2(user_id, Msi)
 
 
     if (talk == "全リセット"):
@@ -1432,6 +1442,10 @@ def handle_message(event):
               HbasyoList = MySession.read_HbasyoList(user_id)
               para = MySession.read_para(user_id)
               KbasyoList = MySession.read_KbasyoList(user_id)
+              area = MySession.read_area(user_id)
+              areaT = MySession.read_areaT(user_id)
+              area2 = MySession.read_area2(user_id)
+              areaT2 = MySession.read_areaT2(user_id)
               #全部消した後、
               MySession.reset(user_id)
               #保持情報を再度覚えさせる
@@ -1441,18 +1455,18 @@ def handle_message(event):
               MySession.update_HbasyoList(user_id, HbasyoList)
               MySession.update_para(user_id, para)
               MySession.update_KbasyoList(user_id, KbasyoList)
+              MySession.update_area(user_id, area)
+              MySession.update_areaT(user_id, areaT)
+              MySession.update_area2(user_id, area2)
+              MySession.update_areaT2(user_id, areaT2)
 
-          MySession.update_areaT(user_id, Sken)
-          MySession.update_area(user_id, Ssi)
-          STBasyo = todoufukenNum(int(todoufuken.index(Sken)))
+
+          STBasyo = todoufukenNum(int(todoufuken.index(MySession.read_areaT(user_id))))
           SBasyoList = codeKaraFind(STBasyo)
-          MySession.update_areaT2(user_id, Mken)
-          MySession.update_area2(user_id, Msi)
-          #下2行は記述してあるけど実際には効果を持たない記述
-          MTBasyo = todoufukenNum(int(todoufuken.index(Mken)))
+          MTBasyo = todoufukenNum(int(todoufuken.index(MySession.read_areaT2(user_id))))
           MBasyoList = codeKaraFind(MTBasyo)
 
-          if Ssi in SBasyoList:
+          if MySession.read_area(user_id) in SBasyoList:
               buttons_template = ButtonsTemplate(
                   text="出発日の日時をお選びください！", actions=[
                       MessageAction(label="今日", data="今日", text="今日"),
