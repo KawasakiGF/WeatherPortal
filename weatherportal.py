@@ -710,7 +710,7 @@ def handle_message(event):
 
 #ヘルプ
     if ("ヘルプ" in talk or "help" in talk or "へるぷ" in talk):
-        buttons_template = ButtonsTemplate(text="ヘルプ", title="知りたいことに最も近いものをお選びください！", actions=[
+        buttons_template = ButtonsTemplate(text="知りたいことに最も近いものをお選びください！", title="ヘルプ", actions=[
                                                 MessageAction(label="システムの利用方法について", text="システムの利用方法について"),
                                                 MessageAction(label="会話のやり直し方について", text="会話のやり直し方について"),
                                                 MessageAction(label="保持情報の消し方について", text="保持情報の消し方について"),
@@ -725,7 +725,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             [TextSendMessage(text = "システムをご利用なさる場合、特定の場所の天気であれば「〇〇県□□市」のように入力してください。該当する場所が無ければその場所の閲覧可能な地域から選んでご利用いただけます。県と市の間にスペースは必要ありません。"),
-            TextSendMessage(text = "(入力例)北海道函館市\n東京都東京\n大阪府大阪市\n青森県青森市")])
+            TextSendMessage(text = "(入力例)\n北海道函館市\n東京都東京\n大阪府大阪市\n青森県青森市")])
     if talk == "会話のやり直し方について":
         line_bot_api.reply_message(
             event.reply_token,
@@ -1450,12 +1450,13 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text = "現在のバージョンはver1.1、WeatherNewsBotからバージョンアップを経て名前が変わっています。"))
 #フォグ君が追加されたらアンケートに一個メッセージを追加する
-    elif MySession.read_context(user_id) == "0" and ("アンケート" in talk or "questionnaire" in talk or "あんけーと" in talk) and talk != "アンケート回答した":
+#これは使用しない処理
+    elif MySession.read_context(user_id) == "100" and ("アンケート" in talk or "questionnaire" in talk or "あんけーと" in talk) and talk != "アンケート回答した":
         line_bot_api.reply_message(
             event.reply_token,
            [TextSendMessage(text = "↓アンケートはこちらから\nhttps://forms.office.com/r/qep9rrbQKD"),
            TextSendMessage(text = "アンケートでは、あなたが現在使用している天気予報のアプリやシステムなどと比べ、WeatherNewsBotがどれくらい便利か、システムの完成度や利便性はどの程度か、追加してほしい機能や不満点、バグの有無などについてお伺いしています。"),
-           TextSendMEssage(text = "ver1.1では、ver1.0を利用した方と利用されていない方で別にアンケート項目を設けております(ver1.0からご利用いただいている方は、1.0の時に比べどの程度改善したかなどを伺っています)。さらに、WeatherNewsBotのマスコットキャラクター「フォグ」との会話を意識したアップデートを通して使用意欲の向上があったか、知名度や利用者の増加は見込めるかなどについてもお伺いしています")])
+           TextSendMessage(text = "ver1.1では、ver1.0を利用した方と利用されていない方で別にアンケート項目を設けております(ver1.0からご利用いただいている方は、1.0の時に比べどの程度改善したかなどを伺っています)。さらに、WeatherNewsBotのマスコットキャラクター「フォグ」との会話を意識したアップデートを通して使用意欲の向上があったか、知名度や利用者の増加は見込めるかなどについてもお伺いしています")])
 ###############################
 
 #その他の会話#######################
