@@ -62,6 +62,7 @@ class Status:
           self.HbasyoList = ""
           self.para = 0
           self.KbasyoList = ""
+          self.KtalkSepa = ""
           self.count = 0
           self.oyasumi = 0
 
@@ -142,6 +143,11 @@ class Status:
         return self.KbasyoList
     def set_KbasyoList(self, KbasyoList):
           self.KbasyoList = KbasyoList
+
+    def get_KtalkSepa(self):
+        return self.KtalkSepa
+    def set_KtalkSepa(self, KtalkSepa):
+          self.KtalkSepa = KtalkSepa
 
     def get_count(self):
         return self.count
@@ -275,6 +281,13 @@ class MySession:
     def update_KbasyoList(user_id, KbasyoList):
         new_status = MySession._status_map.get(user_id)
         new_status.set_KbasyoList(KbasyoList)
+        MySession._status_map[user_id] = new_status
+
+    def read_KtalkSepa(user_id):
+        return MySession._status_map.get(user_id).get_KtalkSepa()
+    def update_KtalkSepa(user_id, KtalkSepa):
+        new_status = MySession._status_map.get(user_id)
+        new_status.set_KtalkSepa(KtalkSepa)
         MySession._status_map[user_id] = new_status
 
     def read_count(user_id):
@@ -636,9 +649,11 @@ def handle_message(event):
 
     if "から" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
         talkSepa = talk.split("から", 1)
+        MySession.update_KtalkSepa(user_id, talk.split("から", 1))
     if "～" in talk and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
         talkSepa = talk.split("～", 1)
-
+        MySession.update_KtalkSepa(user_id, talk.split("から", 1))
+    talkSepa =  MySession.read_KtalkSepa(user_id)
 
     #if文の侵入が1つだけしか行けないならこれが原因で動かないかも
     if "県" in talk and ("から" not in talk or "～" not in talk):
