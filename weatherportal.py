@@ -690,7 +690,7 @@ def handle_message(event):
     if (talk == "リセット"):
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage("リセットいたしました！\n天気情報を知りたい場合は○○県□□市のように入力してくださいね。"))
+            TextSendMessage("リセットいたしました！\n天気情報を知りたい場合は○○県□□市のように入力してください！"))
         #保持情報はいったん避難
         if MySession.read_para(user_id) is not None:
               Hdate = MySession.read_Hdate(user_id)
@@ -710,9 +710,37 @@ def handle_message(event):
 
 #ヘルプ
     if ("ヘルプ" in talk or "help" in talk or "へるぷ" in talk):
+        carousel_template = CarouselTemplate(columns=[
+            CarouselColumn(text="ヘルプ", title="知りたいことに最も近いものをお選びください！", actions=[
+                                                MessageAction(label="システムの利用方法について", text="システムの利用方法について"),
+                                                MessageAction(label="会話のやり直し方について", text="会話のやり直し方について"),
+                                                MessageAction(label="保持情報の消し方について", text="保持情報の消し方について"),
+                                                MessageAction(label="アンケートについて", text="アンケートについて")
+            ])
+        ])
+        template_message = TemplateSendMessage(
+            alt_text="ヘルプを受け付けました！お探しの内容はありますでしょうか？" , template=carousel_template)
+        line_bot_api.reply_message(
+            event.reply_token, template_message)
+
+    if talk == "システムの利用方法について":
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text = "・天気情報を知るキーワードを忘れた\n→キーワード「1か所」or「2か所」を入力してください。1か所は普段の天気確認に、2か所は旅行時などの天気確認に適しています。\n・途中で会話を止めたい\n→キーワード「リセット」を入力してください。\n・現在のバージョンの確認\n→キーワード「バージョン」を入力してください。\n・アンケートのリンク、アンケートで答える内容が分からない\n→キーワード「アンケート」を入力してください。"))
+            TextSendMessage(text = "システムをご利用なさる場合、特定の場所の天気であれば「〇〇県□□市」のように入力してください。該当する場所が無ければその場所の閲覧可能な地域から選んでご利用いただけます。県と市の間にスペースは必要ありません。"),
+            TextSendMessage(text = "(入力例)北海道函館市\n東京都東京\n大阪府大阪市\n青森県青森市")])
+    if talk == "会話のやり直し方について":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text = "「リセット」と入力していただくと最初からやり直すことができますので、何度間違えても大丈夫です！\nただ、わざと間違え続けるのはやめて下さいね？"))
+    if talk == "保持情報の消し方について":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text = "「全リセット」と入力していただくと保持情報も含めすべてのデータを初期状態に戻します。場合に応じて「リセット」と「全リセット」を使い分けて下さい！"))
+    if talk == "アンケートについて":
+        line_bot_api.reply_message(
+            event.reply_token,
+            [TextSendMessage(text = "アンケートは任意回答をお願いしています！アンケートは全30項目ほどで、必須回答は10件程度です。お時間は10分～20分ほどいただくかと思います。\nアンケートに答えていただいた方には何やら特典が付いてくるそうなので、ふるってご参加いただければと思います！"),
+            TextSendMessage(text = "↓アンケート回答はこちら↓\nhttps://forms.office.com/r/qep9rrbQKD")])
 
 #すやすやフォグくん
     if (MySession.read_oyasumi(user_id) == 3 or MySession.read_oyasumi(user_id) == 2 or MySession.read_oyasumi(user_id) == 1):
@@ -731,6 +759,11 @@ def handle_message(event):
                 event.reply_token,
                 TextSendMessage(text = "ふあぁ...よく寝たです...\nあ、" + user_name + ohayou))
         MySession.update_oyasumi(user_id, MySession.read_oyasumi(user_id)-1)
+
+    elif MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ") and (MySession.read_Hdate(user_id) == 0 or MySession.read_Harea(user_id) == "" or MySession.read_HareaT(user_id) == "" or MySession.read_HbasyoList(user_id) == "" or MySession.read_para(user_id) == 0:
+           line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="保持情報…保持情報…\nあれ、消えちゃってる… ごめんなさい！保持情報が消えてしまっているのでお手数をおかけしますが再度入力していただけますか？"))
 
 #いつものセットでお天気検索
     elif MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ"):
@@ -1236,7 +1269,7 @@ def handle_message(event):
     elif talk == "いいえ" and MySession.read_context(user_id) == "13":
             line_bot_api.reply_message(
                event.reply_token,
-               TextSendMessage(text="保持しませんでした。またご利用になられる場合は○○県□□市のように入力してください！"))
+               TextSendMessage(text="保持ナシですね、了解しました！またご利用になられる場合は○○県□□市のように入力してください！"))
             #保持情報はいったん避難
             Hdate = MySession.read_Hdate(user_id)
             Harea = MySession.read_Harea(user_id)
