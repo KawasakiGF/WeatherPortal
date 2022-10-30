@@ -62,7 +62,7 @@ class Status:
           self.HbasyoList = ""
           self.para = 0
           self.KbasyoList = ""
-          self.KtalkSepa = ""
+          self.KtalkSepa = []
           self.count = 0
           self.oyasumi = 0
 
