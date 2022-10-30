@@ -1610,7 +1610,7 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text="選択できない場所を選ばないでくださいっ！")
+                TextSendMessage(text="選択できない場所を選ばないでくださいっ！"))
 
     elif MySession.read_context(user_id) == "21":
           MTBasyo = todoufukenNum(int(todoufuken.index(MySession.read_areaT2(user_id))))
@@ -1800,7 +1800,7 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text="選択できない場所を選ばないでくださいっ！")
+                TextSendMessage(text="選択できない場所を選ばないでくださいっ！"))
 
     elif talk == "今日" and MySession.read_context(user_id) == "23":
         MySession.update_date2(user_id, 0)
@@ -1819,7 +1819,7 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。")
+                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。"))
 
     elif talk == "明日" and MySession.read_context(user_id) == "23":
         MySession.update_date2(user_id, 1)
@@ -1838,7 +1838,7 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。")
+                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。"))
 
     elif talk == "明後日" and MySession.read_context(user_id) == "23":
         MySession.update_date2(user_id, 2)
@@ -1857,7 +1857,7 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。")
+                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。"))
 
     elif MySession.read_context(user_id) == "24":
        if "暑" in talk or "あつ" in talk or "寒" in talk or "さむ" in talk or "どちら" in talk or "どっち" in talk or "該当" in talk:
