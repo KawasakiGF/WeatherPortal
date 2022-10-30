@@ -710,16 +710,14 @@ def handle_message(event):
 
 #ヘルプ
     if ("ヘルプ" in talk or "help" in talk or "へるぷ" in talk):
-        carousel_template = CarouselTemplate(columns=[
-            CarouselColumn(text="ヘルプ", title="知りたいことに最も近いものをお選びください！", actions=[
+        buttons_template = ButtonsTemplate(text="ヘルプ", title="知りたいことに最も近いものをお選びください！", actions=[
                                                 MessageAction(label="システムの利用方法について", text="システムの利用方法について"),
                                                 MessageAction(label="会話のやり直し方について", text="会話のやり直し方について"),
                                                 MessageAction(label="保持情報の消し方について", text="保持情報の消し方について"),
                                                 MessageAction(label="アンケートについて", text="アンケートについて")
-            ])
         ])
         template_message = TemplateSendMessage(
-            alt_text="ヘルプを受け付けました！お探しの内容はありますでしょうか？" , template=carousel_template)
+            alt_text="ヘルプを受け付けました！お探しの内容はありますでしょうか？" , template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, template_message)
 
