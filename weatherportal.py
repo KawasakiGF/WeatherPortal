@@ -685,7 +685,7 @@ def gozenHantei():
      jsonData=response.json()
      #天気データ取得
      amCOR="--"
-     amCOR=jsonData["forecasts"][itu]["chanceOfRain"]["T06_12"]
+     amCOR=jsonData["forecasts"][0]["chanceOfRain"]["T06_12"]
      if "--" not in amCOR:
          return True
      else: return False
