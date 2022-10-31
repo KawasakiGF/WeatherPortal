@@ -5,6 +5,7 @@ import json
 import urllib.request
 import random
 import math
+import pandas as pd
 from bs4 import BeautifulSoup
 
 from flask import Flask, request, abort
@@ -327,7 +328,7 @@ def codeKaraFind(finder):
      return teijiBasyoList
       
 #天気メッセージを作る
-def OtenkiMessageMaker(code, itu):
+def OtenkiMessageMaker(code, itu, si):
      url="https://weather.tsukumijima.net/api/forecast/city/" + code
      response=requests.get(url)
      jsonData=response.json()
@@ -346,9 +347,19 @@ def OtenkiMessageMaker(code, itu):
      am2COR=jsonData["forecasts"][itu]["chanceOfRain"]["T06_12"]
      pm1COR=jsonData["forecasts"][itu]["chanceOfRain"]["T12_18"]
      pm2COR=jsonData["forecasts"][itu]["chanceOfRain"]["T18_24"] 
+     if itu == 0 and tempMIN == None:
+         tempMIN = todayTempMIN(ken, si)
      #天気メッセージ作成
      tenkiInfo = '＜日付＞:{0}\n＜天気＞:{1}\n＜気温＞\n最低気温:{2}℃\n最高気温:{3}℃\n＜降水確率＞\n深夜:{4}　朝:{5}\n　昼:{6}　夜:{7}'.format(date,weather,tempMIN,tempMAX,am1COR,am2COR,pm1COR,pm2COR)
      return tenkiInfo
+
+def todayTempMIN(ken, si):
+     url = "https://www.data.jma.go.jp/obd/stats/data/mdrr/tem_rct/alltable/mntemsadext00.csv"
+     response = requests.get(url)
+     data = pd.read_csv(response)
+     basyo = data[data["地点"].str.contains(si)]
+     TempMIN = basyo.iat[0, 9]
+     return TempMIN
 
 #知りたい場所の天気を作る
 def needWeatherMaker(code, itu):
@@ -727,7 +738,7 @@ def handle_message(event):
           para = MySession.read_para(user_id)
           picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
           fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
-          tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id))
+          tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id), MySession.read_Harea(user_id))
           kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id))
           if picUrl == "未知の天気":
                line_bot_api.reply_message(
@@ -1356,9 +1367,9 @@ def handle_message(event):
               MySession.update_para(user_id, 1)
               para = 1
           picUrlS = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-          tenkiInfoS = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+          tenkiInfoS = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id), MySession.read_area(user_id))
           picUrlM = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area2(user_id))], MySession.read_date2(user_id)))
-          tenkiInfoM = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area2(user_id))], MySession.read_date2(user_id))
+          tenkiInfoM = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area2(user_id))], MySession.read_date2(user_id), MySession.read_area2(user_id))
           STM = tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
           MTM = tempMEANMaker(Tcode[Tname.index(MySession.read_area2(user_id))], MySession.read_date(user_id))
           fukusouInfo = fukusouHantei2(STM, MTM, para)
@@ -1818,8 +1829,10 @@ def handle_message(event):
         MySession.update_context(user_id, "12")
 
 
-    elif talk == "暑がり" and MySession.read_context(user_id) == "12":
-        MySession.update_para(user_id, 3)
+    elif MySession.read_context(user_id) == "12":
+        if talk == "暑がり": MySession.update_para(user_id, 3)
+        elif talk == "寒がり": MySession.update_para(user_id, -3)
+        elif talk == "どちらでもない": MySession.update_para(user_id, 0)
         para = MySession.read_para(user_id)
 
         confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
@@ -1831,7 +1844,7 @@ def handle_message(event):
 
         picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
         fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
+        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id), MySession.read_area(user_id))
         kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
         kionnInfo = kionnHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
         caution = ""
@@ -1853,75 +1866,6 @@ def handle_message(event):
                   template_message])
         MySession.update_context(user_id, "13")
 
-    elif talk == "どちらでもない" and MySession.read_context(user_id) == "12":
-        MySession.update_para(user_id, 0)
-        para = MySession.read_para(user_id)
-
-        confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
-            MessageAction(label="はい", text="はい"),
-            MessageAction(label="いいえ", text="いいえ")
-        ])
-        template_message = TemplateSendMessage(
-            alt_text="情報を保持しますか？", template=confirm_template)
-
-        picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kionnInfo = kionnHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        caution = ""
-        if "だめです" in kionnInfo or "傘情報を取得できませんでした" in kasaInfo: caution="\n\n※「今日」の天気情報で情報取得時刻が遅い場合、正常に情報を取得できないことがあります。"
-        if picUrl == "未知の天気":
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
-                  TextSendMessage(text=tenkiInfo),
-                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
-                  template_message])
-        else:
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
-                  TextSendMessage(text=tenkiInfo),
-                  ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
-                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
-                  template_message])
-        MySession.update_context(user_id, "13")
-
-    elif talk == "寒がり" and MySession.read_context(user_id) == "12":
-        MySession.update_para(user_id, -3)
-        para = MySession.read_para(user_id)
-
-        confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
-            MessageAction(label="はい", text="はい"),
-            MessageAction(label="いいえ", text="いいえ")
-        ])
-        template_message = TemplateSendMessage(
-            alt_text="情報を保持しますか？", template=confirm_template)
-
-        picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
-        tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        kionnInfo = kionnHantei(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id))
-        caution = ""
-        if "だめです" in kionnInfo or "傘情報を取得できませんでした" in kasaInfo: caution="\n\n※「今日」の天気情報で情報取得時刻が遅い場合、正常に情報を取得できないことがあります。"
-        if picUrl == "未知の天気":
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
-                  TextSendMessage(text=tenkiInfo),
-                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
-                  template_message])
-        else:
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  [TextSendMessage(text="それでは、" + day[MySession.read_date(user_id)] + "の" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "の天気情報を表示いたします！"),
-                  TextSendMessage(text=tenkiInfo),
-                  ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
-                  TextSendMessage(text=kasaInfo + "\n\n" + fukusouInfo + caution),
-                  template_message])
-        MySession.update_context(user_id, "13")
 
     elif talk == "はい" and MySession.read_context(user_id) == "13":
             if MySession.read_date(user_id) == 0: date="今日"
