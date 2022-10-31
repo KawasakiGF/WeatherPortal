@@ -679,6 +679,17 @@ def tenkijpUrlMaker(ken):
     elif ken == "鹿児島県": return urlF+"9/49"+urlR
     elif ken == "沖縄県": return urlF+"10/50"+urlR
 
+def gozenHantei():
+     url="https://weather.tsukumijima.net/api/forecast/city/300010"
+     response=requests.get(url)
+     jsonData=response.json()
+     #天気データ取得
+     amCOR="--"
+     amCOR=jsonData["forecasts"][itu]["chanceOfRain"]["T06_12"]
+     if "--" not in amCOR:
+         return True
+     else: return False
+
 #####################通信の検証####################
 # @app.route("/callback"...はappに対して/callbackというURLに対応するアクションを記述
 @app.route("/callback", methods=['POST'])
@@ -1964,9 +1975,15 @@ def handle_message(event):
             MySession.update_para(user_id, para)
 
     elif talk == "終了" and MySession.read_context(user_id) == "13":
-            line_bot_api.reply_message(
-               event.reply_token,
-               TextSendMessage(text="またご利用になられる場合は○○県□□市のように入力してください！"))
+            if MySession.read_date(user_id) == 0 and gozenHantei():
+                line_bot_api.reply_message(
+                   event.reply_token,
+                   [ImageSendMessage(original_content_url=itteraFogPic, preview_image_url=itteraFogPic),
+                   TextSendMessage(text="またご利用になられる場合は○○県□□市のように入力してください！")])
+            else:
+                line_bot_api.reply_message(
+                   event.reply_token,
+                   TextSendMessage(text="またご利用になられる場合は○○県□□市のように入力してください！"))
             #保持情報はいったん避難
             Hdate = MySession.read_Hdate(user_id)
             Harea = MySession.read_Harea(user_id)
