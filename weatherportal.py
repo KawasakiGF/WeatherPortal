@@ -393,7 +393,7 @@ def tempMEANMaker(code, itu):
      if ((tempMAX is None) and (tempMIN is None)):
          return 100
      elif tempMAX is None:
-         if "雨" in weather: int(tempMAX)=tempMIN+5
+         if "雨" in weather: tempMAX=int(tempMIN)+5
          else: tempMAX=int(tempMIN)+10
      elif tempMIN is None:
          if "雨" in weather: tempMIN=int(tempMAX)-5
