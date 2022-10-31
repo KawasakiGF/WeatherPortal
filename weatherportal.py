@@ -348,16 +348,17 @@ def OtenkiMessageMaker(code, itu, si):
      pm1COR=jsonData["forecasts"][itu]["chanceOfRain"]["T12_18"]
      pm2COR=jsonData["forecasts"][itu]["chanceOfRain"]["T18_24"] 
      if itu == 0 and tempMIN == None:
-         tempMIN = todayTempMIN(si)
+         tempMIN = todayTempMIN(ken, si)
      #天気メッセージ作成
      tenkiInfo = '＜日付＞:{0}\n＜天気＞:{1}\n＜気温＞\n最低気温:{2}℃\n最高気温:{3}℃\n＜降水確率＞\n深夜:{4}　朝:{5}\n　昼:{6}　夜:{7}'.format(date,weather,tempMIN,tempMAX,am1COR,am2COR,pm1COR,pm2COR)
      return tenkiInfo
 
-def todayTempMIN(si):
+def todayTempMIN(ken, si):
      url = "https://www.data.jma.go.jp/obd/stats/data/mdrr/tem_rct/alltable/mntemsadext00.csv"
-     response = requests.get(url)
-     data = pd.read_csv(response)
-     basyo = data[data["地点"].str.contains(si)]
+     #response = requests.get(url)
+     #df = pd.read_csv(response)#mntemsadext00_rct.csv
+     df = pd.read_csv(url, encoding="shiftJIS"
+     basyo = df[df["地点"].str.contains(si)]
      TempMIN = basyo.iat[0, 9]
      return TempMIN
 
