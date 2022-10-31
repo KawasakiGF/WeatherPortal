@@ -357,7 +357,7 @@ def todayTempMIN(ken, si):
      url = "https://www.data.jma.go.jp/obd/stats/data/mdrr/tem_rct/alltable/mntemsadext00.csv"
      #response = requests.get(url)
      #df = pd.read_csv(response)#mntemsadext00_rct.csv
-     df = pd.read_csv(url, encoding="shiftJIS"
+     df = pd.read_csv(url, encoding="shiftJIS")
      basyo = df[df["地点"].str.contains(si)]
      TempMIN = basyo.iat[0, 9]
      return TempMIN
