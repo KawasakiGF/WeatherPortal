@@ -634,6 +634,11 @@ def handle_message(event):
 
     MySession.register(user_id)
 
+    if MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" not in talk or "～" not in talk):
+        MySession.update_context(user_id, "1")
+    elif MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" in talk or "～" in talk):
+        MySession.update_context(user_id, "2")
+
     if (talk == "全リセット"):
         MySession.reset(user_id)
         line_bot_api.reply_message(
@@ -747,7 +752,7 @@ def handle_message(event):
             TextSendMessage("あっ、そこじゃないです！もう一度先ほどの一覧から選んでいただけますか？"))
 
 #1か所の場所を聞く####################
-    elif MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" not in talk or "～" not in talk):
+    elif MySession.read_context(user_id) == "1" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" not in talk or "～" not in talk):
       basyo = []
       ken = ""
       si = ""
@@ -975,7 +980,7 @@ def handle_message(event):
                   ])
                   MySession.update_context(user_id, "90")
                   #MySession.update_count(user_id, 90)
-                  MySession.update_KbasyoList(user_id, BasyoList)
+              MySession.update_KbasyoList(user_id, BasyoList)
               template_message = TemplateSendMessage(
                   alt_text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
               line_bot_api.reply_message(
@@ -1307,7 +1312,7 @@ def handle_message(event):
 
 
 #2か所の場所を聞く####################
-    elif MySession.read_context(user_id) == "0" and (("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" in talk or "～" in talk)):
+    elif MySession.read_context(user_id) == "2" and (("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" in talk or "～" in talk)):
       Sbasyo = []
       Sken = ""
       Ssi = ""
@@ -1615,7 +1620,7 @@ def handle_message(event):
                   ])
                   MySession.update_context(user_id, "91")
                   #MySession.update_count(user_id, 91)
-                  MySession.update_KbasyoList(user_id, SBasyoList)
+              MySession.update_KbasyoList(user_id, SBasyoList)
               template_message = TemplateSendMessage(
                   alt_text="出発地点のお探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
               line_bot_api.reply_message(
@@ -1797,7 +1802,7 @@ def handle_message(event):
                   ])
                   MySession.update_context(user_id, "92")
                   #MySession.update_count(user_id, 92)
-                  MySession.update_KbasyoList(user_id, MBasyoList)
+              MySession.update_KbasyoList(user_id, MBasyoList)
               template_message = TemplateSendMessage(
                   alt_text="目的地点のお探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？" , template=carousel_template)
               line_bot_api.reply_message(
