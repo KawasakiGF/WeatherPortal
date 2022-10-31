@@ -1095,6 +1095,11 @@ def handle_message(event):
     elif MySession.read_context(user_id) == "21":
           MTBasyo = todoufukenNum(int(todoufuken.index(MySession.read_areaT2(user_id))))
           MBasyoList = codeKaraFind(MTBasyo)
+
+          if talk == "今日": MySession.update_date(user_id, 0)
+          elif talk == "明日": MySession.update_date(user_id, 1)
+          elif talk == "明後日": MySession.update_date(user_id, 2)
+
           if MySession.read_area2(user_id) in MBasyoList:
               buttons_template = ButtonsTemplate(
                   text="到着日時をお選びください！", actions=[
@@ -1284,7 +1289,11 @@ def handle_message(event):
 
     elif talk == "今日" and MySession.read_context(user_id) == "23":
         MySession.update_date2(user_id, 0)
-        if MySession.read_date(user_id) >= MySession.read_date2(user_id):
+        if MySession.read_date(user_id) > MySession.read_date2(user_id):
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。"))
+        else:
             buttons_template = ButtonsTemplate(
                 text="最も近いものはどれですか？", actions=[
                       MessageAction(label="暑がり", text="暑がり"),
@@ -1296,14 +1305,14 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token, template_message)
             MySession.update_context(user_id, "24")
-        else:
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。"))
 
     elif talk == "明日" and MySession.read_context(user_id) == "23":
         MySession.update_date2(user_id, 1)
-        if MySession.read_date(user_id) >= MySession.read_date2(user_id):
+        if MySession.read_date(user_id) > MySession.read_date2(user_id):
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。"))
+        else:
             buttons_template = ButtonsTemplate(
                 text="最も近いものはどれですか？", actions=[
                       MessageAction(label="暑がり", text="暑がり"),
@@ -1315,14 +1324,14 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token, template_message)
             MySession.update_context(user_id, "24")
-        else:
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。"))
 
     elif talk == "明後日" and MySession.read_context(user_id) == "23":
         MySession.update_date2(user_id, 2)
-        if MySession.read_date(user_id) >= MySession.read_date2(user_id):
+        if MySession.read_date(user_id) > MySession.read_date2(user_id):
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。"))
+        else:
             buttons_template = ButtonsTemplate(
                 text="最も近いものはどれですか？", actions=[
                       MessageAction(label="暑がり", text="暑がり"),
@@ -1334,10 +1343,6 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token, template_message)
             MySession.update_context(user_id, "24")
-        else:
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text="んーっと？それだと日程がおかしなことになりませんか？もう一度選択をお願いします。"))
 
     elif MySession.read_context(user_id) == "24":
        if "暑" in talk or "あつ" in talk or "寒" in talk or "さむ" in talk or "どちら" in talk or "どっち" in talk or "該当" in talk:
