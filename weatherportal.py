@@ -350,8 +350,8 @@ def OtenkiMessageMaker(code, itu, si):
      #if itu == 0 and tempMIN == None:
      #    tempMIN = todayTempMIN(si)
      if tempMIN is None and tempMAX is not None:
-         if "雨" in weather: tempMIN=tempMAX-5
-         else: tempMIN=tempMAX-9
+         if "雨" in weather: tempMIN=int(tempMAX)-5
+         else: tempMIN=int(tempMAX)-9
      #天気メッセージ作成
      tenkiInfo = '＜日付＞:{0}\n＜天気＞:{1}\n＜気温＞\n最低気温:{2}℃\n最高気温:{3}℃\n＜降水確率＞\n深夜:{4}　朝:{5}\n　昼:{6}　夜:{7}'.format(date,weather,tempMIN,tempMAX,am1COR,am2COR,pm1COR,pm2COR)
      return tenkiInfo
