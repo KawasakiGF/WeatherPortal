@@ -1902,14 +1902,14 @@ def handle_message(event):
                 MessageAction(label="終了", text="終了")
             ])
             template_message = TemplateSendMessage(
-                alt_text="さらに情報が欲しい場合は色々選択してみてください！", template=confirm_template)
+                alt_text="さらに情報が欲しい場合は色々選択してみてください！", template=buttons_template)
         else:
             buttons_template = ButtonsTemplate(text="終了を押すとはじめの状態に戻れます！", title="オプション", actions=[
                 MessageAction(label="入力情報を保持", text="入力情報を保持"),
                 MessageAction(label="終了", text="終了")
             ])
             template_message = TemplateSendMessage(
-                alt_text="さらに情報が欲しい場合は色々選択してみてください！", template=confirm_template)
+                alt_text="さらに情報が欲しい場合は色々選択してみてください！", template=buttons_template)
 
         picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
         fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
