@@ -619,8 +619,65 @@ def picUrlMaker(weather):
     else: picUrl="未知の天気"
     return picUrl
 
+def tenkijpUrlMaker(ken):
+    urlF = "https://tenki.jp/radar/"
+    urlR = "/rainmesh.html"
+    if ken == "北海道": return urlF+"1"+urlR
+    elif ken == "青森県": return urlF+"2/5"+urlR
+    elif ken == "岩手県": return urlF+"2/6"+urlR
+    elif ken == "宮城県": return urlF+"2/7"+urlR
+    elif ken == "秋田県": return urlF+"2/8"+urlR
 
+    elif ken == "山形県": return urlF+"2/9"+urlR
+    elif ken == "福島県": return urlF+"2/10"+urlR
+    elif ken == "茨城県": return urlF+"3/11"+urlR
+    elif ken == "栃木県": return urlF+"3/12"+urlR
+    elif ken == "群馬県": return urlF+"3/13"+urlR
 
+    elif ken == "埼玉県": return urlF+"3/14"+urlR
+    elif ken == "千葉県": return urlF+"3/15"+urlR
+    elif ken == "東京都": return urlF+"3/16"+urlR
+    elif ken == "神奈川県": return urlF+"3/17"+urlR
+    elif ken == "新潟県": return urlF+"4/18"+urlR
+
+    elif ken == "富山県": return urlF+"4/19"+urlR
+    elif ken == "石川県": return urlF+"4/20"+urlR
+    elif ken == "福井県": return urlF+"4/21"+urlR
+    elif ken == "山梨県": return urlF+"3/22"+urlR
+    elif ken == "長野県": return urlF+"3/23"+urlR
+
+    elif ken == "岐阜県": return urlF+"5/24"+urlR
+    elif ken == "静岡県": return urlF+"5/25"+urlR
+    elif ken == "愛知県": return urlF+"5/26"+urlR
+    elif ken == "三重県": return urlF+"5/27"+urlR
+    elif ken == "滋賀県": return urlF+"6/28"+urlR
+
+    elif ken == "京都府": return urlF+"6/29"+urlR
+    elif ken == "大阪府": return urlF+"6/30"+urlR
+    elif ken == "兵庫県": return urlF+"6/31"+urlR
+    elif ken == "奈良県": return urlF+"6/32"+urlR
+    elif ken == "和歌山県": return urlF+"6/33"+urlR
+
+    elif ken == "鳥取県": return urlF+"7/34"+urlR
+    elif ken == "島根県": return urlF+"7/35"+urlR
+    elif ken == "岡山県": return urlF+"7/36"+urlR
+    elif ken == "広島県": return urlF+"7/37"+urlR
+    elif ken == "山口県": return urlF+"7/38"+urlR
+
+    elif ken == "徳島県": return urlF+"8/39"+urlR
+    elif ken == "香川県": return urlF+"8/40"+urlR
+    elif ken == "愛媛県": return urlF+"8/41"+urlR
+    elif ken == "高知県": return urlF+"8/42"+urlR
+    elif ken == "福岡県": return urlF+"9/43"+urlR
+
+    elif ken == "佐賀県": return urlF+"9/44"+urlR
+    elif ken == "長崎県": return urlF+"9/45"+urlR
+    elif ken == "熊本県": return urlF+"9/46"+urlR
+    elif ken == "大分県": return urlF+"9/47"+urlR
+    elif ken == "宮崎県": return urlF+"9/48"+urlR
+
+    elif ken == "鹿児島県": return urlF+"9/49"+urlR
+    elif ken == "沖縄県": return urlF+"10/50"+urlR
 
 #####################通信の検証####################
 # @app.route("/callback"...はappに対して/callbackというURLに対応するアクションを記述
@@ -1425,17 +1482,6 @@ def handle_message(event):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 #1か所の場所を聞く####################
     elif MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk):
       basyo = []
@@ -1847,13 +1893,23 @@ def handle_message(event):
         elif talk == "寒がり": MySession.update_para(user_id, -3)
         elif talk == "どちらでもない": MySession.update_para(user_id, 0)
         para = MySession.read_para(user_id)
+        template_message = ""
 
-        confirm_template = ConfirmTemplate(text="情報を保持しますか？", actions=[
-            MessageAction(label="はい", text="はい"),
-            MessageAction(label="いいえ", text="いいえ")
-        ])
-        template_message = TemplateSendMessage(
-            alt_text="情報を保持しますか？", template=confirm_template)
+        if MySession.read_date(user_id) == 0:
+            buttons_template = ButtonsTemplate(text="終了を押すとはじめの状態に戻れます！", title="オプション"actions=[
+                URLAction(label="雨雲レーダーを見る", url=tenkijpUrlMaker(MySession.read_areaT(user_id)),
+                MessageAction(label="入力情報を保持", text="入力情報を保持"),
+                MessageAction(label="終了", text="終了")
+            ])
+            template_message = TemplateSendMessage(
+                alt_text="さらに情報が欲しい場合は色々選択してみてください！", template=confirm_template)
+        else:
+            buttons_template = ButtonsTemplate(text="終了を押すとはじめの状態に戻れます！", title="オプション"actions=[
+                MessageAction(label="入力情報を保持", text="入力情報を保持"),
+                MessageAction(label="終了", text="終了")
+            ])
+            template_message = TemplateSendMessage(
+                alt_text="さらに情報が欲しい場合は色々選択してみてください！", template=confirm_template)
 
         picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
         fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_area(user_id))], MySession.read_date(user_id)))
@@ -1880,7 +1936,7 @@ def handle_message(event):
         MySession.update_context(user_id, "13")
 
 
-    elif talk == "はい" and MySession.read_context(user_id) == "13":
+    elif talk == "入力情報を保持" and MySession.read_context(user_id) == "13":
             if MySession.read_date(user_id) == 0: date="今日"
             elif MySession.read_date(user_id) == 1: date="明日"
             elif MySession.read_date(user_id) == 2: date="明後日"
@@ -1907,10 +1963,10 @@ def handle_message(event):
             MySession.update_HbasyoList(user_id, HbasyoList)
             MySession.update_para(user_id, para)
 
-    elif talk == "いいえ" and MySession.read_context(user_id) == "13":
+    elif talk == "終了" and MySession.read_context(user_id) == "13":
             line_bot_api.reply_message(
                event.reply_token,
-               TextSendMessage(text="保持ナシですね、了解しました！またご利用になられる場合は○○県□□市のように入力してください！"))
+               TextSendMessage(text="またご利用になられる場合は○○県□□市のように入力してください！"))
             #保持情報はいったん避難
             Hdate = MySession.read_Hdate(user_id)
             Harea = MySession.read_Harea(user_id)
