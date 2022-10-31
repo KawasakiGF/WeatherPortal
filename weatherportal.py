@@ -394,10 +394,10 @@ def tempMEANMaker(code, itu):
          return 100
      elif tempMAX is None:
          if "雨" in weather: tempMAX=tempMIN+5
-         else: tempMAX=tempMIN+9
+         else: tempMAX=tempMIN+10
      elif tempMIN is None:
          if "雨" in weather: tempMIN=tempMAX-5
-         else: tempMIN=tempMAX-9
+         else: tempMIN=tempMAX-10
      tempMEAN=(int(tempMAX)+int(tempMIN))/2.0-1.0
      return tempMEAN
 
@@ -1896,7 +1896,7 @@ def handle_message(event):
         template_message = ""
 
         if MySession.read_date(user_id) == 0:
-            buttons_template = ButtonsTemplate(text="終了を押すとはじめの状態に戻れます！", title="オプション"actions=[
+            buttons_template = ButtonsTemplate(text="終了を押すとはじめの状態に戻れます！", title="オプション", actions=[
                 URLAction(label="雨雲レーダーを見る", url=tenkijpUrlMaker(MySession.read_areaT(user_id)),
                 MessageAction(label="入力情報を保持", text="入力情報を保持"),
                 MessageAction(label="終了", text="終了")
