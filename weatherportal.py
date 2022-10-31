@@ -1904,7 +1904,7 @@ def handle_message(event):
             template_message = TemplateSendMessage(
                 alt_text="さらに情報が欲しい場合は色々選択してみてください！", template=confirm_template)
         else:
-            buttons_template = ButtonsTemplate(text="終了を押すとはじめの状態に戻れます！", title="オプション"actions=[
+            buttons_template = ButtonsTemplate(text="終了を押すとはじめの状態に戻れます！", title="オプション", actions=[
                 MessageAction(label="入力情報を保持", text="入力情報を保持"),
                 MessageAction(label="終了", text="終了")
             ])
