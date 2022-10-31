@@ -999,7 +999,7 @@ def handle_message(event):
                                                 MessageAction(label=SBasyoList[4], text=SBasyoList[4]),
                                                 MessageAction(label=SBasyoList[5], text=SBasyoList[5])
                       ]),
-                      CarouselColumn(text="３ページ目", actions=[
+                      CarouselColumn(text="3ページ目", actions=[
                                                 MessageAction(label=SBasyoList[6], text=SBasyoList[6]),
                                                 MessageAction(label="---", text="---"),
                                                 MessageAction(label="---", text="---")
@@ -1284,7 +1284,7 @@ def handle_message(event):
 
     elif talk == "今日" and MySession.read_context(user_id) == "23":
         MySession.update_date2(user_id, 0)
-        if MySession.read_date(user_id) <= MySession.read_date2(user_id):
+        if MySession.read_date(user_id) >= MySession.read_date2(user_id):
             buttons_template = ButtonsTemplate(
                 text="最も近いものはどれですか？", actions=[
                       MessageAction(label="暑がり", text="暑がり"),
@@ -1303,7 +1303,7 @@ def handle_message(event):
 
     elif talk == "明日" and MySession.read_context(user_id) == "23":
         MySession.update_date2(user_id, 1)
-        if MySession.read_date(user_id) <= MySession.read_date2(user_id):
+        if MySession.read_date(user_id) >= MySession.read_date2(user_id):
             buttons_template = ButtonsTemplate(
                 text="最も近いものはどれですか？", actions=[
                       MessageAction(label="暑がり", text="暑がり"),
@@ -1322,7 +1322,7 @@ def handle_message(event):
 
     elif talk == "明後日" and MySession.read_context(user_id) == "23":
         MySession.update_date2(user_id, 2)
-        if MySession.read_date(user_id) <= MySession.read_date2(user_id):
+        if MySession.read_date(user_id) >= MySession.read_date2(user_id):
             buttons_template = ButtonsTemplate(
                 text="最も近いものはどれですか？", actions=[
                       MessageAction(label="暑がり", text="暑がり"),
