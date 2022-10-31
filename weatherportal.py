@@ -347,8 +347,11 @@ def OtenkiMessageMaker(code, itu, si):
      am2COR=jsonData["forecasts"][itu]["chanceOfRain"]["T06_12"]
      pm1COR=jsonData["forecasts"][itu]["chanceOfRain"]["T12_18"]
      pm2COR=jsonData["forecasts"][itu]["chanceOfRain"]["T18_24"] 
-     if itu == 0 and tempMIN == None:
-         tempMIN = todayTempMIN(si)
+     #if itu == 0 and tempMIN == None:
+     #    tempMIN = todayTempMIN(si)
+     if tempMIN is None:
+         if "雨" in weather: tempMIN=tempMAX-5
+         else: tempMIN=tempMAX-9
      #天気メッセージ作成
      tenkiInfo = '＜日付＞:{0}\n＜天気＞:{1}\n＜気温＞\n最低気温:{2}℃\n最高気温:{3}℃\n＜降水確率＞\n深夜:{4}　朝:{5}\n　昼:{6}　夜:{7}'.format(date,weather,tempMIN,tempMAX,am1COR,am2COR,pm1COR,pm2COR)
      return tenkiInfo
@@ -356,11 +359,12 @@ def OtenkiMessageMaker(code, itu, si):
 def todayTempMIN(si):
      url = "https://www.data.jma.go.jp/obd/stats/data/mdrr/tem_rct/alltable/mntemsadext00.csv"
      response = requests.get(url)
+     #with open (response, "r") as f:
      #df = pd.read_csv(response)#mntemsadext00_rct.csv
      #df = pd.read_csv(url, encoding="shiftJIS")#表形式ならこっちがおススメ
      #df = pd.read_csv(response, encoding="shiftJIS")
-     with urllib.request.urlopen(url) as response:
-         df = next(response).decode("shiftjis")
+     #with urllib.request.urlopen(url) as response:
+     #    df = next(response).decode("shiftjis")
      basyo = df[df["地点"].str.contains(si)]
      TempMIN = basyo.iat[0, 9]
      return TempMIN
@@ -385,10 +389,15 @@ def tempMEANMaker(code, itu):
      tempMIN=0
      tempMAX=jsonData["forecasts"][itu]["temperature"]["max"]["celsius"]
      tempMIN=jsonData["forecasts"][itu]["temperature"]["min"]["celsius"]
+     weather=jsonData["forecasts"][itu]["telop"]
      if ((tempMAX is None) and (tempMIN is None)):
-        return 100
-     elif tempMAX is None: tempMAX=tempMIN
-     elif tempMIN is None: tempMIN=tempMAX
+         return 100
+     elif tempMAX is None:
+         if "雨" in weather: tempMAX=tempMIN+5
+         else: tempMAX=tempMIN+9
+     elif tempMIN is None:
+         if "雨" in weather: tempMIN=tempMAX-5
+         else: tempMIN=tempMAX-9
      tempMEAN=(int(tempMAX)+int(tempMIN))/2.0-1.0
      return tempMEAN
 
