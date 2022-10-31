@@ -1897,7 +1897,7 @@ def handle_message(event):
 
         if MySession.read_date(user_id) == 0:
             buttons_template = ButtonsTemplate(text="終了を押すとはじめの状態に戻れます！", title="オプション", actions=[
-                URLAction(label="雨雲レーダーを見る", url=tenkijpUrlMaker(MySession.read_areaT(user_id))),
+                URIAction(label="雨雲レーダーを見る", url=tenkijpUrlMaker(MySession.read_areaT(user_id))),
                 MessageAction(label="入力情報を保持", text="入力情報を保持"),
                 MessageAction(label="終了", text="終了")
             ])
