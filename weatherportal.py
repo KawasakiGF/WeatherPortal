@@ -1161,6 +1161,7 @@ def handle_message(event):
                   [TextSendMessage(text="出発地点のお探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
                   template_message])
       else:
+          MySession.update_context(user_id, "0")
           line_bot_api.reply_message(
               event.reply_token,
               TextSendMessage(text="ごめんなさい。ちょっと分からなくなってきちゃったので、いったん戻させていただきます。最初の○○県□□市から再度入力していただけますか？すみません・・・"))
@@ -1730,6 +1731,7 @@ def handle_message(event):
                   [TextSendMessage(text="お探しの場所が見つかりませんでした…\nお手数ですが、つぎの中からお選びいただけますか？"),
                   template_message])
       else:
+          MySession.update_context(user_id, "0")
           line_bot_api.reply_message(
               event.reply_token,
               TextSendMessage(text="ごめんなさい。ちょっと分からなくなってきちゃったので、いったん戻させていただきます。最初の○○県□□市から再度入力していただけますか？すみません・・・"))
@@ -2283,6 +2285,7 @@ def handle_message(event):
               [TextSendMessage(text=kaiwa1_1),
               TextSendMessage(text=kaiwa1_1a)])
       else:
+          MySession.update_context(user_id, "0")
           line_bot_api.reply_message(
               event.reply_token,
               TextSendMessage(text="ごめんなさい。ちょっと分からなくなってきちゃったので、いったん戻させていただきます。最初の○○県□□市から再度入力していただけますか？すみません・・・"))
