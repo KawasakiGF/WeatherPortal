@@ -1479,7 +1479,19 @@ def handle_message(event):
                     TextSendMessage(text="[目的地]" + MySession.read_areaT2(user_id) + MySession.read_area2(user_id) + "\n" + tenkiInfoM),
                     ImageSendMessage(original_content_url=picUrlM, preview_image_url=picUrlM),
                     TextSendMessage(text=kasaInfo + "\n\n" +fukusouInfo + caution)])
-          MySession.reset(user_id)
+            Hdate = MySession.read_Hdate(user_id)
+            Harea = MySession.read_Harea(user_id)
+            HareaT = MySession.read_HareaT(user_id)
+            HbasyoList = MySession.read_HbasyoList(user_id)
+            para = MySession.read_para(user_id)
+            #全部消した後、
+            MySession.reset(user_id)
+            #保持情報を再度覚えさせる
+            MySession.update_Hdate(user_id, Hdate)
+            MySession.update_Harea(user_id, Harea)
+            MySession.update_HareaT(user_id, HareaT)
+            MySession.update_HbasyoList(user_id, HbasyoList)
+            MySession.update_para(user_id, para)
        else:
             line_bot_api.reply_message(
             event.reply_token,
@@ -1960,21 +1972,7 @@ def handle_message(event):
                event.reply_token,
                [TextSendMessage(text="情報保持しました！次回以降「いつもの」と入力すれば以下の条件で天気情報を検索できます！"),
                TextSendMessage(text="<日付>" + date + "\n<場所>" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "\n<体調>" + para),
-               TextSendMessage(text="保持情報を消す場合は「全リセット」と入力してください。")])
-            #保持情報はいったん避難
-            Hdate = MySession.read_date(user_id)
-            Harea = MySession.read_area(user_id)
-            HareaT = MySession.read_areaT(user_id)
-            HbasyoList = MySession.read_basyoList(user_id)
-            para = MySession.read_para(user_id)
-            #全部消した後、
-            MySession.reset(user_id)
-            #保持情報を再度覚えさせる
-            MySession.update_Hdate(user_id, Hdate)
-            MySession.update_Harea(user_id, Harea)
-            MySession.update_HareaT(user_id, HareaT)
-            MySession.update_HbasyoList(user_id, HbasyoList)
-            MySession.update_para(user_id, para)
+               TextSendMessage(text="保持情報を消す場合は「全リセット」と入力してください！")])
 
     elif talk == "終了" and MySession.read_context(user_id) == "13":
             if MySession.read_date(user_id) == 0 and gozenHantei():
@@ -2000,6 +1998,11 @@ def handle_message(event):
             MySession.update_HareaT(user_id, HareaT)
             MySession.update_HbasyoList(user_id, HbasyoList)
             MySession.update_para(user_id, para)
+
+    elif MySession.read_context(user_id) == "13":
+            line_bot_api.reply_message(
+               event.reply_token,
+               TextSendMessage(text="「終了」を押すとはじめの状態に戻ります！"))
 ###############################
 
 
@@ -2409,7 +2412,7 @@ zatudan = ["システムの仕様上、BOTからの返信が遅くなったり�
 "回文ってご存じですか？たとえば しんぶんし などがそれにあたります。ボクの好きな回文に リモコンてんこ盛り っていうのがあるんですよね。クスっと笑えるシチュエーションなのが好きなポイントです。"]
 ankeThanks1 = "アンケートにご協力くださりありがとうございました！長い長いアンケートだったと思いますが、ご回答くださり嬉しい限りです！実はボクの方からも"
 ankeThanks2 = "さんの回答結果を見ることができるのですが、とても丁寧にご回答くださっているようで感謝の言葉もありません！"
-ankeThanks3 = "ひょっとするとすでに知っている方もいらっしゃるかもしれませんが、ボクが反応できるキーワードをは最初にお伝えしたものだけじゃないんです。それこそこれみたいな感じです。なので、会話をするように話しかけてもらうと反応できたりするかもです。ご興味があれば試してみてくださいね。\nここまでお付き合いくださり、またアンケートにもご回答くださりありがとうございました！！\nではでは～！"
+ankeThanks3 = "ここだけの話、反応するワードは天気関連のものだけじゃないんです。ご興味があれば試してみてくださいね。\nここまでお付き合いくださり、またアンケートにもご回答くださりありがとうございました！！\nではでは～！"
 
 FogDesuPic = "https://i.ibb.co/FqRTHDg/FogDesu.png"
 ankeThanksPic = "https://i.ibb.co/nwc4m8b/anke-Thanks.png"
