@@ -770,7 +770,7 @@ def handle_message(event):
     if talk == "システムの利用方法について":
         line_bot_api.reply_message(
             event.reply_token,
-            [TextSendMessage(text = "システムをご利用なさる場合、特定の場所の天気であれば「〇〇県□□市」のように入力してください。該当する場所が無ければその場所の閲覧可能な地域から選んでご利用いただけます。県と市の間にスペースは必要ありません。"),
+            [TextSendMessage(text = "システムをご利用なさる場合、特定の場所の天気であれば「〇〇県□□市」のようにチャットで入力してください。該当する場所が無ければその場所の閲覧可能な地域から選んでご利用いただけます。県と市の間にスペースは必要ありません。"),
             TextSendMessage(text = "(入力例)\n北海道函館市\n東京都東京\n大阪府大阪市\n青森県青森市")])
     if talk == "会話のやり直し方について":
         line_bot_api.reply_message(
