@@ -726,11 +726,6 @@ def handle_message(event):
 
     MySession.register(user_id)
 
-    #if MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" not in talk or "～" not in talk):
-    #    MySession.update_context(user_id, "1")
-    #elif MySession.read_context(user_id) == "0" and ("県" in talk or "都" in talk or "道" in talk or "府" in talk) and ("から" in talk or "～" in talk):
-    #    MySession.update_context(user_id, "2")
-
     if (talk == "全リセット"):
         MySession.reset(user_id)
         line_bot_api.reply_message(
@@ -1750,9 +1745,9 @@ def handle_message(event):
 
     elif (MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92"):
         BasyoList = MySession.read_KbasyoList(user_id)
-        if MySession.update_context(user_id, "90"):MySession.update_context(user_id, "10")
-        elif MySession.update_context(user_id, "91"):MySession.update_context(user_id, "20")
-        elif MySession.update_context(user_id, "92"):MySession.update_context(user_id, "22")
+        if MySession.read_context(user_id, "90"): MySession.update_context(user_id, "10")
+        elif MySession.read_context(user_id, "91"): MySession.update_context(user_id, "20")
+        elif MySession.read_context(user_id, "92"): MySession.update_context(user_id, "22")
 
         if len(BasyoList) == 10:
             carousel_template = CarouselTemplate(columns=[
@@ -2412,7 +2407,7 @@ zatudan = ["システムの仕様上、BOTからの返信が遅くなったり�
 "回文ってご存じですか？たとえば しんぶんし などがそれにあたります。ボクの好きな回文に リモコンてんこ盛り っていうのがあるんですよね。クスっと笑えるシチュエーションなのが好きなポイントです。"]
 ankeThanks1 = "アンケートにご協力くださりありがとうございました！長い長いアンケートだったと思いますが、ご回答くださり嬉しい限りです！実はボクの方からも"
 ankeThanks2 = "さんの回答結果を見ることができるのですが、とても丁寧にご回答くださっているようで感謝の言葉もありません！"
-ankeThanks3 = "ここだけの話、反応するワードは天気関連のものだけじゃないんです。ご興味があれば試してみてくださいね。\nここまでお付き合いくださり、またアンケートにもご回答くださりありがとうございました！！\nではでは～！"
+ankeThanks3 = "ここだけの話、反応するワードは天気関連のものだけじゃないんですよね。もしご興味があれば試してみてくださいね。\nここまでお付き合いくださり、またアンケートにもご回答くださりありがとうございました！！\nではでは～！"
 
 FogDesuPic = "https://i.ibb.co/FqRTHDg/FogDesu.png"
 ankeThanksPic = "https://i.ibb.co/nwc4m8b/anke-Thanks.png"
