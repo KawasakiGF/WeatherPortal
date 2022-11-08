@@ -804,11 +804,6 @@ def handle_message(event):
                 TextSendMessage(text = "ふあぁ...よく寝たです...\nあ、" + user_name + ohayou))
         MySession.update_oyasumi(user_id, MySession.read_oyasumi(user_id)-1)
 
-    elif MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ") and (MySession.read_Hdate(user_id) == 0 or MySession.read_Harea(user_id) == "" or MySession.read_HareaT(user_id) == "" or MySession.read_HbasyoList(user_id) == "" or MySession.read_para(user_id) == 0):
-           line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text="保持情報…保持情報…\nあれ、消えちゃってる… ごめんなさい！保持情報が消えちゃってるので、お手数をおかけしますが再度入力していただけますか？"))
-
 
 #さらに表示で表示するところ####################################
     if (MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92"):
@@ -916,6 +911,10 @@ def handle_message(event):
             template_message])
 
 
+    if MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ") and (MySession.read_Hdate(user_id) == 0 or MySession.read_Harea(user_id) == "" or MySession.read_HareaT(user_id) == "" or MySession.read_HbasyoList(user_id) == "" or MySession.read_para(user_id) == 0):
+           line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="保持情報…保持情報…\nあれ、消えちゃってる… ごめんなさい！保持情報が消えちゃってるので、お手数をおかけしますが再度入力していただけますか？"))
 
 
 #いつものセットでお天気検索
