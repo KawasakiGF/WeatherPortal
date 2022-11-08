@@ -1745,9 +1745,9 @@ def handle_message(event):
 
     elif (MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92"):
         BasyoList = MySession.read_KbasyoList(user_id)
-        if MySession.read_context(user_id, "90"): MySession.update_context(user_id, "10")
-        elif MySession.read_context(user_id, "91"): MySession.update_context(user_id, "20")
-        elif MySession.read_context(user_id, "92"): MySession.update_context(user_id, "22")
+        if MySession.read_context(user_id): MySession.update_context(user_id, "10")
+        elif MySession.read_context(user_id): MySession.update_context(user_id, "20")
+        elif MySession.read_context(user_id): MySession.update_context(user_id, "22")
 
         if len(BasyoList) == 10:
             carousel_template = CarouselTemplate(columns=[
