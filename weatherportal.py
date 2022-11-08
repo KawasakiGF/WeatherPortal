@@ -805,14 +805,50 @@ def handle_message(event):
         MySession.update_oyasumi(user_id, MySession.read_oyasumi(user_id)-1)
 
 
+    if MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ") and (MySession.read_Hdate(user_id) == 0 or MySession.read_Harea(user_id) == "" or MySession.read_HareaT(user_id) == "" or MySession.read_HbasyoList(user_id) == "" or MySession.read_para(user_id) == 0):
+           line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="保持情報…保持情報…\nあれ、消えちゃってる… ごめんなさい！保持情報が消えちゃってるので、お手数をおかけしますが再度入力していただけますか？"))
+
+
+#いつものセットでお天気検索
+    elif MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ"):
+          para = MySession.read_para(user_id)
+          picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
+          fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
+          tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id), MySession.read_Harea(user_id))
+          kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id))
+          if picUrl == "未知の天気":
+               line_bot_api.reply_message(
+                    event.reply_token,
+                    [TextSendMessage(text=day[MySession.read_Hdate(user_id)] + "の" + MySession.read_HareaT(user_id) + MySession.read_Harea(user_id) + "の天気情報を表示します！"),
+                    TextSendMessage(text=tenkiInfo),
+                    TextSendMessage(text=kasaInfo),
+                    TextSendMessage(text=fukusouInfo)])
+          else:
+               line_bot_api.reply_message(
+                    event.reply_token,
+                    [TextSendMessage(text=day[MySession.read_Hdate(user_id)] + "の" + MySession.read_HareaT(user_id) + MySession.read_Harea(user_id) + "の天気情報を表示します！"),
+                    TextSendMessage(text=tenkiInfo),
+                    ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
+                    TextSendMessage(text=kasaInfo),
+                    TextSendMessage(text=fukusouInfo)])
+
+#間違って天気の選択肢で---を選んだ場合の処理################
+    elif (MySession.read_context(user_id) == "10" or MySession.read_context(user_id) == "20" or MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92") and talk == "---":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage("あっ、そこじゃないです！もう一度先ほどの一覧から選んでいただけますか？"))
+
+
 #さらに表示で表示するところ####################################
-    if (MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92"):
+    elif (MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92"):
       BasyoList = MySession.read_KbasyoList(user_id)
       if MySession.read_context(user_id) == "90": MySession.update_context(user_id, "10")
       elif MySession.read_context(user_id) == "91": MySession.update_context(user_id, "20")
       elif MySession.read_context(user_id) == "92": MySession.update_context(user_id, "22")
 
-      if talk == "さらに表示":
+      if talk == "さらに表示する":
         if len(BasyoList) == 10:
             carousel_template = CarouselTemplate(columns=[
                 CarouselColumn(text="４ページ目", actions=[
@@ -910,41 +946,6 @@ def handle_message(event):
             [TextSendMessage(text="もっとですね？了解です！ この中にありますでしょうか？"),
             template_message])
 
-
-    if MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ") and (MySession.read_Hdate(user_id) == 0 or MySession.read_Harea(user_id) == "" or MySession.read_HareaT(user_id) == "" or MySession.read_HbasyoList(user_id) == "" or MySession.read_para(user_id) == 0):
-           line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text="保持情報…保持情報…\nあれ、消えちゃってる… ごめんなさい！保持情報が消えちゃってるので、お手数をおかけしますが再度入力していただけますか？"))
-
-
-#いつものセットでお天気検索
-    elif MySession.read_context(user_id) == "0" and (talk == "いつもの" or talk == "いつもので" or talk == "いつものでお願い" or talk == "いつものでおねがい" or talk == "いつものお願い" or talk == "いつものおねがい" or talk == "いつもの頼む" or talk == "いつもの頼んだ" or talk == "いつものたのむ" or talk == "いつものたのんだ"):
-          para = MySession.read_para(user_id)
-          picUrl = picUrlMaker(needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
-          fukusouInfo = fukusouHantei((tempMEANMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)) + int(para)), needWeatherMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id)))
-          tenkiInfo = OtenkiMessageMaker(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id), MySession.read_Harea(user_id))
-          kasaInfo = kasaHantei(Tcode[Tname.index(MySession.read_Harea(user_id))], MySession.read_Hdate(user_id))
-          if picUrl == "未知の天気":
-               line_bot_api.reply_message(
-                    event.reply_token,
-                    [TextSendMessage(text=day[MySession.read_Hdate(user_id)] + "の" + MySession.read_HareaT(user_id) + MySession.read_Harea(user_id) + "の天気情報を表示します！"),
-                    TextSendMessage(text=tenkiInfo),
-                    TextSendMessage(text=kasaInfo),
-                    TextSendMessage(text=fukusouInfo)])
-          else:
-               line_bot_api.reply_message(
-                    event.reply_token,
-                    [TextSendMessage(text=day[MySession.read_Hdate(user_id)] + "の" + MySession.read_HareaT(user_id) + MySession.read_Harea(user_id) + "の天気情報を表示します！"),
-                    TextSendMessage(text=tenkiInfo),
-                    ImageSendMessage(original_content_url=picUrl, preview_image_url=picUrl),
-                    TextSendMessage(text=kasaInfo),
-                    TextSendMessage(text=fukusouInfo)])
-
-#間違って天気の選択肢で---を選んだ場合の処理################
-    elif (MySession.read_context(user_id) == "10" or MySession.read_context(user_id) == "20" or MySession.read_context(user_id) == "90" or MySession.read_context(user_id) == "91" or MySession.read_context(user_id) == "92") and talk == "---":
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage("あっ、そこじゃないです！もう一度先ほどの一覧から選んでいただけますか？"))
 
 
 
