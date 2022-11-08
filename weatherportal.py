@@ -817,7 +817,7 @@ def handle_message(event):
       elif MySession.read_context(user_id) == "91": MySession.update_context(user_id, "20")
       elif MySession.read_context(user_id) == "92": MySession.update_context(user_id, "22")
 
-      if talk == "さらに表示"
+      if talk == "さらに表示":
         if len(BasyoList) == 10:
             carousel_template = CarouselTemplate(columns=[
                 CarouselColumn(text="４ページ目", actions=[
