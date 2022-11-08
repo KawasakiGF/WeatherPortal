@@ -1273,6 +1273,7 @@ def handle_message(event):
     elif MySession.read_context(user_id) == "20":
         MySession.update_area(user_id, talk)
         if talk in MySession.read_KbasyoList(user_id):
+            MySession.update_context(user_id, "21")
             buttons_template = ButtonsTemplate(
                 text="出発日時をお選びください！", actions=[
                     MessageAction(label="今日", text="今日"),
@@ -1283,7 +1284,6 @@ def handle_message(event):
                 alt_text="出発日時をお選びください！", template=buttons_template)
             line_bot_api.reply_message(
                 event.reply_token, template_message)
-            MySession.update_context(user_id, "21")
         else:
             line_bot_api.reply_message(
                 event.reply_token,
@@ -1332,7 +1332,7 @@ def handle_message(event):
                                                 MessageAction(label=MBasyoList[2], text=MBasyoList[2])
                       ])
                   ])
-              elif len(mBasyoList) == 4:
+              elif len(MBasyoList) == 4:
                   carousel_template = CarouselTemplate(columns=[
                       CarouselColumn(text="１ページ目", actions=[
                                                 MessageAction(label=MBasyoList[0], text=MBasyoList[0]),
