@@ -1970,7 +1970,11 @@ def handle_message(event):
             if MySession.read_para(user_id) == 3: para="暑がり"
             elif MySession.read_para(user_id) == 0: para="どちらでもない"
             elif MySession.read_para(user_id) == -3: para="寒がり"
-
+            line_bot_api.reply_message(
+               event.reply_token,
+               [TextSendMessage(text="情報保持しました！次回以降「いつもの」と入力すれば以下の条件で天気情報を検索できます！"),
+               TextSendMessage(text="<日付>" + date + "\n<場所>" + MySession.read_areaT(user_id) + MySession.read_area(user_id) + "\n<体調>" + para),
+               TextSendMessage(text="保持情報を消す場合は「全リセット」と入力してください！")])
             #保持情報はいったん避難
             Hdate = MySession.read_date(user_id)
             Harea = MySession.read_area(user_id)
@@ -1985,11 +1989,6 @@ def handle_message(event):
             MySession.update_HareaT(user_id, HareaT)
             MySession.update_HbasyoList(user_id, HbasyoList)
             MySession.update_para(user_id, para)
-            line_bot_api.reply_message(
-               event.reply_token,
-               [TextSendMessage(text="情報保持しました！次回以降「いつもの」と入力すれば以下の条件で天気情報を検索できます！"),
-               TextSendMessage(text="<日付>" + date + "\n<場所>" + MySession.read_HareaT(user_id) + MySession.read_Harea(user_id) + "\n<体調>" + para),
-               TextSendMessage(text="保持情報を消す場合は「全リセット」と入力してください！")])
 
     elif talk == "終了" and MySession.read_context(user_id) == "13":
             if MySession.read_date(user_id) == 0 and gozenHantei():
