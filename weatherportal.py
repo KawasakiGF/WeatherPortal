@@ -1970,6 +1970,25 @@ def handle_message(event):
             if MySession.read_para(user_id) == 3: para="暑がり"
             elif MySession.read_para(user_id) == 0: para="どちらでもない"
             elif MySession.read_para(user_id) == -3: para="寒がり"
+            MySession.update_Hdate(user_id, MySession.read_date(user_id))
+            MySession.update_Harea(user_id, MySession.read_area(user_id))
+            MySession.update_HareaT(user_id, MySession.read_areaT(user_id))
+            MySession.update_HbasyoList(user_id, MySession.read_basyoList(user_id))
+            MySession.update_para(user_id, para)
+            #保持情報はいったん避難
+            Hdate = MySession.read_Hdate(user_id)
+            Harea = MySession.read_Harea(user_id)
+            HareaT = MySession.read_HareaT(user_id)
+            HbasyoList = MySession.read_HbasyoList(user_id)
+            para = MySession.read_para(user_id)
+            #全部消した後、
+            MySession.reset(user_id)
+            #保持情報を再度覚えさせる
+            MySession.update_Hdate(user_id, Hdate)
+            MySession.update_Harea(user_id, Harea)
+            MySession.update_HareaT(user_id, HareaT)
+            MySession.update_HbasyoList(user_id, HbasyoList)
+            MySession.update_para(user_id, para)
             line_bot_api.reply_message(
                event.reply_token,
                [TextSendMessage(text="情報保持しました！次回以降「いつもの」と入力すれば以下の条件で天気情報を検索できます！"),
